@@ -117,6 +117,7 @@ a:focus-visible, button:focus-visible {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  transition: filter var(--speed) ease; /* fades to and from black and white */
 }
 .photos::after {
   content: "";
@@ -204,6 +205,10 @@ a:focus-visible, button:focus-visible {
   .panel:hover .panel__links,
   .panel:focus-within .panel__links { opacity: 1; visibility: visible; }
 
+  /* The panel not being hovered turns black and white */
+  .landing:has(.panel--work:is(:hover, :focus-within)) .panel--studio .photos,
+  .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--work .photos { filter: grayscale(1); }
+
   /* Each Studio link brings up its own photo */
   .panel--studio:has([data-tone="working"]:is(:hover, :focus-visible))  [data-for="working"],
   .panel--studio:has([data-tone="founders"]:is(:hover, :focus-visible)) [data-for="founders"],
@@ -219,6 +224,7 @@ a:focus-visible, button:focus-visible {
 
   .landing:has(.panel--studio.is-open) .panel--studio { flex-grow: 60; }
   .landing:has(.panel--studio.is-open) .panel--work   { flex-grow: 40; }
+  .landing:has(.panel--studio.is-open) .panel--work .photos { filter: grayscale(1); }
 
   .panel__inner {
     top: auto;
@@ -264,7 +270,7 @@ a:focus-visible, button:focus-visible {
 
 /* Respect people who turn off motion */
 @media (prefers-reduced-motion: reduce) {
-  .panel, .panel__links, .chevron, .photo { transition: none; }
+  .panel, .panel__links, .chevron, .photo, .photos { transition: none; }
 }
 
 /* ---------- Coming soon page (404.html) ---------- */
