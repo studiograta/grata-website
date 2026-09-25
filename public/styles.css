@@ -1,33 +1,44 @@
 /* =========================================================
    BRAND SETTINGS
-   Change colours and fonts here only. The Studio photos are
-   listed in index.html. Work panel photos are still to come.
+   Change colours and fonts here only. The Work and Studio
+   photos are listed in index.html.
    ========================================================= */
 :root {
   --font: "Cabin", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --text: #ffffff;
-  --text-dim: rgba(255, 255, 255, 0.66);
 
-  /* Logo: colour and width (the cream is taken from the logo artwork) */
-  --logo-colour: #e7e0d5;
+  /* Brand palette 3 (stand-in values until the exact codes arrive) */
+  --silver-mist: #c8cac5;
+  --olive: #6b6b3e;
+  --dark-walnut: #3d2b22;
+  --oat: #d8c9b0;
+  --milk: #f6f2ea;
+
+  /* Where each palette colour is used */
+  --background: var(--dark-walnut);
+  --text: var(--milk);
+  --text-dim: var(--oat);
+  --focus: var(--silver-mist);
+
+  /* Logo: colour and width */
+  --logo-colour: var(--milk);
   --logo-width: 128px;
 
-  /* Darkening laid over photos so the white text stays readable */
-  --photo-shade: linear-gradient(90deg, rgba(20, 14, 10, 0.62), rgba(20, 14, 10, 0.42));
-  --photo-shade-phone: linear-gradient(0deg, rgba(20, 14, 10, 0.7), rgba(20, 14, 10, 0.2));
+  /* Walnut laid over photos so the text stays readable */
+  --photo-shade: linear-gradient(90deg,
+    color-mix(in srgb, var(--dark-walnut) 68%, transparent),
+    color-mix(in srgb, var(--dark-walnut) 45%, transparent));
+  --photo-shade-phone: linear-gradient(0deg,
+    color-mix(in srgb, var(--dark-walnut) 75%, transparent),
+    color-mix(in srgb, var(--dark-walnut) 20%, transparent));
 
-  /* Work panel: resting colour, then one per sector on hover */
-  --work-bg: #3b3b3b;
-  --work-hospitality: #484848;
-  --work-fnb: #333333;
-  --work-retail: #525252;
-  --work-wellness: #424242;
+  /* Work panel: its colour */
+  --work-bg: var(--dark-walnut);
 
   /* Studio panel: colour shown while the photos load */
-  --studio-bg: #5c5c5c;
+  --studio-bg: var(--olive);
 
   /* How fast the panels slide */
-  --speed: 650ms;
+  --speed: 1000ms;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -35,13 +46,13 @@
 html, body { margin: 0; height: 100%; }
 body {
   font-family: var(--font);
-  background: #2a2a2a;
+  background: var(--background);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
 a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--text);
+  outline: 2px solid var(--focus);
   outline-offset: 6px;
 }
 
@@ -73,7 +84,7 @@ a:focus-visible, button:focus-visible {
   align-items: baseline;
   gap: 56px;
   white-space: nowrap;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5); /* keeps text readable on busy photos */
+  text-shadow: 0 1px 14px color-mix(in srgb, var(--dark-walnut) 60%, transparent); /* keeps text readable on busy photos */
 }
 .panel__toggle {
   display: inline-flex;
@@ -83,6 +94,7 @@ a:focus-visible, button:focus-visible {
   padding: 0;
   background: none;
   border: 0;
+  text-decoration: none;
   color: var(--text);
   font-family: var(--font);
   font-size: 30px;
@@ -114,6 +126,18 @@ a:focus-visible, button:focus-visible {
 }
 .photo.is-shown { opacity: 1; }
 .photo[data-for] { transition-duration: 450ms; }
+
+/* Name of the project in the current Work photo */
+.photo-caption {
+  position: absolute;
+  left: 48px;
+  bottom: 36px;
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  pointer-events: none;
+}
 
 .panel__links {
   display: flex;
@@ -154,24 +178,20 @@ a:focus-visible, button:focus-visible {
 @media (hover: hover) and (min-width: 761px) {
   /* Hovering Work widens it and narrows Studio */
   .landing:has(.panel--work:hover) .panel--work,
-  .landing:has(.panel--work:focus-within) .panel--work { flex-grow: 78; }
+  .landing:has(.panel--work:focus-within) .panel--work { flex-grow: 68; }
   .landing:has(.panel--work:hover) .panel--studio,
-  .landing:has(.panel--work:focus-within) .panel--studio { flex-grow: 22; }
+  .landing:has(.panel--work:focus-within) .panel--studio { flex-grow: 32; }
 
   /* Hovering Studio does the opposite */
   .landing:has(.panel--studio:hover) .panel--studio,
-  .landing:has(.panel--studio:focus-within) .panel--studio { flex-grow: 65; }
+  .landing:has(.panel--studio:focus-within) .panel--studio { flex-grow: 60; }
   .landing:has(.panel--studio:hover) .panel--work,
-  .landing:has(.panel--studio:focus-within) .panel--work { flex-grow: 35; }
+  .landing:has(.panel--studio:focus-within) .panel--work { flex-grow: 40; }
+  /* ...but always wide enough to show all three Studio links */
+  .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--studio { min-width: 660px; }
 
   .panel:hover .panel__links,
   .panel:focus-within .panel__links { opacity: 1; visibility: visible; }
-
-  /* Each link changes the panel colour (later: the photo) */
-  .panel--work:has([data-tone="hospitality"]:is(:hover, :focus-visible)) { background-color: var(--work-hospitality); }
-  .panel--work:has([data-tone="fnb"]:is(:hover, :focus-visible))         { background-color: var(--work-fnb); }
-  .panel--work:has([data-tone="retail"]:is(:hover, :focus-visible))      { background-color: var(--work-retail); }
-  .panel--work:has([data-tone="wellness"]:is(:hover, :focus-visible))    { background-color: var(--work-wellness); }
 
   /* Each Studio link brings up its own photo */
   .panel--studio:has([data-tone="working"]:is(:hover, :focus-visible))  [data-for="working"],
@@ -185,8 +205,6 @@ a:focus-visible, button:focus-visible {
   .panel--work   { flex-grow: 55; }
   .panel--studio { flex-grow: 45; }
 
-  .landing:has(.panel--work.is-open) .panel--work     { flex-grow: 70; }
-  .landing:has(.panel--work.is-open) .panel--studio   { flex-grow: 30; }
   .landing:has(.panel--studio.is-open) .panel--studio { flex-grow: 68; }
   .landing:has(.panel--studio.is-open) .panel--work   { flex-grow: 32; }
 
@@ -210,7 +228,7 @@ a:focus-visible, button:focus-visible {
     align-items: center;
     min-height: 44px;
     font-size: 21px;
-    color: #eeeeee;
+    color: var(--text);
   }
 
   .wordmark {
@@ -221,6 +239,14 @@ a:focus-visible, button:focus-visible {
 
   /* Text sits at the bottom on phones, so darken from the bottom up */
   .photos::after { background: var(--photo-shade-phone); }
+
+  /* Caption moves to the top right, clear of the logo and "Work" */
+  .photo-caption {
+    top: calc(32px + env(safe-area-inset-top, 0px));
+    right: 24px;
+    bottom: auto;
+    left: auto;
+  }
 }
 
 /* Respect people who turn off motion */
