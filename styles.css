@@ -1,0 +1,210 @@
+/* =========================================================
+   BRAND SETTINGS
+   Change colours and fonts here only. When photos arrive,
+   each panel colour becomes a background image instead.
+   ========================================================= */
+:root {
+  --font: "Cabin", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.66);
+
+  /* Work panel: resting colour, then one per sector on hover */
+  --work-bg: #3b3b3b;
+  --work-hospitality: #484848;
+  --work-fnb: #333333;
+  --work-retail: #525252;
+  --work-wellness: #424242;
+
+  /* Studio panel: resting colour, then one per link on hover */
+  --studio-bg: #5c5c5c;
+  --studio-working: #555555;
+  --studio-founders: #616161;
+  --studio-contact: #4f4f4f;
+
+  /* How fast the panels slide */
+  --speed: 650ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Base ---------- */
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: var(--font);
+  background: #2a2a2a;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 6px;
+}
+
+/* ---------- Layout: two panels side by side ---------- */
+.landing {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+.panel {
+  position: relative;
+  flex-basis: 0;
+  min-width: 0;
+  overflow: hidden;
+  transition: flex-grow var(--speed) var(--ease), background-color 450ms ease;
+}
+.panel--work   { flex-grow: 60; background-color: var(--work-bg); }
+.panel--studio { flex-grow: 40; background-color: var(--studio-bg); }
+
+/* Label and links, vertically centred on the left of each panel */
+.panel__inner {
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: baseline;
+  gap: 56px;
+  white-space: nowrap;
+}
+.panel__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 30px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chevron { display: none; transition: transform 300ms ease; }
+
+.panel__links {
+  display: flex;
+  align-items: baseline;
+  gap: 36px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease, visibility 300ms ease;
+}
+.panel__links a {
+  font-size: 24px;
+  color: var(--text-dim);
+  text-decoration: none;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 1px;
+}
+.panel__links a:hover,
+.panel__links a:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.wordmark {
+  position: absolute;
+  top: 36px;
+  left: 48px;
+  z-index: 2;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--text);
+}
+
+/* ---------- Desktop: hover to open ---------- */
+@media (hover: hover) and (min-width: 761px) {
+  /* Hovering Work widens it and narrows Studio */
+  .landing:has(.panel--work:hover) .panel--work,
+  .landing:has(.panel--work:focus-within) .panel--work { flex-grow: 78; }
+  .landing:has(.panel--work:hover) .panel--studio,
+  .landing:has(.panel--work:focus-within) .panel--studio { flex-grow: 22; }
+
+  /* Hovering Studio does the opposite */
+  .landing:has(.panel--studio:hover) .panel--studio,
+  .landing:has(.panel--studio:focus-within) .panel--studio { flex-grow: 65; }
+  .landing:has(.panel--studio:hover) .panel--work,
+  .landing:has(.panel--studio:focus-within) .panel--work { flex-grow: 35; }
+
+  .panel:hover .panel__links,
+  .panel:focus-within .panel__links { opacity: 1; visibility: visible; }
+
+  /* Each link changes the panel colour (later: the photo) */
+  .panel--work:has([data-tone="hospitality"]:is(:hover, :focus-visible)) { background-color: var(--work-hospitality); }
+  .panel--work:has([data-tone="fnb"]:is(:hover, :focus-visible))         { background-color: var(--work-fnb); }
+  .panel--work:has([data-tone="retail"]:is(:hover, :focus-visible))      { background-color: var(--work-retail); }
+  .panel--work:has([data-tone="wellness"]:is(:hover, :focus-visible))    { background-color: var(--work-wellness); }
+  .panel--studio:has([data-tone="working"]:is(:hover, :focus-visible))   { background-color: var(--studio-working); }
+  .panel--studio:has([data-tone="founders"]:is(:hover, :focus-visible))  { background-color: var(--studio-founders); }
+  .panel--studio:has([data-tone="contact"]:is(:hover, :focus-visible))   { background-color: var(--studio-contact); }
+}
+
+/* ---------- Phones: panels stack, tap to open ---------- */
+@media (max-width: 760px) {
+  .landing { flex-direction: column; }
+  .panel--work   { flex-grow: 55; }
+  .panel--studio { flex-grow: 45; }
+
+  .landing:has(.panel--work.is-open) .panel--work     { flex-grow: 70; }
+  .landing:has(.panel--work.is-open) .panel--studio   { flex-grow: 30; }
+  .landing:has(.panel--studio.is-open) .panel--studio { flex-grow: 68; }
+  .landing:has(.panel--studio.is-open) .panel--work   { flex-grow: 32; }
+
+  .panel__inner {
+    top: auto;
+    bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+    left: 24px;
+    right: 24px;
+    transform: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .chevron { display: inline-block; }
+  .panel.is-open .chevron { transform: rotate(180deg); }
+
+  .panel__links { display: none; flex-direction: column; gap: 0; }
+  .panel.is-open .panel__links { display: flex; opacity: 1; visibility: visible; }
+  .panel__links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 21px;
+    color: #eeeeee;
+  }
+
+  .wordmark {
+    top: calc(24px + env(safe-area-inset-top, 0px));
+    left: 24px;
+    font-size: 28px;
+  }
+}
+
+/* Respect people who turn off motion */
+@media (prefers-reduced-motion: reduce) {
+  .panel, .panel__links, .chevron { transition: none; }
+}
+
+/* ---------- Coming soon page (404.html) ---------- */
+.soon {
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  background: var(--work-bg);
+}
+.soon .wordmark { position: absolute; }
+.soon h1 { margin: 0; font-size: clamp(32px, 6vw, 56px); font-weight: 600; }
+.soon p { margin: 0; font-size: 20px; color: var(--text-dim); max-width: 36ch; line-height: 1.5; }
+.soon p a { color: var(--text); }
+@media (max-width: 760px) { .soon { padding: 24px; } }

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Studio Grata</title>
+  <meta name="description" content="Studio Grata is a Bengaluru based interior architecture studio designing hospitality, F&amp;B, retail and wellness spaces across India.">
+  <!-- Remove the next line when the full site is ready, so search engines can list it -->
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="landing">
+
+    <!-- Wordmark: swap for the logo file when branding arrives -->
+    <a class="wordmark" href="/" aria-label="Studio Grata home">Grāta</a>
+
+    <!-- WORK PANEL -->
+    <section class="panel panel--work" aria-label="Work">
+      <div class="panel__inner">
+        <button class="panel__toggle" type="button" aria-expanded="false">
+          Work
+          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <nav class="panel__links" aria-label="Work by sector">
+          <a href="/work?sector=hospitality" data-tone="hospitality">Hospitality</a>
+          <a href="/work?sector=fnb" data-tone="fnb">F&amp;B</a>
+          <a href="/work?sector=retail" data-tone="retail">Retail</a>
+          <a href="/work?sector=wellness" data-tone="wellness">Wellness</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- STUDIO PANEL -->
+    <section class="panel panel--studio" aria-label="Studio">
+      <div class="panel__inner">
+        <button class="panel__toggle" type="button" aria-expanded="false">
+          Studio
+          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <nav class="panel__links" aria-label="Studio">
+          <a href="/working-with-us" data-tone="working">Working with us</a>
+          <a href="/studio" data-tone="founders">Founders</a>
+          <a href="mailto:reach@studiograta.in" data-tone="contact">Contact</a>
+        </nav>
+      </div>
+    </section>
+
+  </main>
+  <script src="/main.js"></script>
+</body>
+</html>
