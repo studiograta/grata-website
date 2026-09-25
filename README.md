@@ -1,6 +1,6 @@
 # Studio Grata website
 
-Plain HTML and CSS. No build step. Every push to GitHub deploys automatically through Cloudflare Pages.
+Plain HTML and CSS. No build step. Every push to GitHub deploys automatically through Cloudflare Workers.
 
 ## What each file does
 
