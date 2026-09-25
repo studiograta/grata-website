@@ -4,5 +4,9 @@
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page"
-  }
+  },
+  "routes": [
+    { "pattern": "studiograta.in", "custom_domain": true },
+    { "pattern": "www.studiograta.in", "custom_domain": true }
+  ]
 }
