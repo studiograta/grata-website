@@ -31,6 +31,15 @@
     color-mix(in srgb, var(--dark-walnut) 75%, transparent),
     color-mix(in srgb, var(--dark-walnut) 20%, transparent));
 
+  /* Work photos: only a light shade along the edge where the text sits,
+     so the photos stay clear and sharp */
+  --work-shade:
+    linear-gradient(180deg, color-mix(in srgb, var(--dark-walnut) 40%, transparent), transparent 18%),
+    linear-gradient(90deg, color-mix(in srgb, var(--dark-walnut) 45%, transparent), transparent 45%);
+  --work-shade-phone:
+    linear-gradient(180deg, color-mix(in srgb, var(--dark-walnut) 40%, transparent), transparent 18%),
+    linear-gradient(0deg, color-mix(in srgb, var(--dark-walnut) 55%, transparent), transparent 40%);
+
   /* Work panel: its colour */
   --work-bg: var(--dark-walnut);
 
@@ -71,8 +80,8 @@ a:focus-visible, button:focus-visible {
   overflow: hidden;
   transition: flex-grow var(--speed) var(--ease), background-color 450ms ease;
 }
-.panel--work   { flex-grow: 60; background-color: var(--work-bg); }
-.panel--studio { flex-grow: 40; background-color: var(--studio-bg); }
+.panel--work   { flex-grow: 65; background-color: var(--work-bg); }
+.panel--studio { flex-grow: 35; background-color: var(--studio-bg); }
 
 /* Label and links, vertically centred on the left of each panel */
 .panel__inner {
@@ -82,7 +91,7 @@ a:focus-visible, button:focus-visible {
   transform: translateY(-50%);
   display: flex;
   align-items: baseline;
-  gap: 56px;
+  gap: clamp(56px, 12vw, 240px); /* wide gap between heading and links */
   white-space: nowrap;
   text-shadow: 0 1px 14px color-mix(in srgb, var(--dark-walnut) 60%, transparent); /* keeps text readable on busy photos */
 }
@@ -115,6 +124,7 @@ a:focus-visible, button:focus-visible {
   inset: 0;
   background: var(--photo-shade);
 }
+.panel--work .photos::after { background: var(--work-shade); }
 .photo {
   position: absolute;
   inset: 0;
@@ -135,7 +145,8 @@ a:focus-visible, button:focus-visible {
   margin: 0;
   font-size: 15px;
   letter-spacing: 0.04em;
-  color: var(--text-dim);
+  color: var(--text);
+  text-shadow: 0 1px 10px color-mix(in srgb, var(--dark-walnut) 80%, transparent);
   pointer-events: none;
 }
 
@@ -178,15 +189,15 @@ a:focus-visible, button:focus-visible {
 @media (hover: hover) and (min-width: 761px) {
   /* Hovering Work widens it and narrows Studio */
   .landing:has(.panel--work:hover) .panel--work,
-  .landing:has(.panel--work:focus-within) .panel--work { flex-grow: 68; }
+  .landing:has(.panel--work:focus-within) .panel--work { flex-grow: 81; }
   .landing:has(.panel--work:hover) .panel--studio,
-  .landing:has(.panel--work:focus-within) .panel--studio { flex-grow: 32; }
+  .landing:has(.panel--work:focus-within) .panel--studio { flex-grow: 19; }
 
   /* Hovering Studio does the opposite */
   .landing:has(.panel--studio:hover) .panel--studio,
-  .landing:has(.panel--studio:focus-within) .panel--studio { flex-grow: 60; }
+  .landing:has(.panel--studio:focus-within) .panel--studio { flex-grow: 68; }
   .landing:has(.panel--studio:hover) .panel--work,
-  .landing:has(.panel--studio:focus-within) .panel--work { flex-grow: 40; }
+  .landing:has(.panel--studio:focus-within) .panel--work { flex-grow: 32; }
   /* ...but always wide enough to show all three Studio links */
   .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--studio { min-width: 660px; }
 
@@ -240,6 +251,7 @@ a:focus-visible, button:focus-visible {
 
   /* Text sits at the bottom on phones, so darken from the bottom up */
   .photos::after { background: var(--photo-shade-phone); }
+  .panel--work .photos::after { background: var(--work-shade-phone); }
 
   /* Caption moves to the top right, clear of the logo and "Work" */
   .photo-caption {
