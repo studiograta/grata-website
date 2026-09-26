@@ -254,6 +254,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .landing:has(.panel--studio.is-open) .panel--studio { flex-grow: 60; }
   .landing:has(.panel--studio.is-open) .panel--work   { flex-grow: 40; }
   .landing:has(.panel--studio.is-open) .panel--work .photos { filter: grayscale(1); }
+  /* ...and while Work leads (Studio closed), Studio is the one in black and white */
+  .landing:not(:has(.panel--studio.is-open)) .panel--studio .photos { filter: grayscale(1); }
 
   .panel__inner {
     top: auto;
