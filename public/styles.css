@@ -532,15 +532,20 @@ html:has(.landing) { overscroll-behavior-y: none; }
    short checklist. Icons take their colour from the text colour. */
 .pb { box-sizing: border-box; }
 .pb__intro, .pb__steps, .pb__ready, .pb__band > * { max-width: 1144px; }
-.pb__intro { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; }
-.pb__intro h1 { margin-bottom: 0; }
-.pb__intro p { margin: 0 0 10px; max-width: 360px; font-size: 20px; color: var(--text-dim); }
+/* Page title on the right, across from the logo */
+.pb__intro { display: flex; justify-content: flex-end; }
+.pb__intro h1 { margin-bottom: 0; text-align: right; }
+.pb__intro h1::before { margin-left: auto; }
+/* A smaller title, level with the logo, so the steps start higher up */
+.page.pb { padding-top: 40px; }
+.pb__intro h1 { font-size: clamp(30px, 3.2vw, 44px); }
+.pb__intro h1::before { margin-bottom: 14px; }
 .pb svg { width: 34px; height: 34px; color: var(--text); flex: none; }
 
 .pb__steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin: clamp(40px, 7vh, 72px) 0 0;
+  margin: clamp(36px, 6vh, 56px) 0 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--line);
@@ -576,13 +581,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
   color: var(--dark-walnut);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
 }
 .pb__steps li:nth-child(3) .pb__phase { left: 28px; }
 .pb__steps li:nth-child(5) .pb__phase { left: 28px; }
 
-.pb h2 { margin: 0 0 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.pb h2 { margin: 0 0 24px; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; text-transform: lowercase; }
 .pb h2 span { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--text-dim); }
 
 /* Who we work with: a Walnut band, full width of the page */
