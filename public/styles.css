@@ -117,7 +117,6 @@ a:focus-visible, button:focus-visible {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  transition: filter var(--speed) ease; /* fades to and from black and white */
 }
 .photos::after {
   content: "";
@@ -202,12 +201,20 @@ a:focus-visible, button:focus-visible {
   /* ...but always wide enough to show all three Studio links */
   .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--studio { min-width: 660px; }
 
+  /* Keep the photos at the panel's widest size, so the panel edge just
+     slides over them. Resizing large photos on every frame is what made
+     the slide stutter. Work photos pin to the left, Studio to the right. */
+  .panel--work .photos   { right: auto; width: 81vw; }
+  .panel--studio .photos { left: auto; width: max(68vw, 660px); }
+
   .panel:hover .panel__links,
   .panel:focus-within .panel__links { opacity: 1; visibility: visible; }
 
-  /* The panel not being hovered turns black and white */
+  /* The panel not being hovered turns black and white. It fades in only
+     after the panels stop sliding, and colour comes back at once, because
+     fading while sliding is what made the slide stutter. */
   .landing:has(.panel--work:is(:hover, :focus-within)) .panel--studio .photos,
-  .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--work .photos { filter: grayscale(1); }
+  .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--work .photos { filter: grayscale(1); transition: filter 600ms ease var(--speed); }
 
   /* Each Studio link brings up its own photo */
   .panel--studio:has([data-tone="working"]:is(:hover, :focus-visible))  [data-for="working"],
@@ -224,7 +231,7 @@ a:focus-visible, button:focus-visible {
 
   .landing:has(.panel--studio.is-open) .panel--studio { flex-grow: 60; }
   .landing:has(.panel--studio.is-open) .panel--work   { flex-grow: 40; }
-  .landing:has(.panel--studio.is-open) .panel--work .photos { filter: grayscale(1); }
+  .landing:has(.panel--studio.is-open) .panel--work .photos { filter: grayscale(1); transition: filter 600ms ease var(--speed); }
 
   .panel__inner {
     top: auto;
