@@ -421,6 +421,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 
 .connect__close {
   position: absolute;
+  z-index: 3;
   top: 40px;
   right: 48px;
   font-size: 14px;
@@ -438,15 +439,15 @@ html:has(.landing) { overscroll-behavior-y: none; }
   max-width: 1240px;
   align-items: start;
 }
-.connect__photo { margin: 0; }
+.connect__photo { margin: 0; display: flex; justify-content: center; }
+/* Desktop: the whole photo, never cropped, with clear space around it */
 .connect__photo img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 78%;
   height: auto;
-  max-height: calc(100vh - 180px); /* the whole page fits on one laptop screen */
-  max-height: calc(100dvh - 180px);
-  object-fit: cover;
-  object-position: center 30%; /* keeps the table and chairs in view when the photo is trimmed */
+  max-height: calc(100vh - 260px);
+  max-height: calc(100dvh - 260px);
 }
 /* Spacing shrinks on shorter screens so "Begin" stays in view */
 .connect h1 { font-size: clamp(36px, 7vh, 56px); margin-bottom: 12px; }
@@ -547,7 +548,31 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
   .connect__close { top: 30px; right: 24px; }
   .connect__inner { grid-template-columns: 1fr; gap: 40px; }
-  .connect__photo img { max-height: 55vh; object-fit: cover; }
+  /* Phones: the photo runs edge to edge from the top and fades into the page,
+     so the heading starts on the fade instead of below a tall photo */
+  .connect { padding-top: 0; --logo-colour: var(--milk); }
+  .connect__close { color: var(--milk); }
+  .connect__photo { position: relative; margin: 0 -24px; }
+  .connect__photo::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 120px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--dark-walnut) 45%, transparent), transparent);
+    z-index: 1;
+  }
+  .connect__photo img {
+    width: 100%;
+    max-width: none;
+    height: 46vh;
+    max-height: none;
+    object-fit: cover;
+    object-position: center 35%;
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+    mask-image: linear-gradient(180deg, #000 55%, transparent);
+  }
+  .connect__body { position: relative; margin-top: -110px; }
+  .connect__inner { gap: 0; }
   .connect__lede { margin-bottom: 40px; }
   .connect__cols { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
   .steps li { grid-template-columns: 44px 1fr; }
