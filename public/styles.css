@@ -814,7 +814,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .connect__cols section:nth-child(2) { justify-self: end; min-width: 110px; }
 }
 
-/* Connect page opening titles (contact.js): letters wait hidden, then each
+/* Opening titles (titles.js): letters wait hidden, then each
    one appears in Olive and settles to the text colour */
 .tl__word { white-space: nowrap; }
 .tl { visibility: hidden; }
