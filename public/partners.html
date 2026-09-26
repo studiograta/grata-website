@@ -24,6 +24,7 @@
     <section class="pp__hero">
       <div class="pp__text">
         <h2 class="pp__headline">Get found when we specify.</h2>
+        <p class="pp__kicker">Our designers search this directory on every project.</p>
         <p class="pp__lede">Grata keeps a curated directory of makers, suppliers and consultants. Our designers search it on every project. Join it once, and we come to you when a brief fits.</p>
         <ol class="pp__steps">
           <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M225.91,74.79,181.22,30.1a14,14,0,0,0-19.8,0L38.1,153.41a13.94,13.94,0,0,0-4.1,9.9V208a14,14,0,0,0,14,14H216a6,6,0,0,0,0-12H110.49L225.91,94.59A14,14,0,0,0,225.91,74.79ZM93.52,210H48a2,2,0,0,1-2-2V163.31a2,2,0,0,1,.59-1.41L136,72.49,183.52,120ZM217.42,86.1,192,111.52,144.49,64,169.9,38.59a2,2,0,0,1,2.83,0l44.69,44.68A2,2,0,0,1,217.42,86.1Z"/></svg><b>Register</b><span>Two minutes, no fee.</span></li>
@@ -39,6 +40,10 @@
         <video src="/videos/partners-directory.mp4" poster="/videos/partners-directory.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A Grata designer searches the directory for terrazzo and contacts a partner on WhatsApp"></video>
       </figure>
     </section>
+
+    <!-- Phones: a bar pinned to the bottom so joining is always one tap away.
+         partners.js shows it only while neither the top button nor the form is on screen. -->
+    <a class="button pp__sticky" href="#join" hidden>Join the directory &darr;</a>
 
     <section class="pp__join" id="join">
       <!-- Sends to the "Grata Partner Intake" Google script, which adds a pending

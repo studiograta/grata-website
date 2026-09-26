@@ -97,3 +97,17 @@ form.addEventListener("submit", function (event) {
     });
 });
 
+// Phones: show the pinned "Join the directory" bar only while the top button
+// and the form are both off screen
+var sticky = document.querySelector(".pp__sticky");
+var topButton = document.querySelector(".pp__text > .button");
+var joinSection = document.querySelector("#join");
+if (sticky && topButton && joinSection && "IntersectionObserver" in window) {
+  var inView = new Map();
+  var watcher = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) { inView.set(entry.target, entry.isIntersecting); });
+    sticky.hidden = inView.get(topButton) || inView.get(joinSection) || false;
+  });
+  watcher.observe(topButton);
+  watcher.observe(joinSection);
+}
