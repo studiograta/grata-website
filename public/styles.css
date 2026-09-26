@@ -446,6 +446,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   max-height: calc(100vh - 180px); /* the whole page fits on one laptop screen */
   max-height: calc(100dvh - 180px);
   object-fit: cover;
+  object-position: center 30%; /* keeps the table and chairs in view when the photo is trimmed */
 }
 /* Spacing shrinks on shorter screens so "Begin" stays in view */
 .connect h1 { font-size: clamp(36px, 7vh, 56px); margin-bottom: 12px; }
