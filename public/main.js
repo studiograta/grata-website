@@ -42,11 +42,28 @@ landing.addEventListener("touchend", function (event) {
 // The second panel starts 3 seconds later, so the two never change together.
 // Each photo is only downloaded just before it is needed.
 function load(photo) {
+  var phoneVersion = photo.parentNode.querySelector("source[data-srcset]");
+  if (phoneVersion) {
+    phoneVersion.srcset = phoneVersion.dataset.srcset;
+    phoneVersion.removeAttribute("data-srcset");
+  }
   if (photo.dataset.src) {
     photo.src = photo.dataset.src;
     photo.removeAttribute("data-src");
   }
 }
+
+// Phones: if a photo's phone version (-mobile.jpg) is missing, show the desktop one instead.
+function useDesktopVersion(photo) {
+  var phoneVersion = photo.parentNode.querySelector("source");
+  if (phoneVersion) phoneVersion.remove();
+}
+
+document.querySelectorAll("picture .photo").forEach(function (photo) {
+  photo.addEventListener("error", function () { useDesktopVersion(photo); });
+  // The first photo may have already failed before this script ran
+  if (photo.complete && photo.currentSrc && photo.naturalWidth === 0) useDesktopVersion(photo);
+});
 
 var stillMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

@@ -21,17 +21,34 @@
     <!-- WORK PANEL -->
     <section class="panel panel--work" aria-label="Work">
       <div class="photos" aria-hidden="true">
-        <!-- Project photos: they fade from one to the next, and the caption shows the project name -->
-        <img class="photo is-shown" src="/images/work/lotus-palace-courtyard.jpg" data-caption="Lotus Palace" alt="">
-        <img class="photo" data-src="/images/work/vadhyar-house-entrance.jpg" data-caption="Vadhyar House" alt="">
-        <img class="photo" data-src="/images/work/beruru-garden.jpg" data-caption="Beruru" alt="">
-        <img class="photo" data-src="/images/work/go-native-dining.jpg" data-caption="Go Native" alt="">
-        <img class="photo" data-src="/images/work/lotus-palace-lounge.jpg" data-caption="Lotus Palace" alt="">
-        <img class="photo" data-src="/images/work/vadhyar-house-courtyard.jpg" data-caption="Vadhyar House" alt="">
-        <img class="photo" data-src="/images/work/beruru-table.jpg" data-caption="Beruru" alt="">
-        <img class="photo" data-src="/images/work/go-native-banquette.jpg" data-caption="Go Native" alt="">
+        <!-- Project photos: they fade from one to the next, and the caption shows the project name.
+             Desktop photos are 3:2; the phone version (screens 760px wide or less) is a separate 2:3 photo. -->
+        <picture>
+          <source media="(max-width: 760px)" srcset="/images/work/prayag-reading-nook-mobile.jpg">
+          <img class="photo is-shown" src="/images/work/prayag-play-area.jpg" data-caption="Prayag Montessori" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/work/go-native-pergola-mobile.jpg">
+          <img class="photo" data-src="/images/work/go-native-pergola.jpg" data-caption="Go Native" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/work/prayag-corridor-mobile.jpg">
+          <img class="photo" data-src="/images/work/prayag-outdoor-classroom.jpg" data-caption="Prayag Montessori" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/work/go-native-banquette-mobile.jpg">
+          <img class="photo" data-src="/images/work/go-native-pergola-doors.jpg" data-caption="Go Native" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/work/prayag-mud-kitchen-mobile.jpg">
+          <img class="photo" data-src="/images/work/prayag-mural-classroom.jpg" data-caption="Prayag Montessori" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/work/go-native-signage-mobile.jpg">
+          <img class="photo" data-src="/images/work/go-native-stone-court.jpg" data-caption="Go Native" alt="">
+        </picture>
       </div>
-      <p class="photo-caption" aria-hidden="true">Lotus Palace</p>
+      <p class="photo-caption" aria-hidden="true">Prayag Montessori</p>
       <div class="panel__inner">
         <a class="panel__toggle" href="/work">Work</a>
       </div>
