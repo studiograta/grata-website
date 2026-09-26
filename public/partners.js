@@ -34,7 +34,7 @@ if (siteKey) {
   window.onTurnstileLoad = function () {
     turnstile.render(form.querySelector(".partners__turnstile"), {
       sitekey: siteKey,
-      theme: "dark",
+      theme: "light",
       callback: function (token) { turnstileToken = token; },
       "expired-callback": function () { turnstileToken = ""; }
     });

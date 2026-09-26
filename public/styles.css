@@ -6,28 +6,36 @@
 :root {
   --font: "Cabin", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* Brand palette 3 (stand-in values until the exact codes arrive) */
-  --silver-mist: #c8cac5;
-  --olive: #6b6b3e;
-  --dark-walnut: #3d2b22;
-  --oat: #d8c9b0;
-  --milk: #f6f2ea;
+  /* Studio Grata palette (final codes, September 2026) */
+  --dark-walnut: #2d2011;
+  --mothwing-taupe: #a79c94;
+  --olive-chartreuse: #a6a12f; /* the primary brand colour */
+  --milk: #fbf7f4;
+  --silver-mist: #bcc4c2;
 
-  /* Where each palette colour is used */
-  --background: var(--dark-walnut);
+  /* How the palette is used: light pages led by Milk, Dark Walnut for text,
+     Silver Mist and Taupe for lines, and Olive Chartreuse in small repeated
+     touches (the line above page titles, link underlines, button hover).
+     Olive is never used for text on Milk, and text on Olive is always Walnut:
+     other pairings are too faint to read. */
+  --background: var(--milk);
+  --text: var(--dark-walnut);
+  --text-dim: color-mix(in srgb, var(--dark-walnut) 72%, var(--milk)); /* secondary text */
+  --line: var(--mothwing-taupe);
+  --accent: var(--olive-chartreuse);
+  --focus: var(--dark-walnut);
 
-  /* Texture over the background colour so large walnut areas do not look
-     flat: a fine paper-like grain plus a soft glow from the top left.
-     Set to "none" to go back to a plain colour. */
+  /* Text laid over photos on the landing screen stays light */
+  --on-photo: var(--milk);
+  --on-photo-dim: var(--silver-mist);
+
+  /* A very fine paper grain over the background so large areas do not look
+     flat. Set to "none" to go back to a plain colour. */
   --texture:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .96 0 0 0 0 .92 0 0 0 0 .85 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-    radial-gradient(ellipse at 20% 0%, rgba(246, 242, 234, 0.07), transparent 60%);
-  --text: var(--milk);
-  --text-dim: var(--oat);
-  --focus: var(--silver-mist);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .18 0 0 0 0 .13 0 0 0 0 .07 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  /* Logo: colour and width */
-  --logo-colour: var(--milk);
+  /* Logo: colour and width (it turns Milk over the landing photos) */
+  --logo-colour: var(--dark-walnut);
   --logo-width: 128px;
 
   /* Walnut laid over photos so the text stays readable */
@@ -51,7 +59,7 @@
   --work-bg: var(--dark-walnut);
 
   /* Studio panel: colour shown while the photos load */
-  --studio-bg: var(--olive);
+  --studio-bg: var(--mothwing-taupe);
 
   /* How fast the panels slide */
   --speed: 1000ms;
@@ -115,7 +123,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   background: none;
   border: 0;
   text-decoration: none;
-  color: var(--text);
+  color: var(--on-photo);
   font-family: var(--font);
   font-size: 30px;
   font-weight: 600;
@@ -157,7 +165,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   margin: 0;
   font-size: 15px;
   letter-spacing: 0.04em;
-  color: var(--text);
+  color: var(--on-photo);
   text-shadow: 0 1px 10px color-mix(in srgb, var(--dark-walnut) 80%, transparent);
   pointer-events: none;
 }
@@ -172,14 +180,14 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .panel__links a {
   font-size: 24px;
-  color: var(--text-dim);
+  color: var(--on-photo-dim);
   text-decoration: none;
   text-underline-offset: 10px;
   text-decoration-thickness: 1px;
 }
 .panel__links a:hover,
 .panel__links a:focus-visible {
-  color: var(--text);
+  color: var(--on-photo);
   text-decoration: underline;
 }
 
@@ -196,6 +204,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
   -webkit-mask: url("/images/logo.png") center / contain no-repeat;
   mask: url("/images/logo.png") center / contain no-repeat;
 }
+
+/* Over the landing photos the logo and focus rings are light */
+.landing { --logo-colour: var(--on-photo); --focus: var(--on-photo); }
 
 /* ---------- Desktop: hover to open ---------- */
 @media (hover: hover) and (min-width: 761px) {
@@ -264,7 +275,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
     align-items: center;
     min-height: 44px;
     font-size: 21px;
-    color: var(--text);
+    color: var(--on-photo);
   }
 
   .wordmark {
@@ -301,7 +312,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  background: var(--texture), var(--work-bg);
+  background: var(--texture), var(--background);
 }
 .soon .wordmark { position: absolute; }
 .soon h1 { margin: 0; font-size: clamp(32px, 6vw, 56px); font-weight: 600; }
@@ -319,7 +330,27 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .page h1 { margin: 0 0 16px; font-size: clamp(36px, 6vw, 56px); font-weight: 600; }
 
-/* Solid Milk button, used for "Send enquiry" and "Start a conversation" */
+/* The brand touch: a short Olive Chartreuse line above each page title */
+.page h1::before,
+.soon h1::before {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-bottom: 24px;
+  background: var(--accent);
+}
+
+/* Links in text get an Olive Chartreuse underline */
+.page a:not(.button, .wordmark),
+.soon p a {
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* Solid Walnut button, used for "Send enquiry" and "Start a conversation";
+   it turns Olive Chartreuse on hover */
 .button {
   display: inline-flex;
   align-items: center;
@@ -332,7 +363,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   text-decoration: none;
   cursor: pointer;
 }
-.button:hover { background: var(--text-dim); }
+.button:hover { background: var(--accent); color: var(--dark-walnut); }
 .button:disabled { opacity: 0.6; cursor: default; }
 
 /* ---------- Contact page ---------- */
@@ -358,7 +389,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   padding: 10px 0;
   background: none;
   border: 0;
-  border-bottom: 1px solid var(--text-dim);
+  border-bottom: 1px solid var(--line);
   border-radius: 0;
   color: var(--text);
   font: 18px var(--font);
@@ -380,7 +411,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   padding: 10px 0;
   background: var(--background);
   border: 0;
-  border-bottom: 1px solid var(--text-dim);
+  border-bottom: 1px solid var(--line);
   border-radius: 0;
   color: var(--text);
   font: 18px var(--font);
@@ -398,7 +429,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   height: 18px;
   margin: 3px 0 0;
   flex: none;
-  accent-color: var(--oat);
+  accent-color: var(--dark-walnut);
 }
 .partners__turnstile:empty { display: none; }
 
@@ -416,14 +447,14 @@ html:has(.landing) { overscroll-behavior-y: none; }
   display: grid;
   grid-template-columns: 56px 1fr;
   padding: 24px 0;
-  border-top: 1px solid color-mix(in srgb, var(--oat) 30%, transparent);
+  border-top: 1px solid var(--silver-mist);
   counter-increment: step;
 }
 .steps li::before {
   content: counter(step, decimal-leading-zero);
   font-size: 15px;
   line-height: 1.9;
-  color: var(--oat);
+  color: var(--text-dim);
 }
 .steps h3 { margin: 0 0 6px; font-size: 20px; font-weight: 600; color: var(--text); }
 .steps p { grid-column: 2; margin: 0; }
