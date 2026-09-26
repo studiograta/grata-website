@@ -57,10 +57,23 @@
     <!-- STUDIO PANEL -->
     <section class="panel panel--studio" aria-label="Studio">
       <div class="photos" aria-hidden="true">
-        <!-- Resting photo. On phones (760px wide or less) the portrait version is shown instead. -->
+        <!-- Resting photos: they fade from one to the next. Desktop photos are 5:4;
+             the phone version (screens 760px wide or less) is a separate 4:5 photo. -->
         <picture>
           <source media="(max-width: 760px)" srcset="/images/studio/tables-mobile.jpg">
           <img class="photo is-shown" src="/images/studio/panels.jpg" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/studio/thali-mobile.jpg">
+          <img class="photo" data-src="/images/studio/glass-roof-bw.jpg" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/studio/white-panels-mobile.jpg">
+          <img class="photo" data-src="/images/studio/glass-roof-reflection.jpg" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/studio/menu-detail-mobile.jpg">
+          <img class="photo" data-src="/images/studio/lamp.jpg" alt="">
         </picture>
         <!-- Link photos: shown while hovering the link with the matching data-tone -->
         <img class="photo" data-for="working" src="/images/studio/sketch.jpg" alt="">
