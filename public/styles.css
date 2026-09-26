@@ -813,3 +813,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .connect__cols { grid-template-columns: 1fr auto; gap: 40px 24px; align-items: start; }
   .connect__cols section:nth-child(2) { justify-self: end; min-width: 110px; }
 }
+
+/* Connect page opening titles (contact.js): letters wait hidden, then each
+   one appears in Olive and settles to the text colour */
+.tl__word { white-space: nowrap; }
+.tl { visibility: hidden; }
+.tl--in { visibility: visible; animation: tl-land 0.7s ease-out; }
+@keyframes tl-land { from { color: var(--accent); } }
