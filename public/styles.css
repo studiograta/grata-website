@@ -65,6 +65,9 @@ a:focus-visible, button:focus-visible {
   outline-offset: 6px;
 }
 
+/* Landing screen: swiping down switches panels instead of reloading the page */
+html:has(.landing) { overscroll-behavior-y: none; }
+
 /* ---------- Layout: two panels side by side ---------- */
 .landing {
   position: relative;
@@ -78,7 +81,8 @@ a:focus-visible, button:focus-visible {
   flex-basis: 0;
   min-width: 0;
   overflow: hidden;
-  transition: flex-grow var(--speed) var(--ease), background-color 450ms ease;
+  /* min-width slides too, so Studio's minimum width never snaps in */
+  transition: flex-grow var(--speed) var(--ease), min-width var(--speed) var(--ease), background-color 450ms ease;
 }
 .panel--work   { flex-grow: 65; background-color: var(--work-bg); }
 .panel--studio { flex-grow: 35; background-color: var(--studio-bg); }
@@ -204,6 +208,13 @@ a:focus-visible, button:focus-visible {
 
   .panel:hover .panel__links,
   .panel:focus-within .panel__links { opacity: 1; visibility: visible; }
+
+  /* Smooth sliding: each photo keeps a fixed size (the panel's widest
+     open width) pinned to the outer edge, so sliding only reveals more
+     or less of it instead of resizing it on every frame */
+  .panel--work .photo { width: 81vw; }
+  .panel--studio .photo { left: auto; right: 0; width: max(68vw, 660px); }
+  .photos { will-change: filter; }
 
   /* The panel not being hovered turns black and white */
   .landing:has(.panel--work:is(:hover, :focus-within)) .panel--studio .photos,

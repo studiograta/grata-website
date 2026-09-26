@@ -1,12 +1,32 @@
 // On phones, tapping "Studio" opens or closes its links.
 // On desktop, hovering does the same job, so this only matters on touch screens.
 // ("Work" is a plain link for now, so it has no menu to open.)
-document.querySelectorAll("button.panel__toggle").forEach(function (button) {
-  button.addEventListener("click", function () {
-    var open = button.closest(".panel").classList.toggle("is-open");
-    button.setAttribute("aria-expanded", open);
-  });
+var studioButton = document.querySelector(".panel--studio button.panel__toggle");
+
+function setStudioOpen(open) {
+  studioButton.closest(".panel").classList.toggle("is-open", open);
+  studioButton.setAttribute("aria-expanded", open);
+}
+
+studioButton.addEventListener("click", function () {
+  setStudioOpen(studioButton.getAttribute("aria-expanded") !== "true");
 });
+
+// Phones: swipe up to bring Studio forward, swipe down to go back to Work.
+// Short touches (under 40px) are ignored so taps still work normally.
+var landing = document.querySelector(".landing");
+var touchStartY = null;
+
+landing.addEventListener("touchstart", function (event) {
+  touchStartY = event.touches[0].clientY;
+}, { passive: true });
+
+landing.addEventListener("touchend", function (event) {
+  if (touchStartY === null || !window.matchMedia("(max-width: 760px)").matches) return;
+  var distance = event.changedTouches[0].clientY - touchStartY;
+  touchStartY = null;
+  if (Math.abs(distance) >= 40) setStudioOpen(distance < 0);
+}, { passive: true });
 
 // Both panels: fade to the next resting photo every 6 seconds.
 // The second panel starts 3 seconds later, so the two never change together.
