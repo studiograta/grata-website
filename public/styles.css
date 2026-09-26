@@ -593,6 +593,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .connect__cols { order: 3; margin-top: 48px; }
   .connect__inner { gap: 0; }
   .connect__lede { margin-bottom: 40px; }
-  .connect__cols { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  /* Phones: Reach on the left, Follow pushed to the right edge, Based in below */
+  .connect__cols { grid-template-columns: 1fr auto; gap: 40px 24px; align-items: start; }
+  .connect__cols section:nth-child(2) { justify-self: end; min-width: 110px; }
   .steps li { grid-template-columns: 44px 1fr; }
 }
