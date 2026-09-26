@@ -21,11 +21,27 @@
     <!-- WORK PANEL -->
     <section class="panel panel--work" aria-label="Work">
       <div class="photos" aria-hidden="true">
-        <!-- Project photo. Desktop is 3:2; the phone version (screens 760px wide or less) is a separate 2:3 photo.
-             To add more, copy the picture block; later ones use data-srcset / data-src so they load only when needed. -->
+        <!-- Project photos: they fade from one to the next, and the caption shows the project name.
+             Desktop photos are 3:2; the phone version (screens 760px wide or less) is a separate 2:3 photo.
+             A photo marked desktop-only has no phone version and is skipped on phones. -->
         <picture>
           <source media="(max-width: 760px)" srcset="/images/work/go-native-pergola-mobile.jpg">
           <img class="photo is-shown" src="/images/work/go-native-pergola.jpg" data-caption="Go Native" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/work/lotus-palace-lounge-mobile.jpg">
+          <img class="photo" data-src="/images/work/lotus-palace-lounge.jpg" data-caption="Lotus Palace" alt="">
+        </picture>
+        <picture>
+          <img class="photo desktop-only" data-src="/images/work/beruru-garden.jpg" data-caption="Beruru" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/work/vadhyar-house-courtyard-mobile.jpg">
+          <img class="photo" data-src="/images/work/vadhyar-house-courtyard.jpg" data-caption="Vadhyar House" alt="">
+        </picture>
+        <picture>
+          <source media="(max-width: 760px)" data-srcset="/images/work/beruru-table-mobile.jpg">
+          <img class="photo" data-src="/images/work/beruru-table.jpg" data-caption="Beruru" alt="">
         </picture>
       </div>
       <p class="photo-caption" aria-hidden="true">Go Native</p>

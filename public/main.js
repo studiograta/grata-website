@@ -68,7 +68,11 @@ document.querySelectorAll("picture .photo").forEach(function (photo) {
 var stillMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 document.querySelectorAll(".photos").forEach(function (photos, index) {
-  var restPhotos = photos.querySelectorAll(".photo:not([data-for])");
+  // On phones, photos marked desktop-only are skipped (they have no phone version)
+  var onPhone = window.matchMedia("(max-width: 760px)").matches;
+  var restPhotos = Array.prototype.filter.call(photos.querySelectorAll(".photo:not([data-for])"), function (photo) {
+    return !(onPhone && photo.classList.contains("desktop-only"));
+  });
   var caption = photos.parentNode.querySelector(".photo-caption");
   var current = 0;
   if (restPhotos.length < 2 || stillMotion) return;
