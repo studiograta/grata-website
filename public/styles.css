@@ -363,6 +363,38 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .contact__status { margin: 0; min-height: 1.5em; font-size: 16px; color: var(--text-dim); }
 .contact__form .contact__trap { display: none; }
 
+/* ---------- Partners page (partners.html): builds on the contact form ---------- */
+.partners__form h2 { margin: 16px 0 0; font-size: 22px; font-weight: 600; color: var(--text); }
+.partners__form h2:first-of-type { margin-top: 0; }
+.partners__form select {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 0;
+  background: var(--background);
+  border: 0;
+  border-bottom: 1px solid var(--text-dim);
+  border-radius: 0;
+  color: var(--text);
+  font: 18px var(--font);
+}
+.partners__form select:focus { outline: none; border-bottom-color: var(--text); }
+.partners__caps { margin: 0; padding: 0; border: 0; display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.partners__caps legend { margin-bottom: 12px; padding: 0; font-size: 15px; color: var(--text-dim); }
+.partners__caps legend span { opacity: 0.7; }
+.partners__caps label,
+.partners__consent { display: flex; align-items: center; gap: 10px; color: var(--text); font-size: 17px; }
+.partners__consent { align-items: flex-start; line-height: 1.5; }
+.partners__form input[type="checkbox"] {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0;
+  flex: none;
+  accent-color: var(--oat);
+}
+.partners__turnstile:empty { display: none; }
+
 /* ---------- Working with us page ---------- */
 .working { max-width: 760px; }
 .working h2 { margin: 72px 0 24px; font-size: 26px; font-weight: 600; }

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Partner with us | Studio Grata</title>
+  <meta name="description" content="Suppliers, makers and consultants: share your details with Studio Grata, a Bengaluru based interior architecture studio.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="page contact partners">
+    <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
+
+    <div class="contact__inner">
+      <section class="contact__details">
+        <h1>Partner with Studio Grata</h1>
+        <p>We work with suppliers, makers and consultants who care about their craft.
+          Tell us about your work and we will be in touch when a project is a good fit.</p>
+        <ul>
+          <li><a href="mailto:reach@studiograta.in">reach@studiograta.in</a></li>
+        </ul>
+      </section>
+
+      <!-- Sends to the "Grata Partner Intake" Google script, which adds a pending
+           row to the Registrations tab of the vendor database.
+           data-turnstile: Cloudflare Turnstile site key; leave empty to skip the check. -->
+      <form class="contact__form partners__form"
+            data-endpoint="https://script.google.com/macros/s/AKfycbxNwaiaqrAxKWYUqGJX78m2LL4WSgIPLvJxsfB40aNw2yMg7oCZY195XTWfIx-U9KFYLA/exec"
+            data-turnstile="">
+        <!-- Spam trap: hidden from people, bots fill it and get ignored -->
+        <input type="text" name="company_site" class="contact__trap" tabindex="-1" autocomplete="off">
+
+        <h2>Your work</h2>
+        <label>Firm name
+          <input type="text" name="firm" autocomplete="organization" required>
+        </label>
+        <label>What you do
+          <textarea name="description" rows="3" required placeholder="For example: handmade terrazzo tiles and in-situ terrazzo floors"></textarea>
+        </label>
+        <label class="partners__sub">What best describes your work <span>(optional)</span>
+          <select name="subCategory">
+            <option value="">Choose one</option>
+          </select>
+        </label>
+        <fieldset class="partners__caps">
+          <legend>You <span>(tick all that apply)</span></legend>
+          <label><input type="checkbox" name="capabilities" value="Supplies"> Supply</label>
+          <label><input type="checkbox" name="capabilities" value="Fabricates"> Fabricate</label>
+          <label><input type="checkbox" name="capabilities" value="Installs"> Install</label>
+          <label><input type="checkbox" name="capabilities" value="Consults"> Consult</label>
+          <label><input type="checkbox" name="capabilities" value="Turnkey"> Deliver turnkey</label>
+        </fieldset>
+        <label>Brands you carry <span>(optional, separate with commas)</span>
+          <input type="text" name="brands">
+        </label>
+        <label>Website <span>(optional)</span>
+          <input type="text" name="website" inputmode="url" autocomplete="url">
+        </label>
+        <label>Portfolio or Instagram link <span>(optional)</span>
+          <input type="text" name="portfolio" inputmode="url">
+        </label>
+        <label>City
+          <input type="text" name="city" autocomplete="address-level2" required>
+        </label>
+        <label>Showroom or workshop address <span>(optional)</span>
+          <textarea name="address" rows="2" autocomplete="street-address"></textarea>
+        </label>
+
+        <h2>Contact</h2>
+        <label>Contact person
+          <input type="text" name="contact" autocomplete="name" required>
+        </label>
+        <label>Phone
+          <input type="tel" name="phone" autocomplete="tel" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Second contact person <span>(optional)</span>
+          <input type="text" name="contact2">
+        </label>
+        <label>Second contact phone <span>(optional)</span>
+          <input type="tel" name="phone2">
+        </label>
+
+        <label class="partners__consent">
+          <input type="checkbox" name="consent" required>
+          I agree that Studio Grata may store these details and contact me about projects.
+        </label>
+
+        <div class="partners__turnstile"></div>
+        <button class="button" type="submit">Send details</button>
+        <p class="contact__status" role="status"></p>
+      </form>
+    </div>
+  </main>
+  <script src="/partners.js"></script>
+</body>
+</html>
