@@ -568,7 +568,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   color: transparent;
   -webkit-text-stroke: 1px var(--text);
 }
-.pb__steps svg { position: absolute; top: 34px; right: 28px; }
+.pb__steps svg { position: absolute; top: 34px; right: 28px; opacity: 0.5; }
 .pb__steps h3 { margin: 12px 0 6px; font-size: 20px; font-weight: 600; }
 .pb__steps p { margin: 0; font-size: 15px; color: var(--text-dim); }
 /* Phase label: small Olive tag on the first step of each pair */
