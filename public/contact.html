@@ -3,50 +3,83 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Contact | Studio Grata</title>
-  <meta name="description" content="Get in touch with Studio Grata, a Bengaluru based interior architecture studio.">
+  <title>Connect | Studio Grata</title>
+  <meta name="description" content="Connect with Studio Grata, an interior architecture studio in Indiranagar, Bengaluru.">
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-  <main class="page contact">
+<body class="connect-body">
+  <main class="page connect">
     <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
+    <a class="connect__close" href="/">Close</a>
 
-    <div class="contact__inner">
-      <section class="contact__details">
-        <h1>Contact</h1>
-        <p>Tell us about your space.</p>
-        <ul>
-          <li><a href="mailto:reach@studiograta.in">reach@studiograta.in</a></li>
-          <li><a href="tel:+917899829886">+91 78998 29886</a></li>
-        </ul>
-      </section>
+    <div class="connect__inner">
+      <figure class="connect__photo">
+        <img src="/images/connect/material-board.jpg" alt="A Studio Grata material board: walnut veneers, a brass sample, velvet, jacquard and sheer fabrics, and a sprig of eucalyptus">
+      </figure>
 
-      <!-- Enquiry form: Web3Forms emails each enquiry to the address linked to the access key -->
-      <form class="contact__form" method="post" action="https://api.web3forms.com/submit">
-        <input type="hidden" name="access_key" value="667654d6-8caa-4785-b767-fdb211281f18">
-        <input type="hidden" name="subject" value="New enquiry from studiograta.in">
-        <input type="hidden" name="from_name" value="Studio Grata website">
-        <!-- Spam trap: hidden from people, bots tick it and get ignored -->
-        <input type="checkbox" name="botcheck" class="contact__trap" tabindex="-1" autocomplete="off">
-        <label>Name
-          <input type="text" name="name" autocomplete="name" required>
-        </label>
-        <label>Email
-          <input type="email" name="email" autocomplete="email" required>
-        </label>
-        <label>Phone <span>(optional)</span>
-          <input type="tel" name="phone" autocomplete="tel">
-        </label>
-        <label>Enquiry
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <button class="button" type="submit">Send enquiry</button>
-        <p class="contact__status" role="status"></p>
-      </form>
+      <div class="connect__body">
+        <h1>Connect</h1>
+        <p class="connect__lede">Every Grata space begins with a conversation.</p>
+
+        <div class="connect__cols">
+          <section>
+            <h2>Reach</h2>
+            <p><b>Call</b><a href="tel:+917899829886">+91 78998 29886</a></p>
+            <p><b>Write</b><a href="mailto:reach@studiograta.in">reach@studiograta.in</a></p>
+            <p><b>Vendors and consultants</b><a href="/partners">Become a partner</a></p>
+          </section>
+          <section>
+            <h2>Visit</h2>
+            <address>
+              Aspire Coworks<br>
+              17, 7th Main Road<br>
+              Indiranagar II Stage<br>
+              Bengaluru 560008
+            </address>
+            <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Aspire+Coworks+17+7th+Main+Road+Indiranagar+Bengaluru+560008" target="_blank" rel="noopener">Open in Maps</a></p>
+          </section>
+          <section>
+            <h2>Follow</h2>
+            <ul>
+              <li><a href="https://www.instagram.com/studiograta_/" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="https://www.linkedin.com/company/studio-grata/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://www.youtube.com/@studiograta" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://x.com/studiograta_" target="_blank" rel="noopener">X</a></li>
+            </ul>
+          </section>
+        </div>
+
+        <!-- "Begin" opens the enquiry form. Web3Forms emails each enquiry to the address linked to the access key. -->
+        <details class="connect__begin">
+          <summary class="button">Begin</summary>
+          <form class="contact__form" method="post" action="https://api.web3forms.com/submit">
+            <p class="connect__hint">Tell us about your space and we will get back to you.</p>
+            <input type="hidden" name="access_key" value="667654d6-8caa-4785-b767-fdb211281f18">
+            <input type="hidden" name="subject" value="New enquiry from studiograta.in">
+            <input type="hidden" name="from_name" value="Studio Grata website">
+            <!-- Spam trap: hidden from people, bots tick it and get ignored -->
+            <input type="checkbox" name="botcheck" class="contact__trap" tabindex="-1" autocomplete="off">
+            <label>Name
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label>Email
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <label>Phone <span>(optional)</span>
+              <input type="tel" name="phone" autocomplete="tel">
+            </label>
+            <label>Your space
+              <textarea name="message" rows="5" placeholder="What it is, where it is, and when you hope to begin" required></textarea>
+            </label>
+            <button class="button" type="submit">Send</button>
+            <p class="contact__status" role="status"></p>
+          </form>
+        </details>
+      </div>
     </div>
   </main>
   <script src="/contact.js"></script>

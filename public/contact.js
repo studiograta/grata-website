@@ -23,3 +23,11 @@ form.addEventListener("submit", function (event) {
       button.disabled = false;
     });
 });
+
+// "Begin" opens the form: put the cursor straight in the Name box
+var begin = document.querySelector(".connect__begin");
+if (begin) {
+  begin.addEventListener("toggle", function () {
+    if (begin.open) form.querySelector("input[name=name]").focus();
+  });
+}

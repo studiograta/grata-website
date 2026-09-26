@@ -406,6 +406,70 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .contact__status { margin: 0; min-height: 1.5em; font-size: 16px; color: var(--text-dim); }
 .contact__form .contact__trap { display: none; }
 
+/* ---------- Connect page (contact.html) ----------
+   A calm Taupe page: material board photo on the left, then three short
+   columns (Reach, Visit, Follow). "Begin" opens the enquiry form. */
+.connect {
+  --background: color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk));
+  --text-dim: color-mix(in srgb, var(--dark-walnut) 82%, var(--mothwing-taupe));
+  --line: color-mix(in srgb, var(--dark-walnut) 35%, transparent);
+  position: relative;
+}
+.connect-body { background: var(--texture), color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk)); }
+
+.connect__close {
+  position: absolute;
+  top: 40px;
+  right: 48px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.page .connect__close { text-decoration: none; }
+.connect__close:hover { text-decoration: underline; }
+
+.connect__inner {
+  display: grid;
+  grid-template-columns: minmax(260px, 5fr) 7fr;
+  gap: clamp(40px, 7vw, 120px);
+  max-width: 1240px;
+  align-items: start;
+}
+.connect__photo { margin: 0; }
+.connect__photo img { display: block; width: 100%; height: auto; }
+
+.connect__lede { margin: 0 0 56px; font-size: 20px; color: var(--text-dim); }
+
+.connect__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 32px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.connect__cols h2 {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.connect__cols p,
+.connect__cols address { margin: 0 0 14px; font-style: normal; }
+.connect__cols b { display: block; font-weight: 600; }
+.connect__cols a[href^="tel"] { white-space: nowrap; }
+.connect__cols ul { margin: 0; padding: 0; list-style: none; }
+
+/* "Begin": a button that opens the enquiry form below it */
+.connect__begin { margin-top: 56px; }
+.connect__begin summary { list-style: none; }
+.connect__begin summary::-webkit-details-marker { display: none; }
+.connect__begin[open] summary { display: none; }
+.connect__begin .contact__form { max-width: 520px; }
+.connect__hint { margin: 0; font-size: 18px; color: var(--text); }
+.connect .contact__form ::placeholder { color: color-mix(in srgb, var(--dark-walnut) 50%, var(--mothwing-taupe)); }
+
 /* ---------- Partners page (partners.html): builds on the contact form ---------- */
 .partners__form h2 { margin: 16px 0 0; font-size: 22px; font-weight: 600; color: var(--text); }
 .partners__form h2:first-of-type { margin-top: 0; }
@@ -468,5 +532,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 760px) {
   .page { padding: 110px 24px 64px; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
+  .connect__close { top: 30px; right: 24px; }
+  .connect__inner { grid-template-columns: 1fr; gap: 40px; }
+  .connect__photo img { max-height: 55vh; object-fit: cover; }
+  .connect__lede { margin-bottom: 40px; }
+  .connect__cols { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
   .steps li { grid-template-columns: 44px 1fr; }
 }
