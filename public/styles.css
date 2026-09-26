@@ -429,8 +429,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
   text-transform: uppercase;
   text-decoration: none;
 }
-.page .connect__close { text-decoration: none; }
-.connect__close:hover { text-decoration: underline; }
+/* No underlines on this page; links fade slightly on hover instead */
+.page.connect a { text-decoration: none; }
+.connect a:hover { opacity: 0.65; }
 
 .connect__inner {
   display: grid;
