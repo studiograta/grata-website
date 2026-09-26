@@ -494,6 +494,68 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect__hint { margin: 0; font-size: 18px; color: var(--text); }
 .connect .contact__form ::placeholder { color: color-mix(in srgb, var(--dark-walnut) 50%, var(--mothwing-taupe)); }
 
+/* ---------- Partners page (partners.html) ----------
+   Top: headline, three steps and a phone-framed video of the directory.
+   Below: the registration form. Labels in lowercase, as on Approach. */
+.pp { box-sizing: border-box; }
+.page.pp { padding-top: 40px; }
+.pp__intro { display: flex; justify-content: flex-end; max-width: 1144px; }
+.pp__intro h1 { margin-bottom: 0; font-size: clamp(30px, 3.2vw, 44px); text-align: right; }
+.pp__intro h1::before { margin-left: auto; margin-bottom: 14px; }
+.pp svg { width: 28px; height: 28px; color: var(--text); flex: none; }
+
+.pp__hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(40px, 7vw, 120px);
+  align-items: center;
+  max-width: 1144px;
+  margin-top: clamp(24px, 4vh, 48px);
+}
+.pp__headline { margin: 0; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.1; font-weight: 600; }
+.pp__lede { max-width: 520px; margin: 20px 0 36px; font-size: 19px; line-height: 1.55; color: var(--text-dim); }
+
+.pp__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 600px;
+  margin: 0 0 36px;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.pp__steps li { display: grid; gap: 4px; padding: 18px 16px 0 0; }
+.pp__steps li + li { padding-left: 16px; border-left: 1px solid var(--line); }
+.pp__steps b { margin-top: 10px; font-size: 17px; font-weight: 600; }
+.pp__steps span { font-size: 14px; color: var(--text-dim); }
+.pp__note { margin: 14px 0 0; font-size: 14px; color: var(--text-dim); }
+
+/* The video: a tall story-style clip with rounded corners */
+.pp__phone { margin: 0; width: clamp(260px, 24vw, 330px); }
+.pp__phone video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 22px;
+  background: var(--dark-walnut);
+  box-shadow: 0 24px 48px color-mix(in srgb, var(--dark-walnut) 16%, transparent);
+}
+
+/* The form, in one calm column below */
+.pp__join { max-width: 640px; margin-top: clamp(72px, 12vh, 128px); scroll-margin-top: 32px; }
+.pp .partners__form h2 { font-size: 15px; letter-spacing: 0.02em; text-transform: lowercase; }
+
+@media (max-width: 760px) {
+  .pp__hero { grid-template-columns: 1fr; gap: 40px; }
+  .pp__phone { justify-self: center; width: min(260px, 70vw); }
+  .pp__steps { grid-template-columns: 1fr; }
+  .pp__steps li, .pp__steps li + li { display: grid; grid-template-columns: 28px 1fr; column-gap: 14px; padding: 14px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .pp__steps svg { grid-row: span 2; align-self: center; }
+  .pp__steps b { margin-top: 0; }
+  .pp__join { margin-top: 64px; }
+}
+
 /* ---------- Partners page (partners.html): builds on the contact form ---------- */
 .partners__form h2 { margin: 16px 0 0; font-size: 22px; font-weight: 600; color: var(--text); }
 .partners__form h2:first-of-type { margin-top: 0; }
