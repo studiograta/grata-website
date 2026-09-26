@@ -576,14 +576,20 @@ html:has(.landing) { overscroll-behavior-y: none; }
     transform: none;
     object-fit: cover;
     max-width: none;
-    height: 46vh;
+    height: 38vh;
     max-height: none;
     object-fit: cover;
     object-position: center 35%;
     -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
     mask-image: linear-gradient(180deg, #000 55%, transparent);
   }
-  .connect__body { position: relative; margin-top: -110px; }
+  .connect__body { position: relative; margin-top: -96px; display: flex; flex-direction: column; }
+  /* Phones: "Begin a project" comes straight after the opening line,
+     before Reach, Visit and Follow */
+  .connect__lede { margin-bottom: 24px; }
+  .connect__begin { order: 1; margin-top: 0; }
+  .connect__note { order: 2; }
+  .connect__cols { order: 3; margin-top: 48px; }
   .connect__inner { gap: 0; }
   .connect__lede { margin-bottom: 40px; }
   .connect__cols { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
