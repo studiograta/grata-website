@@ -818,5 +818,5 @@ html:has(.landing) { overscroll-behavior-y: none; }
    one appears in Olive and settles to the text colour */
 .tl__word { white-space: nowrap; }
 .tl { visibility: hidden; }
-.tl--in { visibility: visible; animation: tl-land 0.7s ease-out; }
+.tl--in { visibility: visible; animation: tl-land 1.4s ease-out; }
 @keyframes tl-land { from { color: var(--accent); } }

@@ -35,11 +35,11 @@ if (begin) {
 // Arriving from "Begin a project" on another page (/contact#begin) opens the form straight away
 if (begin && location.hash === "#begin") begin.open = true;
 
-// Opening titles, after the Birdman credits: in three steps (the heading,
-// the opening line, then the column titles) the letters pop in one by one
+// Opening titles, after the Birdman credits: in two steps (the heading,
+// then the opening line) the letters pop in one by one
 // in a random order, to an uneven drum-like beat. Each letter lands in
 // Olive and settles to the text colour. Skipped when motion is turned off.
-var titles = [".connect h1", ".connect__lede", ".connect__cols h2"];
+var titles = [".connect h1", ".connect__lede"];
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   var steps = titles.map(function (selector) {
     var letters = [];
@@ -75,15 +75,15 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   var playStep = function (index) {
     var letters = steps[index];
     if (!letters) return;
-    var beat = Math.max(14, 520 / letters.length);
+    var beat = Math.max(45, 1500 / letters.length);
     var play = function () {
       // Sometimes two or three letters land together, like a drum fill
       var hits = Math.random() < 0.3 ? 2 + Math.floor(Math.random() * 2) : 1;
       for (var h = 0; h < hits && letters.length; h++) letters.pop().classList.add("tl--in");
       if (letters.length) setTimeout(play, beat * (0.4 + Math.random() * 1.6));
-      else setTimeout(function () { playStep(index + 1); }, 260);
+      else setTimeout(function () { playStep(index + 1); }, 600);
     };
     play();
   };
-  setTimeout(function () { playStep(0); }, 200);
+  setTimeout(function () { playStep(0); }, 400);
 }
