@@ -395,6 +395,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
   font: 18px var(--font);
   resize: vertical;
 }
+/* Hint text inside empty boxes: a lighter warm grey */
+.contact__form ::placeholder { color: color-mix(in srgb, var(--dark-walnut) 50%, var(--milk)); opacity: 1; }
+
 .contact__form input:focus,
 .contact__form textarea:focus { outline: none; border-bottom-color: var(--text); }
 .contact__form .button { align-self: flex-start; }
