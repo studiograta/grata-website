@@ -414,6 +414,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
   --text-dim: color-mix(in srgb, var(--dark-walnut) 82%, var(--mothwing-taupe));
   --line: color-mix(in srgb, var(--dark-walnut) 35%, transparent);
   position: relative;
+  padding-top: clamp(100px, 16vh, 140px);
+  padding-bottom: 48px;
 }
 .connect-body { background: var(--texture), color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk)); }
 
@@ -437,32 +439,42 @@ html:has(.landing) { overscroll-behavior-y: none; }
   align-items: start;
 }
 .connect__photo { margin: 0; }
-.connect__photo img { display: block; width: 100%; height: auto; }
+.connect__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 180px); /* the whole page fits on one laptop screen */
+  max-height: calc(100dvh - 180px);
+  object-fit: cover;
+}
+/* Spacing shrinks on shorter screens so "Begin" stays in view */
+.connect h1 { font-size: clamp(36px, 7vh, 56px); margin-bottom: 12px; }
+.connect h1::before { margin-bottom: clamp(12px, 2.5vh, 24px); }
 
-.connect__lede { margin: 0 0 56px; font-size: 20px; color: var(--text-dim); }
+.connect__lede { margin: 0 0 clamp(24px, 5vh, 56px); font-size: 20px; color: var(--text-dim); }
 
 .connect__cols {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 32px;
+  gap: 24px 32px;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 .connect__cols h2 {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .connect__cols p,
-.connect__cols address { margin: 0 0 14px; font-style: normal; }
+.connect__cols address { margin: 0 0 10px; font-style: normal; }
 .connect__cols b { display: block; font-weight: 600; }
 .connect__cols a[href^="tel"] { white-space: nowrap; }
 .connect__cols ul { margin: 0; padding: 0; list-style: none; }
 
 /* "Begin": a button that opens the enquiry form below it */
-.connect__begin { margin-top: 56px; }
+.connect__begin { margin-top: clamp(24px, 5vh, 56px); }
 .connect__begin summary { list-style: none; }
 .connect__begin summary::-webkit-details-marker { display: none; }
 .connect__begin[open] summary { display: none; }
