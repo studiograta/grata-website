@@ -527,135 +527,95 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .partners__turnstile:empty { display: none; }
 
 /* ---------- Process page (working-with-us.html) ----------
-   A timeline of six steps with line icons, then two short sections
-   shown as tiles. Numbers count up with a CSS counter. */
-.process { max-width: 1240px; box-sizing: border-box; }
-.process__intro p { margin: 0; font-size: 20px; color: var(--text-dim); }
+   Six steps in a grid with big outlined numbers and Phosphor Light icons
+   (MIT licence, phosphoricons.com), a Walnut band for the sectors, and a
+   short checklist. Icons take their colour from the text colour. */
+.pb { box-sizing: border-box; }
+.pb__intro, .pb__steps, .pb__ready, .pb__band > * { max-width: 1144px; }
+.pb__intro { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; }
+.pb__intro h1 { margin-bottom: 0; }
+.pb__intro p { margin: 0 0 10px; max-width: 360px; font-size: 20px; color: var(--text-dim); }
+.pb svg { width: 34px; height: 34px; color: var(--text); flex: none; }
 
-/* Line icons: drawn in Walnut, no fill */
-.process svg {
-  width: 26px;
-  height: 26px;
-  fill: none;
-  stroke: var(--text);
-  stroke-width: 1.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.timeline { margin-top: clamp(48px, 8vh, 88px); }
-
-/* Phase labels: three brackets, each over two steps */
-.timeline__phases {
+.pb__steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 28px;
-}
-.timeline__phases span {
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.timeline__steps {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 24px;
-  margin: 0;
+  margin: clamp(40px, 7vh, 72px) 0 0;
   padding: 0;
   list-style: none;
-  counter-reset: step;
+  border-top: 1px solid var(--line);
 }
-/* The line joining the steps, running through the centre of the icons */
-.timeline__steps::before {
-  content: "";
-  position: absolute;
-  top: 32px;
-  left: 32px;
-  right: calc((100% - 120px) / 6 - 32px); /* stops at the centre of the last icon */
-  height: 1px;
-  background: var(--line);
-}
-.timeline__steps li { position: relative; counter-increment: step; }
-.timeline__icon {
+.pb__steps li {
   position: relative;
-  display: grid;
-  place-items: center;
-  width: 64px;
-  height: 64px;
-  border: 1px solid var(--text);
-  border-radius: 50%;
-  background: var(--background);
+  padding: 28px 28px 36px;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
 }
-/* Step number in a small Olive badge on the icon */
-.timeline__icon::after {
-  content: counter(step, decimal-leading-zero);
+.pb__steps li:nth-child(3n) { border-right: 0; }
+.pb__steps li:nth-child(3n+1) { padding-left: 0; }
+/* Big outlined step number */
+.pb__num {
+  display: block;
+  margin-bottom: 8px;
+  font-size: clamp(64px, 8vw, 104px);
+  font-weight: 600;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text);
+}
+.pb__steps svg { position: absolute; top: 34px; right: 28px; }
+.pb__steps h3 { margin: 12px 0 6px; font-size: 20px; font-weight: 600; }
+.pb__steps p { margin: 0; font-size: 15px; color: var(--text-dim); }
+/* Phase label: small Olive tag on the first step of each pair */
+.pb__phase {
   position: absolute;
-  top: -6px;
-  right: -10px;
-  padding: 2px 6px;
+  top: -11px;
+  left: 0;
+  padding: 3px 8px;
   background: var(--accent);
   color: var(--dark-walnut);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.05em;
-}
-.timeline__steps h3 { margin: 20px 0 6px; font-size: 18px; font-weight: 600; }
-.timeline__steps p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--text-dim); }
-
-/* Who we work with, and what to have ready */
-.process__lower {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: clamp(40px, 6vw, 96px);
-  margin-top: clamp(56px, 10vh, 112px);
-}
-.process h2 {
-  margin: 0 0 20px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.tiles li {
-  display: grid;
-  grid-template-columns: 26px 1fr;
-  column-gap: 14px;
-  padding: 18px;
-  border-top: 3px solid var(--accent);
-  background: color-mix(in srgb, var(--mothwing-taupe) 18%, var(--milk));
-}
-.tiles svg { grid-row: span 2; }
-.tiles b { font-size: 16px; font-weight: 600; }
-.tiles span { font-size: 14px; color: var(--text-dim); }
+.pb__steps li:nth-child(3) .pb__phase { left: 28px; }
+.pb__steps li:nth-child(5) .pb__phase { left: 28px; }
 
-.ready { margin: 0; padding: 0; list-style: none; }
-.ready li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--silver-mist);
-  font-size: 16px;
-}
-.ready li:first-child { padding-top: 0; }
-.process__aside { margin: 14px 0 0; font-size: 14px; color: var(--text-dim); }
+.pb h2 { margin: 0 0 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.pb h2 span { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--text-dim); }
 
-.process__cta { margin-top: clamp(48px, 8vh, 80px); }
+/* Who we work with: a Walnut band, full width of the page */
+.pb__band {
+  margin: clamp(56px, 9vh, 96px) -48px 0; /* runs to both edges of the screen */
+  padding: 48px;
+  background: var(--dark-walnut);
+  color: var(--milk);
+}
+.pb__band svg { color: var(--accent); width: 40px; height: 40px; }
+.pb__band ul { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin: 0; padding: 0; list-style: none; }
+.pb__band li { display: grid; gap: 6px; }
+.pb__band b { margin-top: 10px; font-size: 20px; font-weight: 600; }
+.pb__band span { font-size: 15px; color: var(--silver-mist); }
+
+.pb__ready { margin-top: clamp(48px, 8vh, 80px); }
+.pb__ready ul { display: flex; flex-wrap: wrap; gap: 16px 48px; margin: 0 0 40px; padding: 0; list-style: none; }
+.pb__ready li { display: flex; align-items: center; gap: 12px; font-size: 17px; }
+
+@media (max-width: 760px) {
+  .pb__steps { grid-template-columns: 1fr 1fr; }
+  .pb__steps li, .pb__steps li:nth-child(3n+1) { padding: 24px 16px 28px; border-right: 1px solid var(--line); }
+  .pb__steps li:nth-child(2n) { border-right: 0; padding-right: 0; }
+  .pb__steps li:nth-child(2n+1) { padding-left: 0; }
+  .pb__steps svg { top: 30px; right: 16px; width: 28px; height: 28px; }
+  .pb__steps li:nth-child(2n) svg { right: 0; }
+  .pb__steps li:nth-child(3) .pb__phase, .pb__steps li:nth-child(5) .pb__phase { left: 0; }
+  .pb__steps h3 { font-size: 17px; }
+  .pb__band { margin: 56px -24px 0; padding: 40px 24px; }
+  .pb__band ul { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+  .pb__band b { font-size: 17px; }
+  .pb__ready ul { flex-direction: column; }
+}
 
 @media (max-width: 760px) {
   .page { padding: 110px 24px 64px; }
@@ -700,14 +660,4 @@ html:has(.landing) { overscroll-behavior-y: none; }
   /* Phones: Reach on the left, Follow pushed to the right edge, Based in below */
   .connect__cols { grid-template-columns: 1fr auto; gap: 40px 24px; align-items: start; }
   .connect__cols section:nth-child(2) { justify-self: end; min-width: 110px; }
-  /* Process on phones: the timeline runs down the page */
-  .timeline__phases { display: none; }
-  .timeline__steps { grid-template-columns: 1fr; gap: 28px; }
-  .timeline__steps::before { top: 32px; bottom: 32px; left: 32px; right: auto; width: 1px; height: auto; }
-  .timeline__steps li { display: grid; grid-template-columns: 64px 1fr; column-gap: 20px; align-items: center; }
-  .timeline__icon { grid-row: span 2; }
-  .timeline__steps h3 { margin: 0; align-self: end; }
-  .timeline__steps p { align-self: start; }
-  .process__lower { grid-template-columns: 1fr; }
-  .tiles { grid-template-columns: 1fr; }
 }

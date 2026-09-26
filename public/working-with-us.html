@@ -12,91 +12,43 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <main class="page process">
+  <!-- Icons: Phosphor Icons, Light weight (MIT licence, phosphoricons.com) -->
+  <main class="page pb">
     <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
 
-    <header class="process__intro">
+    <header class="pb__intro">
       <h1>Process</h1>
       <p>From first conversation to opening day, in six steps.</p>
     </header>
 
-    <!-- The six steps as a timeline: across the page on desktop, down the page on phones.
-         The three phase labels group them in twos. -->
-    <section class="timeline" aria-label="The six steps">
-      <div class="timeline__phases" aria-hidden="true">
-        <span>Imagine</span>
-        <span>Detail</span>
-        <span>Build</span>
-      </div>
-      <ol class="timeline__steps">
-        <li>
-          <span class="timeline__icon"><svg viewBox="0 0 24 24"><path d="M4 5h11a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H9l-4 3v-3H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M18 9h2a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-1v3l-4-3h-4"/></svg></span>
-          <h3>Conversation</h3>
-          <p>Your space, your people, your budget.</p>
-        </li>
-        <li>
-          <span class="timeline__icon"><svg viewBox="0 0 24 24"><path d="M3 21c3-1 5-4 7-8"/><path d="M14 3l7 7-9 9-4-4z"/><path d="M12 5l7 7"/></svg></span>
-          <h3>Concept</h3>
-          <p>Flow, feeling, materials and light.</p>
-        </li>
-        <li>
-          <span class="timeline__icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><circle cx="17" cy="17" r="4"/></svg></span>
-          <h3>Design development</h3>
-          <p>Every detail, refined together.</p>
-        </li>
-        <li>
-          <span class="timeline__icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 9h6v12"/><path d="M13 3v8h8"/><path d="M13 15h4"/></svg></span>
-          <h3>Drawings</h3>
-          <p>What contractors build from.</p>
-        </li>
-        <li>
-          <span class="timeline__icon"><svg viewBox="0 0 24 24"><path d="M3 17h18"/><path d="M5 17a7 7 0 0 1 14 0"/><path d="M10 10V6h4v4"/><path d="M3 20h18"/></svg></span>
-          <h3>On site</h3>
-          <p>Samples, checks and answers.</p>
-        </li>
-        <li>
-          <span class="timeline__icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="M11 11l9 9"/><path d="M17 17l2-2"/><path d="M14 14l2-2"/></svg></span>
-          <h3>Styling and handover</h3>
-          <p>Art, objects, doors open.</p>
-        </li>
-      </ol>
+    <ol class="pb__steps">
+      <li><span class="pb__phase">Imagine</span><span class="pb__num">01</span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.93,186.58A78,78,0,0,0,168.16,74.42,78,78,0,1,0,26.07,138.58L18.58,164A14,14,0,0,0,36,181.42l25.46-7.49a78,78,0,0,0,26.39,7.63,78,78,0,0,0,106.77,40.37L220,229.42A14,14,0,0,0,237.42,212ZM62,161.5a6.05,6.05,0,0,0-1.69.24l-27.77,8.17a2,2,0,0,1-2.48-2.48l8.17-27.77a6.05,6.05,0,0,0-.47-4.53,66,66,0,1,1,27.08,27.08A6,6,0,0,0,62,161.5Zm155.71,26.16,8.17,27.77a2,2,0,0,1-2.48,2.48l-27.77-8.17a6.06,6.06,0,0,0-4.53.47,66,66,0,0,1-90-28.4,77.92,77.92,0,0,0,71-94.68,66,66,0,0,1,46.07,96A6.05,6.05,0,0,0,217.74,187.66Z"/></svg><h3>Conversation</h3><p>Your space, your people, your budget.</p></li>
+      <li><span class="pb__num">02</span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218ZM173.32,74.63l-64,32a6,6,0,0,0-2.69,2.69l-32,64A6,6,0,0,0,80,182a6.06,6.06,0,0,0,2.68-.63l64-32a6,6,0,0,0,2.69-2.69l32-64a6,6,0,0,0-8.05-8.05Zm-33.79,64.9L93.42,162.58l23-46.11,46.11-23Z"/></svg><h3>Concept</h3><p>Flow, feeling, materials and light.</p></li>
+      <li><span class="pb__phase">Detail</span><span class="pb__num">03</span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M86,180a10,10,0,1,1-10-10A10,10,0,0,1,86,180Zm152-23.81V208a14,14,0,0,1-14,14H76a44.18,44.18,0,0,1-7.58-.65,42,42,0,0,1-33.81-48.64l25-143.13A13.94,13.94,0,0,1,75.82,18.22l54.67,9.72a14,14,0,0,1,11.3,16.21l-12.67,72.44,71-25.75a14,14,0,0,1,17.89,8.32l19.09,52.22A15.66,15.66,0,0,1,238,156.19Zm-133.07,29L130,42.08a2,2,0,0,0-1.58-2.32L73.72,30l-.34,0a1.84,1.84,0,0,0-1.07.35,2,2,0,0,0-.82,1.3l-25,143.13a30,30,0,0,0,24.09,34.76,29.25,29.25,0,0,0,22-4.89,29.81,29.81,0,0,0,12.33-19.44Zm8.25,13.17L224.71,158a2,2,0,0,0,1.11-1,1.86,1.86,0,0,0,.06-1.46l-19.09-52.21a2,2,0,0,0-2.53-1.17l-77.53,28.09-10,57.07A41.9,41.9,0,0,1,113.18,198.38ZM226,170.27,116.35,210H224a2,2,0,0,0,2-2Z"/></svg><h3>Design development</h3><p>Every detail, refined together.</p></li>
+      <li><span class="pb__num">04</span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M233.91,74.79,181.22,22.1a14,14,0,0,0-19.8,0L22.09,161.41a14,14,0,0,0,0,19.8L74.78,233.9a14,14,0,0,0,19.8,0L233.91,94.59A14,14,0,0,0,233.91,74.79ZM225.42,86.1,86.1,225.41h0a2,2,0,0,1-2.83,0L30.58,172.73a2,2,0,0,1,0-2.83L64,136.48l27.76,27.76a6,6,0,1,0,8.48-8.48L72.48,128,96,104.48l27.76,27.76a6,6,0,0,0,8.48-8.48L104.48,96,128,72.49l27.76,27.75a6,6,0,0,0,8.48-8.48L136.49,64,169.9,30.59a2,2,0,0,1,2.83,0l52.69,52.68A2,2,0,0,1,225.42,86.1Z"/></svg><h3>Drawings</h3><p>What contractors build from.</p></li>
+      <li><span class="pb__phase">Build</span><span class="pb__num">05</span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,154h-2V136a94.37,94.37,0,0,0-64-89.1V40a14,14,0,0,0-14-14H112A14,14,0,0,0,98,40v6.9A94.37,94.37,0,0,0,34,136v18H32a14,14,0,0,0-14,14v24a14,14,0,0,0,14,14H224a14,14,0,0,0,14-14V168A14,14,0,0,0,224,154Zm-14-18v18H158V59.68A82.33,82.33,0,0,1,210,136ZM112,38h32a2,2,0,0,1,2,2V154H110V40A2,2,0,0,1,112,38ZM46,136A82.33,82.33,0,0,1,98,59.68V154H46Zm180,56a2,2,0,0,1-2,2H32a2,2,0,0,1-2-2V168a2,2,0,0,1,2-2H224a2,2,0,0,1,2,2Z"/></svg><h3>On site</h3><p>Samples, checks and answers.</p></li>
+      <li><span class="pb__num">06</span><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M215.15,40.85A78,78,0,0,0,86.2,121.31l-56.1,56.1a13.94,13.94,0,0,0-4.1,9.9V216a14,14,0,0,0,14,14H72a6,6,0,0,0,6-6V206H96a6,6,0,0,0,6-6V182h18a6,6,0,0,0,4.24-1.76l10.45-10.44A77.59,77.59,0,0,0,160,174h.1A78,78,0,0,0,215.15,40.85ZM226,98.16c-1.12,35.16-30.67,63.8-65.88,63.84a65.93,65.93,0,0,1-24.51-4.67,6,6,0,0,0-6.64,1.26L117.51,170H96a6,6,0,0,0-6,6v18H72a6,6,0,0,0-6,6v18H40a2,2,0,0,1-2-2V187.31a2,2,0,0,1,.58-1.41l58.83-58.83a6,6,0,0,0,1.26-6.64A65.61,65.61,0,0,1,94,95.92C94,60.71,122.68,31.16,157.83,30A66,66,0,0,1,226,98.16ZM190,76a10,10,0,1,1-10-10A10,10,0,0,1,190,76Z"/></svg><h3>Styling and handover</h3><p>Art, objects, doors open.</p></li>
+    </ol>
+
+    <section class="pb__band">
+      <h2>Who we work with</h2>
+      <ul>
+        <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,74H30V48a6,6,0,0,0-12,0V208a6,6,0,0,0,12,0V174H242v34a6,6,0,0,0,12,0V112A38,38,0,0,0,216,74ZM30,86h76v76H30Zm88,76V86h98a26,26,0,0,1,26,26v50Z"/></svg><b>Hospitality</b><span>Hotels, resorts, homestays</span></li>
+        <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M82,56V24a6,6,0,0,1,12,0V56a6,6,0,0,1-12,0Zm38,6a6,6,0,0,0,6-6V24a6,6,0,0,0-12,0V56A6,6,0,0,0,120,62Zm32,0a6,6,0,0,0,6-6V24a6,6,0,0,0-12,0V56A6,6,0,0,0,152,62Zm94,58v8a38,38,0,0,1-36.94,38,94.55,94.55,0,0,1-31.13,44H208a6,6,0,0,1,0,12H32a6,6,0,0,1,0-12H62.07A94.34,94.34,0,0,1,26,136V88a6,6,0,0,1,6-6H208A38,38,0,0,1,246,120Zm-44,16V94H38v42a82.27,82.27,0,0,0,46.67,74h70.66A82.27,82.27,0,0,0,202,136Zm32-16a26,26,0,0,0-20-25.29V136a93.18,93.18,0,0,1-1.69,17.64A26,26,0,0,0,234,128Z"/></svg><b>Food and drink</b><span>Restaurants, cafes, bars</span></li>
+        <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,42H40A14,14,0,0,0,26,56V200a14,14,0,0,0,14,14H216a14,14,0,0,0,14-14V56A14,14,0,0,0,216,42ZM40,54H216a2,2,0,0,1,2,2V74H38V56A2,2,0,0,1,40,54ZM216,202H40a2,2,0,0,1-2-2V86H218V200A2,2,0,0,1,216,202Zm-42-90a46,46,0,0,1-92,0,6,6,0,0,1,12,0,34,34,0,0,0,68,0,6,6,0,0,1,12,0Z"/></svg><b>Retail</b><span>Stores and brand spaces</span></li>
+        <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.1,122.63a13.56,13.56,0,0,0-8.3-6.4,72.62,72.62,0,0,0-24.17-2c4.67-20.63,1.62-36.91-1.45-46.4A14.16,14.16,0,0,0,193.7,58.3a84.21,84.21,0,0,0-29.76,13.11,92.6,92.6,0,0,0-27.52-34.6,14,14,0,0,0-16.85,0,92.7,92.7,0,0,0-27.51,34.6A84.16,84.16,0,0,0,62.29,58.3a14.15,14.15,0,0,0-16.47,9.54c-3.07,9.49-6.12,25.77-1.45,46.4a72.62,72.62,0,0,0-24.17,2,13.56,13.56,0,0,0-8.3,6.4,14,14,0,0,0-1.4,10.74C13.81,145.66,24,169,54.92,187.51S113.29,206,128,206s42.12,0,73.06-18.49,41.11-41.85,44.42-54.14A14,14,0,0,0,244.1,122.63ZM168.48,82.9A73.1,73.1,0,0,1,196.22,70a2.2,2.2,0,0,1,2.54,1.5C202.7,83.72,206.57,109,188.17,141a129.75,129.75,0,0,1-28,33.37C167.85,161,174,142.93,174,119.17A116.13,116.13,0,0,0,168.48,82.9ZM57.24,71.53A2.2,2.2,0,0,1,59.78,70,73.1,73.1,0,0,1,87.52,82.9,116.13,116.13,0,0,0,82,119.17c0,23.76,6.15,41.85,13.81,55.17a129.58,129.58,0,0,1-28-33.37C49.43,109,53.3,83.72,57.24,71.53ZM61.08,177.2c-27.3-16.31-36.15-36.42-39-47a2.08,2.08,0,0,1,.21-1.61,1.71,1.71,0,0,1,1-.8A62.16,62.16,0,0,1,48,126.72,126.25,126.25,0,0,0,57.43,147a141,141,0,0,0,41,44.72A114.83,114.83,0,0,1,61.08,177.2ZM128,192.86c-8.68-6.2-34-28.2-34-73.69,0-43.36,22.94-65.34,32.8-72.78a2,2,0,0,1,2.4,0c9.86,7.44,32.8,29.42,32.8,72.78C162,164.94,136.81,186.67,128,192.86Zm105.9-62.62c-2.85,10.54-11.7,30.65-39,47a114.83,114.83,0,0,1-37.38,14.47,141,141,0,0,0,41-44.72A126.25,126.25,0,0,0,208,126.72a62.16,62.16,0,0,1,24.73,1.11,1.71,1.71,0,0,1,1,.8A2.08,2.08,0,0,1,233.92,130.24Z"/></svg><b>Wellness</b><span>Spas, studios, centres</span></li>
+      </ul>
     </section>
 
-    <div class="process__lower">
-      <section>
-        <h2>Who we work with</h2>
-        <ul class="tiles">
-          <li>
-            <svg viewBox="0 0 24 24"><path d="M3 18V8"/><path d="M3 14h18v4"/><path d="M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg>
-            <b>Hospitality</b><span>Hotels, resorts, homestays</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><path d="M5 8h12v5a6 6 0 0 1-12 0z"/><path d="M17 9h1a3 3 0 0 1 0 6h-1.5"/><path d="M8 3v2M11 3v2M14 3v2"/></svg>
-            <b>Food and drink</b><span>Restaurants, cafes, bars</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-            <b>Retail</b><span>Stores and brand spaces</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><path d="M12 21c-5-3-8-7-8-12 5 0 8 3 8 8 0-5 3-8 8-8 0 5-3 9-8 12z"/></svg>
-            <b>Wellness</b><span>Spas, studios, centres</span>
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Good to have ready</h2>
-        <ul class="ready">
-          <li><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7l2-3h4l2 3"/><circle cx="12" cy="13.5" r="3.5"/></svg>Site photos or drawings</li>
-          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Rough budget and opening date</li>
-          <li><svg viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z"/></svg>A few places you love</li>
-        </ul>
-        <p class="process__aside">None of it is essential for a first chat.</p>
-      </section>
-    </div>
-
-    <a class="button process__cta" href="/contact#begin">Begin a project &rarr;</a>
+    <section class="pb__ready">
+      <h2>Good to have ready <span>(none of it essential)</span></h2>
+      <ul>
+        <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,58H179.21L165,36.67A6,6,0,0,0,160,34H96a6,6,0,0,0-5,2.67L76.78,58H48A22,22,0,0,0,26,80V192a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V80A22,22,0,0,0,208,58Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V80A10,10,0,0,1,48,70H80a6,6,0,0,0,5-2.67L99.21,46h57.57L171,67.33A6,6,0,0,0,176,70h32a10,10,0,0,1,10,10ZM128,90a42,42,0,1,0,42,42A42,42,0,0,0,128,90Zm0,72a30,30,0,1,1,30-30A30,30,0,0,1,128,162Z"/></svg>Site photos or drawings</li>
+        <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,34H182V24a6,6,0,0,0-12,0V34H86V24a6,6,0,0,0-12,0V34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34ZM48,46H74V56a6,6,0,0,0,12,0V46h84V56a6,6,0,0,0,12,0V46h26a2,2,0,0,1,2,2V82H46V48A2,2,0,0,1,48,46ZM208,210H48a2,2,0,0,1-2-2V94H210V208A2,2,0,0,1,208,210Z"/></svg>Rough budget and opening date</li>
+        <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M178,42c-21,0-39.26,9.47-50,25.34C117.26,51.47,99,42,78,42a60.07,60.07,0,0,0-60,60c0,29.2,18.2,59.59,54.1,90.31a334.68,334.68,0,0,0,53.06,37,6,6,0,0,0,5.68,0,334.68,334.68,0,0,0,53.06-37C219.8,161.59,238,131.2,238,102A60.07,60.07,0,0,0,178,42ZM128,217.11C111.59,207.64,30,157.72,30,102A48.05,48.05,0,0,1,78,54c20.28,0,37.31,10.83,44.45,28.27a6,6,0,0,0,11.1,0C140.69,64.83,157.72,54,178,54a48.05,48.05,0,0,1,48,48C226,157.72,144.41,207.64,128,217.11Z"/></svg>A few places you love</li>
+      </ul>
+      <a class="button" href="/contact#begin">Begin a project &rarr;</a>
+    </section>
   </main>
 </body>
 </html>
