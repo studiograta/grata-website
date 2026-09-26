@@ -527,7 +527,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .pp__steps li + li { padding-left: 16px; border-left: 1px solid var(--line); }
 .pp__steps b { margin-top: 10px; font-size: 17px; font-weight: 600; }
 .pp__steps span { font-size: 14px; color: var(--text-dim); }
-.pp__note { margin: 14px 0 0; font-size: 14px; color: var(--text-dim); }
 .pp__kicker { display: none; }
 .pp__sticky { display: none; }
 
@@ -555,8 +554,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .pp__headline { order: 1; }
   .pp__kicker { display: block; order: 2; margin: 12px 0 20px; font-size: 18px; line-height: 1.45; color: var(--text-dim); }
   .pp__text > .button { order: 3; align-self: flex-start; }
-  .pp__note { order: 4; }
-  .pp__phone { order: 5; align-self: center; width: min(220px, 60vw); margin: 32px 0 8px; }
+  .pp__phone { order: 5; align-self: center; width: min(220px, 60vw); margin: 24px 0 8px; }
   .pp__lede { order: 6; }
   .pp__steps { order: 7; }
   /* The pinned bar along the bottom of the screen */
