@@ -543,7 +543,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 
 /* Visiting card panel: a soft Taupe box above the form */
-.pp__cardlink { display: inline-block; margin-top: 14px; font-size: 15px; color: var(--text-dim); }
+/* The two ways to join, side by side on one line */
+.pp__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; }
+.pp__cardlink { font-size: 15px; color: var(--text-dim); white-space: nowrap; }
+.pp__headline, .pp__kicker { text-wrap: balance; }
 .pp__card {
   padding: 28px;
   background: color-mix(in srgb, var(--mothwing-taupe) 18%, var(--milk));
@@ -578,8 +581,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   /* Phones: headline, one line, the button, then the video and the details */
   .pp__headline { order: 1; }
   .pp__kicker { display: block; order: 2; margin: 12px 0 20px; font-size: 18px; line-height: 1.45; color: var(--text-dim); }
-  .pp__text > .button { order: 3; align-self: flex-start; }
-  .pp__cardlink { order: 4; align-self: flex-start; }
+  .pp__actions { order: 3; gap: 12px 16px; }
   .pp__phone { order: 5; align-self: center; width: min(220px, 60vw); margin: 24px 0 8px; }
   .pp__lede { order: 6; }
   .pp__steps { order: 7; }

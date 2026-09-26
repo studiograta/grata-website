@@ -111,7 +111,7 @@ form.addEventListener("submit", function (event) {
 // Phones: show the pinned "Join the directory" bar only while the top button
 // and the form are both off screen
 var sticky = document.querySelector(".pp__sticky");
-var topButton = document.querySelector(".pp__text > .button");
+var topButton = document.querySelector(".pp__actions .button");
 var joinSection = document.querySelector("#join");
 if (sticky && topButton && joinSection && "IntersectionObserver" in window) {
   var inView = new Map();
