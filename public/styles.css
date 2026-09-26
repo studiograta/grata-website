@@ -637,8 +637,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .partners__turnstile:empty { display: none; }
 
 /* ---------- Process page (working-with-us.html) ----------
-   Six steps in a grid with big outlined numbers and Phosphor Light icons
-   (MIT licence, phosphoricons.com), a Walnut band for the sectors, and a
+   Six steps in a grid with big outlined numbers, Phosphor Light icons
+   (MIT licence, phosphoricons.com) in the Walnut band for the sectors, and a
    short checklist. Icons take their colour from the text colour. */
 .pb { box-sizing: border-box; }
 .pb__intro, .pb__steps, .pb__ready, .pb__band > * { max-width: 1144px; }
@@ -678,7 +678,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
   color: transparent;
   -webkit-text-stroke: 1px var(--text);
 }
-.pb__steps svg { position: absolute; top: 34px; right: 28px; opacity: 0.5; }
 .pb__steps h3 { margin: 12px 0 6px; font-size: 20px; font-weight: 600; }
 .pb__steps p { margin: 0; font-size: 15px; color: var(--text-dim); }
 /* Phase label: small Olive tag on the first step of each pair */
@@ -717,13 +716,51 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .pb__ready ul { display: flex; flex-wrap: wrap; gap: 16px 48px; margin: 0 0 40px; padding: 0; list-style: none; }
 .pb__ready li { display: flex; align-items: center; gap: 12px; font-size: 17px; }
 
+/* Scroll animation (working-with-us.js adds .pb--animate, so without the
+   script everything simply shows). As each step comes into view an Olive
+   line draws along its top edge, one step after another like a timeline,
+   then the number fills with Olive and the words rise into place. */
+.pb__steps li::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+}
+.pb__steps .pb__phase { z-index: 1; }
+.pb__num { transition: color 0.8s ease; }
+.pb__steps li.is-in .pb__num,
+.pb:not(.pb--animate) .pb__num { color: var(--accent); }
+.pb--animate .pb__steps li::before { transform: scaleX(0); transition: transform 0.5s linear var(--d, 0s); }
+.pb--animate .pb__num { transition-delay: calc(var(--d, 0s) + 0.35s); }
+.pb--animate .pb__phase,
+.pb--animate .pb__steps h3,
+.pb--animate .pb__steps p,
+.pb--animate .pb__band li,
+.pb--animate .pb__ready li {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: calc(var(--d, 0s) + 0.3s);
+}
+.pb--animate .pb__steps h3 { transition-delay: calc(var(--d, 0s) + 0.45s); }
+.pb--animate .pb__steps p { transition-delay: calc(var(--d, 0s) + 0.55s); }
+.pb--animate .pb__steps li.is-in::before { transform: scaleX(1); }
+.pb--animate .is-in .pb__phase,
+.pb--animate .is-in h3,
+.pb--animate .is-in p,
+.pb--animate .pb__band li.is-in,
+.pb--animate .pb__ready li.is-in { opacity: 1; transform: none; }
+.pb--animate .pb__band li, .pb--animate .pb__ready li { transition-delay: var(--d, 0s); }
+
 @media (max-width: 760px) {
   .pb__steps { grid-template-columns: 1fr 1fr; }
   .pb__steps li, .pb__steps li:nth-child(3n+1) { padding: 24px 16px 28px; border-right: 1px solid var(--line); }
   .pb__steps li:nth-child(2n) { border-right: 0; padding-right: 0; }
   .pb__steps li:nth-child(2n+1) { padding-left: 0; }
-  .pb__steps svg { top: 30px; right: 16px; width: 28px; height: 28px; }
-  .pb__steps li:nth-child(2n) svg { right: 0; }
   .pb__steps li:nth-child(3) .pb__phase, .pb__steps li:nth-child(5) .pb__phase { left: 0; }
   .pb__steps h3 { font-size: 17px; }
   .pb__band { margin: 56px -24px 0; padding: 40px 24px; }
