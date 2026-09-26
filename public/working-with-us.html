@@ -12,59 +12,91 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <main class="page">
+  <main class="page process">
     <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
 
-    <article class="working">
+    <header class="process__intro">
       <h1>Process</h1>
-      <p>Every project starts with a conversation. Whether you are opening a hotel, a restaurant, a store or a wellness space, this is how we take it from first idea to opening day.</p>
+      <p>From first conversation to opening day, in six steps.</p>
+    </header>
 
-      <h2>How a project comes together</h2>
-      <ol class="steps">
+    <!-- The six steps as a timeline: across the page on desktop, down the page on phones.
+         The three phase labels group them in twos. -->
+    <section class="timeline" aria-label="The six steps">
+      <div class="timeline__phases" aria-hidden="true">
+        <span>Imagine</span>
+        <span>Detail</span>
+        <span>Build</span>
+      </div>
+      <ol class="timeline__steps">
         <li>
-          <h3>First conversation</h3>
-          <p>We listen to what the space needs to do, who it is for, and the budget and timeline you are working with.</p>
+          <span class="timeline__icon"><svg viewBox="0 0 24 24"><path d="M4 5h11a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H9l-4 3v-3H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M18 9h2a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-1v3l-4-3h-4"/></svg></span>
+          <h3>Conversation</h3>
+          <p>Your space, your people, your budget.</p>
         </li>
         <li>
+          <span class="timeline__icon"><svg viewBox="0 0 24 24"><path d="M3 21c3-1 5-4 7-8"/><path d="M14 3l7 7-9 9-4-4z"/><path d="M12 5l7 7"/></svg></span>
           <h3>Concept</h3>
-          <p>We come back with a direction: how the space flows, how it feels, and the materials and light that will carry it.</p>
+          <p>Flow, feeling, materials and light.</p>
         </li>
         <li>
+          <span class="timeline__icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><circle cx="17" cy="17" r="4"/></svg></span>
           <h3>Design development</h3>
-          <p>Together we refine every detail, from joinery and lighting to finishes, furniture and signage.</p>
+          <p>Every detail, refined together.</p>
         </li>
         <li>
-          <h3>Drawings and specifications</h3>
-          <p>We prepare the drawings and specifications that contractors and vendors build from.</p>
+          <span class="timeline__icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 9h6v12"/><path d="M13 3v8h8"/><path d="M13 15h4"/></svg></span>
+          <h3>Drawings</h3>
+          <p>What contractors build from.</p>
         </li>
         <li>
+          <span class="timeline__icon"><svg viewBox="0 0 24 24"><path d="M3 17h18"/><path d="M5 17a7 7 0 0 1 14 0"/><path d="M10 10V6h4v4"/><path d="M3 20h18"/></svg></span>
           <h3>On site</h3>
-          <p>We stay involved through construction, reviewing samples and answering questions so the space is built as designed.</p>
+          <p>Samples, checks and answers.</p>
         </li>
         <li>
+          <span class="timeline__icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="4"/><path d="M11 11l9 9"/><path d="M17 17l2-2"/><path d="M14 14l2-2"/></svg></span>
           <h3>Styling and handover</h3>
-          <p>We add the final layer of art, objects and soft furnishings, and hand over a space ready to welcome people.</p>
+          <p>Art, objects, doors open.</p>
         </li>
       </ol>
+    </section>
 
-      <h2>Who we work with</h2>
-      <ul>
-        <li>Hotels, resorts and homestays</li>
-        <li>Restaurants, cafes and bars</li>
-        <li>Retail stores and brand spaces</li>
-        <li>Spas, studios and wellness centres</li>
-      </ul>
+    <div class="process__lower">
+      <section>
+        <h2>Who we work with</h2>
+        <ul class="tiles">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M3 18V8"/><path d="M3 14h18v4"/><path d="M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg>
+            <b>Hospitality</b><span>Hotels, resorts, homestays</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M5 8h12v5a6 6 0 0 1-12 0z"/><path d="M17 9h1a3 3 0 0 1 0 6h-1.5"/><path d="M8 3v2M11 3v2M14 3v2"/></svg>
+            <b>Food and drink</b><span>Restaurants, cafes, bars</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            <b>Retail</b><span>Stores and brand spaces</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M12 21c-5-3-8-7-8-12 5 0 8 3 8 8 0-5 3-8 8-8 0 5-3 9-8 12z"/></svg>
+            <b>Wellness</b><span>Spas, studios, centres</span>
+          </li>
+        </ul>
+      </section>
 
-      <h2>Helpful to have ready</h2>
-      <p>None of this is essential for a first chat, but it helps us get to the point quickly:</p>
-      <ul>
-        <li>Photos or drawings of the site</li>
-        <li>A rough budget and when you hope to open</li>
-        <li>A few places or images you love, and why</li>
-      </ul>
+      <section>
+        <h2>Good to have ready</h2>
+        <ul class="ready">
+          <li><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7l2-3h4l2 3"/><circle cx="12" cy="13.5" r="3.5"/></svg>Site photos or drawings</li>
+          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Rough budget and opening date</li>
+          <li><svg viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z"/></svg>A few places you love</li>
+        </ul>
+        <p class="process__aside">None of it is essential for a first chat.</p>
+      </section>
+    </div>
 
-      <a class="button" href="/contact">Start a conversation</a>
-    </article>
+    <a class="button process__cta" href="/contact#begin">Begin a project &rarr;</a>
   </main>
 </body>
 </html>

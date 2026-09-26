@@ -31,3 +31,6 @@ if (begin) {
     if (begin.open) form.querySelector("input[name=name]").focus();
   });
 }
+
+// Arriving from "Begin a project" on another page (/contact#begin) opens the form straight away
+if (begin && location.hash === "#begin") begin.open = true;
