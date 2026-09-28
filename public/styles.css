@@ -869,3 +869,109 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .tl { visibility: hidden; }
 .tl--in { visibility: visible; animation: tl-land 1.4s ease-out; }
 @keyframes tl-land { from { color: var(--accent); } }
+
+/* ---------- Work page (work.html) ----------
+   Eight project tiles, 4 across and 2 down (2 across on phones): a portrait
+   photo, the project name and one short line. Empty tiles are placeholders
+   with a big outlined number until a project fills them. */
+.wk__intro { display: flex; justify-content: flex-end; max-width: 1144px; }
+.page.wk { padding-top: 40px; }
+.wk__intro h1 { margin-bottom: 0; text-align: right; font-size: clamp(30px, 3.2vw, 44px); }
+.wk__intro h1::before { margin-left: auto; margin-bottom: 14px; }
+
+.wk__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(32px, 5vh, 48px) 20px;
+  max-width: 1144px;
+  margin: clamp(36px, 6vh, 56px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.wk__tile img,
+.wk__tile--empty span {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+.wk__tile h2 { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
+.wk__tile p { margin: 0; font-size: 14px; color: var(--text-dim); }
+.wk__tile--empty span {
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px dashed var(--line);
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line);
+}
+.wk__tile--empty h2, .wk__tile--empty p { color: var(--line); }
+
+@media (max-width: 760px) {
+  .wk__grid { grid-template-columns: 1fr 1fr; gap: 28px 12px; }
+  .wk__tile h2 { font-size: 16px; }
+  .wk__tile p { font-size: 13px; }
+}
+
+/* Tiles open the project viewer. Hover: the photo eases in slightly and
+   an Olive line runs under the name. */
+.page .wk__tile { display: block; color: inherit; text-decoration: none; }
+.wk__tile img { transition: transform 0.6s ease; }
+.wk__tile { overflow: hidden; }
+.wk__tile h2 { display: inline-block; background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 2px no-repeat; transition: background-size 0.4s ease; padding-bottom: 2px; }
+.wk__tile:hover h2, .wk__tile:focus-visible h2 { background-size: 100% 2px; }
+.wk__tile:hover img { transform: scale(1.03); }
+
+/* Project viewer: full screen Walnut, the photo as large as fits,
+   name and count at the bottom, Close top right, arrows at the sides */
+.wk__viewer {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--dark-walnut);
+  color: var(--milk);
+}
+.wk__viewer::backdrop { background: var(--dark-walnut); }
+.wk__viewer[open] { display: grid; place-items: center; animation: wk-in 0.35s ease; }
+@keyframes wk-in { from { opacity: 0; } }
+.wk__viewer img {
+  display: block;
+  max-width: calc(100vw - 200px);
+  max-height: calc(100dvh - 160px);
+  object-fit: contain;
+}
+.wk__caption { position: absolute; left: 48px; bottom: 32px; margin: 0; display: flex; gap: 16px; align-items: baseline; }
+.wk__caption b { font-size: 20px; font-weight: 600; }
+.wk__caption span { font-size: 14px; color: var(--silver-mist); }
+.wk__viewer button {
+  position: absolute;
+  background: none;
+  border: 0;
+  color: var(--milk);
+  font: 400 15px var(--font);
+  cursor: pointer;
+}
+.wk__viewer button:hover { color: var(--accent); }
+.wk__close { top: 32px; right: 48px; letter-spacing: 0.1em; text-transform: uppercase; }
+.wk__prev, .wk__next { top: 50%; transform: translateY(-50%); padding: 24px; font-size: 32px !important; }
+.wk__prev { left: 24px; }
+.wk__next { right: 24px; }
+
+@media (max-width: 760px) {
+  .wk__viewer img { max-width: 100vw; max-height: calc(100dvh - 150px); }
+  .wk__caption { left: 24px; bottom: 28px; }
+  .wk__close { top: 24px; right: 24px; }
+  .wk__prev, .wk__next { top: auto; bottom: 8px; transform: none; padding: 16px; }
+  .wk__prev { left: auto; right: 64px; }
+  .wk__next { right: 8px; }
+}

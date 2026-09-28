@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Work | Studio Grata</title>
+  <meta name="description" content="Selected hospitality, F&amp;B, retail and wellness interiors by Studio Grata.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="page wk">
+    <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
+
+    <header class="wk__intro">
+      <h1 data-titles>work</h1>
+    </header>
+
+    <!-- Project grid: 4 across (2 on phones). To add a project, copy a tile:
+         a portrait photo (4:5) for the grid, the name, and in data-photos the
+         photos the viewer shows, separated by commas. For each one give the
+         wide photo, then (optional) its upright phone crop after a space. -->
+    <ul class="wk__grid">
+      <li><a class="wk__tile" href="#go-native" data-photos="/images/work/go-native-pergola.jpg /images/work/go-native-pergola-mobile.jpg">
+        <img src="/images/work/go-native-pergola-mobile.jpg" alt="" loading="lazy">
+        <h2>Go Native</h2>
+      </a></li>
+      <li><a class="wk__tile" href="#lotus-palace" data-photos="/images/work/lotus-palace-lounge.jpg /images/work/lotus-palace-lounge-mobile.jpg">
+        <img src="/images/work/lotus-palace-lounge-mobile.jpg" alt="" loading="lazy">
+        <h2>Lotus Palace</h2>
+      </a></li>
+      <li><a class="wk__tile" href="#beruru" data-photos="/images/work/beruru-garden.jpg, /images/work/beruru-table.jpg /images/work/beruru-table-mobile.jpg">
+        <img src="/images/work/beruru-table-mobile.jpg" alt="" loading="lazy">
+        <h2>Beruru</h2>
+      </a></li>
+      <li><a class="wk__tile" href="#vadhyar-house" data-photos="/images/work/vadhyar-house-courtyard.jpg /images/work/vadhyar-house-courtyard-mobile.jpg">
+        <img src="/images/work/vadhyar-house-courtyard-mobile.jpg" alt="" loading="lazy">
+        <h2>Vadhyar House</h2>
+      </a></li>
+    </ul>
+
+    <!-- Project viewer: opens over the page when a tile is clicked (work.js) -->
+    <dialog class="wk__viewer" aria-label="Project photos">
+      <picture><source media="(max-width: 760px)"><img alt=""></picture>
+      <p class="wk__caption"><b></b><span></span></p>
+      <button class="wk__close" type="button">Close</button>
+      <button class="wk__prev" type="button" aria-label="Previous photo">&larr;</button>
+      <button class="wk__next" type="button" aria-label="Next photo">&rarr;</button>
+    </dialog>
+  </main>
+  <script src="/titles.js"></script>
+  <script src="/work.js"></script>
+</body>
+</html>
