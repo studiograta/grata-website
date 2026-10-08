@@ -5,6 +5,8 @@
     "directory": "./public",
     "not_found_handling": "404-page"
   },
+  // Lets Cloudflare build a preview of every branch other than main
+  "previews": {},
   "routes": [
     { "pattern": "studiograta.in", "custom_domain": true },
     { "pattern": "www.studiograta.in", "custom_domain": true }

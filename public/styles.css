@@ -1,7 +1,6 @@
 /* =========================================================
    BRAND SETTINGS
-   Change colours and fonts here only. The Work and Studio
-   photos are listed in index.html.
+   Change colours and fonts here only.
    ========================================================= */
 :root {
   --font: "Cabin", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -25,40 +24,19 @@
   --accent: var(--olive-chartreuse);
   --focus: var(--dark-walnut);
 
-  /* Text laid over photos on the landing screen stays light */
-  --on-photo: var(--milk);
-  --on-photo-dim: var(--silver-mist);
-
   /* A very fine paper grain over the background so large areas do not look
      flat. Set to "none" to go back to a plain colour. */
   --texture:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .18 0 0 0 0 .13 0 0 0 0 .07 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
-  /* Logo: colour and width (it turns Milk over the landing photos) */
+  /* Logo: colour and width (it turns Milk over the dark Work panel) */
   --logo-colour: var(--dark-walnut);
   --logo-width: 128px;
-
-  /* Walnut laid over photos so the text stays readable */
-  --photo-shade: linear-gradient(90deg,
-    color-mix(in srgb, var(--dark-walnut) 68%, transparent),
-    color-mix(in srgb, var(--dark-walnut) 45%, transparent));
-  --photo-shade-phone: linear-gradient(0deg,
-    color-mix(in srgb, var(--dark-walnut) 75%, transparent),
-    color-mix(in srgb, var(--dark-walnut) 20%, transparent));
-
-  /* Work photos: only a light shade along the edge where the text sits,
-     so the photos stay clear and sharp */
-  --work-shade:
-    linear-gradient(180deg, color-mix(in srgb, var(--dark-walnut) 40%, transparent), transparent 18%),
-    linear-gradient(90deg, color-mix(in srgb, var(--dark-walnut) 45%, transparent), transparent 45%);
-  --work-shade-phone:
-    linear-gradient(180deg, color-mix(in srgb, var(--dark-walnut) 40%, transparent), transparent 18%),
-    linear-gradient(0deg, color-mix(in srgb, var(--dark-walnut) 55%, transparent), transparent 40%);
 
   /* Work panel: its colour */
   --work-bg: var(--dark-walnut);
 
-  /* Studio panel: colour shown while the photos load */
+  /* Studio panel: its colour */
   --studio-bg: var(--mothwing-taupe);
 
   /* How fast the panels slide */
@@ -102,6 +80,18 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .panel--work   { flex-grow: 65; background-color: var(--work-bg); }
 .panel--studio { flex-grow: 35; background-color: var(--studio-bg); }
 
+/* Text colours on each panel: light on Walnut, Walnut on Taupe */
+.panel--work {
+  --panel-text: var(--milk);
+  --panel-text-dim: var(--silver-mist);
+  --focus: var(--milk);
+}
+.panel--studio {
+  --panel-text: var(--dark-walnut);
+  --panel-text-dim: color-mix(in srgb, var(--dark-walnut) 75%, var(--mothwing-taupe));
+  --focus: var(--dark-walnut);
+}
+
 /* Label and links, vertically centred on the left of each panel */
 .panel__inner {
   position: absolute;
@@ -112,7 +102,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
   align-items: baseline;
   gap: clamp(56px, 12vw, 240px); /* wide gap between heading and links */
   white-space: nowrap;
-  text-shadow: 0 1px 14px color-mix(in srgb, var(--dark-walnut) 60%, transparent); /* keeps text readable on busy photos */
 }
 .panel__toggle {
   display: inline-flex;
@@ -123,52 +112,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
   background: none;
   border: 0;
   text-decoration: none;
-  color: var(--on-photo);
+  color: var(--panel-text);
   font-family: var(--font);
   font-size: 30px;
   font-weight: 600;
   cursor: pointer;
 }
 .chevron { display: none; transition: transform 300ms ease; }
-
-/* Photos fill the panel behind the text. The mouse passes through them. */
-.photos {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  transition: filter var(--speed) ease; /* fades to and from black and white */
-}
-.photos::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--photo-shade);
-}
-.panel--work .photos::after { background: var(--work-shade); }
-.photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1200ms ease;
-}
-.photo.is-shown { opacity: 1; }
-.photo[data-for] { transition-duration: 450ms; }
-
-/* Name of the project in the current Work photo */
-.photo-caption {
-  position: absolute;
-  left: 48px;
-  bottom: 36px;
-  margin: 0;
-  font-size: 15px;
-  letter-spacing: 0.04em;
-  color: var(--on-photo);
-  text-shadow: 0 1px 10px color-mix(in srgb, var(--dark-walnut) 80%, transparent);
-  pointer-events: none;
-}
 
 .panel__links {
   display: flex;
@@ -180,14 +130,14 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .panel__links a {
   font-size: 24px;
-  color: var(--on-photo-dim);
+  color: var(--panel-text-dim);
   text-decoration: none;
   text-underline-offset: 10px;
   text-decoration-thickness: 1px;
 }
 .panel__links a:hover,
 .panel__links a:focus-visible {
-  color: var(--on-photo);
+  color: var(--panel-text);
   text-decoration: underline;
 }
 
@@ -205,8 +155,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
   mask: url("/images/logo.png") center / contain no-repeat;
 }
 
-/* Over the landing photos the logo and focus rings are light */
-.landing { --logo-colour: var(--on-photo); --focus: var(--on-photo); }
+/* The logo sits on the dark Work panel, so it is light */
+.landing { --logo-colour: var(--milk); }
 
 /* ---------- Desktop: hover to open ---------- */
 @media (hover: hover) and (min-width: 761px) {
@@ -226,22 +176,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
 
   .panel:hover .panel__links,
   .panel:focus-within .panel__links { opacity: 1; visibility: visible; }
-
-  /* Smooth sliding: each photo keeps a fixed size (the panel's widest
-     open width) pinned to the outer edge, so sliding only reveals more
-     or less of it instead of resizing it on every frame */
-  .panel--work .photo { width: 81vw; }
-  .panel--studio .photo { left: auto; right: 0; width: max(68vw, 660px); }
-  .photos { will-change: filter; }
-
-  /* The panel not being hovered turns black and white */
-  .landing:has(.panel--work:is(:hover, :focus-within)) .panel--studio .photos,
-  .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--work .photos { filter: grayscale(1); }
-
-  /* Each Studio link brings up its own photo */
-  .panel--studio:has([data-tone="working"]:is(:hover, :focus-visible))  [data-for="working"],
-  .panel--studio:has([data-tone="partners"]:is(:hover, :focus-visible)) [data-for="partners"],
-  .panel--studio:has([data-tone="contact"]:is(:hover, :focus-visible))  [data-for="contact"] { opacity: 1; }
 }
 
 /* ---------- Phones: panels stack, tap to open ---------- */
@@ -253,9 +187,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
 
   .landing:has(.panel--studio.is-open) .panel--studio { flex-grow: 60; }
   .landing:has(.panel--studio.is-open) .panel--work   { flex-grow: 40; }
-  .landing:has(.panel--studio.is-open) .panel--work .photos { filter: grayscale(1); }
-  /* ...and while Work leads (Studio closed), Studio is the one in black and white */
-  .landing:not(:has(.panel--studio.is-open)) .panel--studio .photos { filter: grayscale(1); }
 
   .panel__inner {
     top: auto;
@@ -277,7 +208,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
     align-items: center;
     min-height: 44px;
     font-size: 21px;
-    color: var(--on-photo);
+    color: var(--panel-text);
   }
 
   .wordmark {
@@ -285,23 +216,11 @@ html:has(.landing) { overscroll-behavior-y: none; }
     left: 24px;
     width: calc(var(--logo-width) * 0.8);
   }
-
-  /* Text sits at the bottom on phones, so darken from the bottom up */
-  .photos::after { background: var(--photo-shade-phone); }
-  .panel--work .photos::after { background: var(--work-shade-phone); }
-
-  /* Caption moves to the top right, clear of the logo and "Work" */
-  .photo-caption {
-    top: calc(32px + env(safe-area-inset-top, 0px));
-    right: 24px;
-    bottom: auto;
-    left: auto;
-  }
 }
 
 /* Respect people who turn off motion */
 @media (prefers-reduced-motion: reduce) {
-  .panel, .panel__links, .chevron, .photo, .photos { transition: none; }
+  .panel, .panel__links, .chevron { transition: none; }
 }
 
 /* ---------- Coming soon page (404.html) ---------- */
@@ -407,8 +326,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .contact__form .contact__trap { display: none; }
 
 /* ---------- Connect page (contact.html) ----------
-   A calm Taupe page: material board photo on the left, then three short
-   columns (Reach, Visit, Follow). "Begin" opens the enquiry form. */
+   A calm Taupe page: heading, then three short columns (Reach, Visit,
+   Follow). "Begin" opens the enquiry form. */
 .connect {
   --background: color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk));
   --text-dim: color-mix(in srgb, var(--dark-walnut) 82%, var(--mothwing-taupe));
@@ -433,30 +352,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .page.connect a { text-decoration: none; }
 .connect a:hover { opacity: 0.65; }
 
-.connect__inner {
-  display: grid;
-  grid-template-columns: minmax(260px, 5fr) 7fr;
-  gap: clamp(40px, 7vw, 120px);
-  max-width: 1240px;
-  align-items: start;
-}
-.connect__photo { position: relative; align-self: stretch; margin: 0; }
-/* Desktop: the whole photo, never cropped, with clear space around it.
-   It runs from the top of the heading down to the bottom of the
-   "Begin a project" button (the small note below the button is 30px). */
-.connect__photo img {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: block;
-  width: auto;
-  height: calc(100% - 30px);
-  max-width: 100%;
-  object-fit: contain; /* never stretched on narrow screens */
-  max-height: calc(100vh - 200px);
-  max-height: calc(100dvh - 200px);
-}
+.connect__inner { max-width: 760px; }
 /* Spacing shrinks on shorter screens so "Begin" stays in view */
 .connect h1 { font-size: clamp(36px, 7vh, 56px); margin-bottom: 12px; }
 .connect h1::before { margin-bottom: clamp(12px, 2.5vh, 24px); }
@@ -822,41 +718,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .page { padding: 110px 24px 64px; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
   .connect__close { top: 30px; right: 24px; }
-  .connect__inner { grid-template-columns: 1fr; gap: 40px; }
-  /* Phones: the photo runs edge to edge from the top and fades into the page,
-     so the heading starts on the fade instead of below a tall photo */
-  .connect { padding-top: 0; --logo-colour: var(--milk); }
-  .connect__close { color: var(--milk); }
-  .connect__photo { position: relative; margin: 0 -24px; }
-  .connect__photo::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto;
-    height: 120px;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--dark-walnut) 45%, transparent), transparent);
-    z-index: 1;
-  }
-  .connect__photo img {
-    width: 100%;
-    position: static;
-    transform: none;
-    object-fit: cover;
-    max-width: none;
-    height: 38vh;
-    max-height: none;
-    object-fit: cover;
-    object-position: center 35%;
-    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
-    mask-image: linear-gradient(180deg, #000 55%, transparent);
-  }
-  .connect__body { position: relative; margin-top: -96px; display: flex; flex-direction: column; }
+  .connect__body { display: flex; flex-direction: column; }
   /* Phones: "Begin a project" comes straight after the opening line,
      before Reach, Visit and Follow */
   .connect__lede { margin-bottom: 24px; }
   .connect__begin { order: 1; margin-top: 0; }
   .connect__note { order: 2; }
   .connect__cols { order: 3; margin-top: 48px; }
-  .connect__inner { gap: 0; }
   .connect__lede { margin-bottom: 40px; }
   /* Phones: Reach on the left, Follow pushed to the right edge, Based in below */
   .connect__cols { grid-template-columns: 1fr auto; gap: 40px 24px; align-items: start; }
@@ -871,9 +739,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @keyframes tl-land { from { color: var(--accent); } }
 
 /* ---------- Work page (work.html) ----------
-   Eight project tiles, 4 across and 2 down (2 across on phones): a portrait
-   photo, the project name and one short line. Empty tiles are placeholders
-   with a big outlined number until a project fills them. */
+   Project tiles, 4 across (2 across on phones): an empty box with a big
+   outlined number, then the project name. */
 .wk__intro { display: flex; justify-content: flex-end; max-width: 1144px; }
 .page.wk { padding-top: 40px; }
 .wk__intro h1 { margin-bottom: 0; text-align: right; font-size: clamp(30px, 3.2vw, 44px); }
@@ -888,19 +755,11 @@ html:has(.landing) { overscroll-behavior-y: none; }
   padding: 0;
   list-style: none;
 }
-.wk__tile img,
-.wk__tile--empty span {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  margin-bottom: 14px;
-}
-.wk__tile h2 { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
-.wk__tile p { margin: 0; font-size: 14px; color: var(--text-dim); }
-.wk__tile--empty span {
+.wk__tile span {
   display: flex;
   align-items: flex-end;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 14px;
   box-sizing: border-box;
   padding: 16px;
   border: 1px dashed var(--line);
@@ -910,68 +769,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
   color: transparent;
   -webkit-text-stroke: 1px var(--line);
 }
-.wk__tile--empty h2, .wk__tile--empty p { color: var(--line); }
+.wk__tile h2 { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
 
 @media (max-width: 760px) {
   .wk__grid { grid-template-columns: 1fr 1fr; gap: 28px 12px; }
   .wk__tile h2 { font-size: 16px; }
-  .wk__tile p { font-size: 13px; }
-}
-
-/* Tiles open the project viewer. Hover: the photo eases in slightly and
-   an Olive line runs under the name. */
-.page .wk__tile { display: block; color: inherit; text-decoration: none; }
-.wk__tile img { transition: transform 0.6s ease; }
-.wk__tile { overflow: hidden; }
-.wk__tile h2 { display: inline-block; background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 2px no-repeat; transition: background-size 0.4s ease; padding-bottom: 2px; }
-.wk__tile:hover h2, .wk__tile:focus-visible h2 { background-size: 100% 2px; }
-.wk__tile:hover img { transform: scale(1.03); }
-
-/* Project viewer: full screen Walnut, the photo as large as fits,
-   name and count at the bottom, Close top right, arrows at the sides */
-.wk__viewer {
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  max-width: none;
-  max-height: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: var(--dark-walnut);
-  color: var(--milk);
-}
-.wk__viewer::backdrop { background: var(--dark-walnut); }
-.wk__viewer[open] { display: grid; place-items: center; animation: wk-in 0.35s ease; }
-@keyframes wk-in { from { opacity: 0; } }
-.wk__viewer img {
-  display: block;
-  max-width: calc(100vw - 200px);
-  max-height: calc(100dvh - 160px);
-  object-fit: contain;
-}
-.wk__caption { position: absolute; left: 48px; bottom: 32px; margin: 0; display: flex; gap: 16px; align-items: baseline; }
-.wk__caption b { font-size: 20px; font-weight: 600; }
-.wk__caption span { font-size: 14px; color: var(--silver-mist); }
-.wk__viewer button {
-  position: absolute;
-  background: none;
-  border: 0;
-  color: var(--milk);
-  font: 400 15px var(--font);
-  cursor: pointer;
-}
-.wk__viewer button:hover { color: var(--accent); }
-.wk__close { top: 32px; right: 48px; letter-spacing: 0.1em; text-transform: uppercase; }
-.wk__prev, .wk__next { top: 50%; transform: translateY(-50%); padding: 24px; font-size: 32px !important; }
-.wk__prev { left: 24px; }
-.wk__next { right: 24px; }
-
-@media (max-width: 760px) {
-  .wk__viewer img { max-width: 100vw; max-height: calc(100dvh - 150px); }
-  .wk__caption { left: 24px; bottom: 28px; }
-  .wk__close { top: 24px; right: 24px; }
-  .wk__prev, .wk__next { top: auto; bottom: 8px; transform: none; padding: 16px; }
-  .wk__prev { left: auto; right: 64px; }
-  .wk__next { right: 8px; }
 }
