@@ -124,15 +124,20 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .chevron { display: none; transition: transform 300ms ease; }
 
 /* The wide space between the label and the links is padding on the links,
-   so the pointer can travel from the label to a link without them closing */
+   so the pointer can travel from the label to a link without them closing.
+   Extra padding above and below (cancelled out by the negative margin) makes
+   the area that keeps them open taller than the text, so a wobbly path works. */
 .panel__links {
   display: flex;
   align-items: baseline;
   gap: 36px;
-  padding-left: clamp(56px, 12vw, 240px);
+  padding: 40px 0 40px clamp(56px, 12vw, 240px);
+  margin: -40px 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 300ms ease, visibility 300ms ease;
+  /* When the pointer leaves, the links wait 0.7 seconds before fading out,
+     and can be caught again during that time */
+  transition: opacity 300ms ease 700ms, visibility 0s linear 1000ms;
 }
 .panel__links a {
   font-family: var(--font-display);
@@ -185,7 +190,11 @@ html:has(.landing) { overscroll-behavior-y: none; }
      themselves (or while using the keyboard), not anywhere on the panel */
   .panel__toggle:hover + .panel__links,
   .panel__links:hover,
-  .panel:has(:focus-visible) .panel__links { opacity: 1; visibility: visible; }
+  .panel:has(:focus-visible) .panel__links {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 300ms ease, visibility 0s; /* appear straight away */
+  }
 }
 
 /* ---------- Phones: panels stack, tap to open ---------- */
@@ -211,7 +220,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .chevron { display: inline-block; }
   .panel.is-open .chevron { transform: rotate(180deg); }
 
-  .panel__links { display: none; flex-direction: column; gap: 0; padding-left: 0; }
+  .panel__links { display: none; flex-direction: column; gap: 0; padding: 0; margin: 0; }
   .panel.is-open .panel__links { display: flex; opacity: 1; visibility: visible; }
   .panel__links a {
     display: flex;
@@ -230,7 +239,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 
 /* Respect people who turn off motion */
 @media (prefers-reduced-motion: reduce) {
-  .panel, .panel__links, .chevron { transition: none; }
+  .panel, .chevron { transition: none; }
+  .panel__links { transition: opacity 0s 1s, visibility 0s 1s; } /* no fade, same pause */
 }
 
 /* ---------- Coming soon page (404.html) ---------- */
