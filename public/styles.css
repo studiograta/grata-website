@@ -167,19 +167,25 @@ html:has(.landing) { overscroll-behavior-y: none; }
 
 /* Phones: each photo is as tall as its panel gets, and as wide as that
    height allows, so a wide photo runs past the screen edge. While it is
-   shown it glides slowly from one side to the other (every second photo
-   the other way), so the whole scene passes by on a tall screen. */
+   shown it moves slowly, so the whole scene passes by on a tall screen.
+   How each photo moves is set per photo with data-move in index.html. */
 @media (max-width: 760px) {
   .photo { width: auto; min-width: 100%; max-width: none; height: 78vh; height: 78dvh; }
   .panel--studio .photo { height: 60vh; height: 60dvh; }
   .photo.is-panning { animation: pan 10.5s ease-in-out forwards; }
-  .photo:nth-child(even).is-panning { animation-direction: reverse; }
+  .photo[data-move="left"].is-panning { animation-direction: reverse; }
+  .photo[data-move="zoom-in"].is-panning { animation-name: zoom; }
+  .photo[data-move="zoom-out"].is-panning { animation-name: zoom; animation-direction: reverse; }
   /* Text sits at the bottom on phones, so the shade rises from the bottom */
   .photos::after {
     background: linear-gradient(0deg,
       color-mix(in srgb, var(--dark-walnut) 70%, transparent),
       transparent 55%);
   }
+}
+@keyframes zoom {
+  from { transform: none; }
+  to   { transform: scale(1.12); }
 }
 @keyframes pan {
   from { transform: none; }
