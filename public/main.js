@@ -45,11 +45,14 @@ landing.addEventListener("touchend", function (event) {
   if (Math.abs(distance) >= 40) setOpen(distance < 0 ? studio : null);
 }, { passive: true });
 
-// Desktop: the photos behind a panel fade to the next one every 6 seconds.
-// Phones skip the photos entirely, so they are never downloaded there.
+// The photos behind each panel fade to the next one: every 6 seconds on
+// desktop, every 9 seconds on phones, where each photo also glides sideways
+// while it is shown (the look is in styles.css under .is-panning). The
+// second panel runs half a step behind, so the two never change together.
 // Each photo is only downloaded just before it is needed.
-var onDesktop = window.matchMedia("(min-width: 761px)").matches;
+var onPhoneScreen = window.matchMedia("(max-width: 760px)").matches;
 var stillMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var step = onPhoneScreen ? 9000 : 6000;
 
 function load(photo) {
   if (photo.dataset.src) {
@@ -58,21 +61,23 @@ function load(photo) {
   }
 }
 
-if (onDesktop) {
-  // The second panel starts 3 seconds later, so the two never change together
-  document.querySelectorAll(".photos").forEach(function (photos, index) {
-    var list = photos.querySelectorAll(".photo");
-    var current = 0;
-    load(list[0]);
-    if (list.length < 2 || stillMotion) return;
-    load(list[1]);
-    setTimeout(function () {
-      setInterval(function () {
-        list[current].classList.remove("is-shown");
-        current = (current + 1) % list.length;
-        list[current].classList.add("is-shown");
-        load(list[(current + 1) % list.length]);
-      }, 6000);
-    }, index * 3000);
-  });
-}
+document.querySelectorAll(".photos").forEach(function (photos, index) {
+  var list = photos.querySelectorAll(".photo");
+  var current = 0;
+  load(list[0]);
+  if (stillMotion) return;
+  list[0].classList.add("is-panning");
+  if (list.length < 2) return;
+  load(list[1]);
+  setTimeout(function () {
+    setInterval(function () {
+      var previous = list[current];
+      previous.classList.remove("is-shown");
+      // Keep gliding while it fades out, then reset for its next turn
+      setTimeout(function () { previous.classList.remove("is-panning"); }, 1300);
+      current = (current + 1) % list.length;
+      list[current].classList.add("is-shown", "is-panning");
+      load(list[(current + 1) % list.length]);
+    }, step);
+  }, index * step / 2);
+});
