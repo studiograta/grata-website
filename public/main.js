@@ -59,17 +59,20 @@ function load(photo) {
 }
 
 if (onDesktop) {
-  document.querySelectorAll(".photos").forEach(function (photos) {
+  // The second panel starts 3 seconds later, so the two never change together
+  document.querySelectorAll(".photos").forEach(function (photos, index) {
     var list = photos.querySelectorAll(".photo");
     var current = 0;
     load(list[0]);
     if (list.length < 2 || stillMotion) return;
     load(list[1]);
-    setInterval(function () {
-      list[current].classList.remove("is-shown");
-      current = (current + 1) % list.length;
-      list[current].classList.add("is-shown");
-      load(list[(current + 1) % list.length]);
-    }, 6000);
+    setTimeout(function () {
+      setInterval(function () {
+        list[current].classList.remove("is-shown");
+        current = (current + 1) % list.length;
+        list[current].classList.add("is-shown");
+        load(list[(current + 1) % list.length]);
+      }, 6000);
+    }, index * 3000);
   });
 }
