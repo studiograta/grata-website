@@ -61,23 +61,40 @@ function load(photo) {
   }
 }
 
+// Run "then" once the photo has downloaded. A photo still downloading has
+// no width yet, so a glide started then would have nowhere to go.
+function whenLoaded(photo, then) {
+  if (photo.complete && photo.naturalWidth) then();
+  else photo.addEventListener("load", then, { once: true });
+}
+
+function startPanning(photo) {
+  whenLoaded(photo, function () {
+    if (photo.classList.contains("is-shown")) photo.classList.add("is-panning");
+  });
+}
+
 document.querySelectorAll(".photos").forEach(function (photos, index) {
   var list = photos.querySelectorAll(".photo");
   var current = 0;
   load(list[0]);
   if (stillMotion) return;
-  list[0].classList.add("is-panning");
-  if (list.length < 2) return;
-  load(list[1]);
-  setTimeout(function () {
-    setInterval(function () {
-      var previous = list[current];
-      previous.classList.remove("is-shown");
-      // Keep gliding while it fades out, then reset for its next turn
-      setTimeout(function () { previous.classList.remove("is-panning"); }, 1300);
-      current = (current + 1) % list.length;
-      list[current].classList.add("is-shown", "is-panning");
-      load(list[(current + 1) % list.length]);
-    }, step);
-  }, index * step / 2);
+  // The first photo gets its full turn: the clock starts once it has loaded
+  whenLoaded(list[0], function () {
+    startPanning(list[0]);
+    if (list.length < 2) return;
+    load(list[1]);
+    setTimeout(function () {
+      setInterval(function () {
+        var previous = list[current];
+        previous.classList.remove("is-shown");
+        // Keep gliding while it fades out, then reset for its next turn
+        setTimeout(function () { previous.classList.remove("is-panning"); }, 1300);
+        current = (current + 1) % list.length;
+        list[current].classList.add("is-shown");
+        startPanning(list[current]);
+        load(list[(current + 1) % list.length]);
+      }, step);
+    }, index * step / 2);
+  });
 });
