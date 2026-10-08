@@ -123,47 +123,67 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .chevron { display: none; transition: transform 300ms ease; }
 
-/* Photos fill the panel behind the label (desktop only, see main.js).
-   Each photo keeps the panel's widest size, pinned to its outer edge, so
-   the panel sliding only reveals more or less of it and never resizes it. */
-.photos { display: none; }
+/* Photos fill the panel behind the label and fade from one to the next
+   (main.js). The panels slide, so each photo keeps one fixed size and the
+   panel edge just reveals more or less of it, never resizing it. */
+.photos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/* A soft Walnut shade where the label and links sit */
+.photos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--dark-walnut) 60%, transparent),
+    color-mix(in srgb, var(--dark-walnut) 15%, transparent) 55%,
+    transparent);
+}
+.photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1200ms ease;
+}
+.photo.is-shown { opacity: 1; }
+/* A soft glow behind the words keeps them readable on busy photos */
+.panel:has(.photos) .panel__inner {
+  --panel-text: var(--milk); /* Milk words over photos, on either panel */
+  --panel-text-dim: var(--milk);
+  --focus: var(--milk);
+  text-shadow: 0 1px 12px color-mix(in srgb, var(--dark-walnut) 85%, transparent);
+}
+
+/* Desktop: each photo is as wide as its panel gets. Studio is on the
+   right, so its photos pin to the right edge. */
 @media (min-width: 761px) {
-  .photos {
-    display: block;
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  /* A soft Walnut shade on the left, where the label and links sit */
-  .photos::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg,
-      color-mix(in srgb, var(--dark-walnut) 60%, transparent),
-      color-mix(in srgb, var(--dark-walnut) 15%, transparent) 55%,
-      transparent);
-  }
-  .photo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 81vw; /* the Work panel's widest */
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1200ms ease;
-  }
-  .photo.is-shown { opacity: 1; }
-  /* Studio is on the right, so its photos pin to the right edge instead */
+  .photo { width: 81vw; height: 100%; }
   .panel--studio .photo { left: auto; right: 0; width: max(68vw, 660px); }
-  /* A soft glow behind the words keeps them readable on busy photos */
-  .panel:has(.photos) .panel__inner {
-    --panel-text: var(--milk); /* Milk words over photos, on either panel */
-    --panel-text-dim: var(--milk);
-    --focus: var(--milk);
-    text-shadow: 0 1px 12px color-mix(in srgb, var(--dark-walnut) 85%, transparent);
+}
+
+/* Phones: each photo is as tall as its panel gets, and as wide as that
+   height allows, so a wide photo runs past the screen edge. While it is
+   shown it glides slowly from one side to the other (every second photo
+   the other way), so the whole scene passes by on a tall screen. */
+@media (max-width: 760px) {
+  .photo { width: auto; min-width: 100%; max-width: none; height: 78vh; height: 78dvh; }
+  .panel--studio .photo { height: 60vh; height: 60dvh; }
+  .photo.is-panning { animation: pan 10.5s ease-in-out forwards; }
+  .photo:nth-child(even).is-panning { animation-direction: reverse; }
+  /* Text sits at the bottom on phones, so the shade rises from the bottom */
+  .photos::after {
+    background: linear-gradient(0deg,
+      color-mix(in srgb, var(--dark-walnut) 70%, transparent),
+      transparent 55%);
   }
+}
+@keyframes pan {
+  from { transform: none; }
+  to   { transform: translateX(calc(100vw - 100%)); } /* right edge meets the screen edge */
 }
 
 /* The wide space between the label and the links is padding on the links,
