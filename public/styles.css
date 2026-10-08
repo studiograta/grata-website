@@ -103,15 +103,16 @@ html:has(.landing) { overscroll-behavior-y: none; }
   --focus: var(--dark-walnut);
 }
 
-/* Label and links, vertically centred on the left of each panel */
+/* Label and links sit low in the bottom left corner of each panel, so they
+   stay clear of the middle of a photo. The links wait hidden below the label. */
 .panel__inner {
   position: absolute;
   left: 48px;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 48px;
   display: flex;
-  align-items: baseline;
-  gap: clamp(56px, 12vw, 240px); /* wide gap between heading and links */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   white-space: nowrap;
 }
 .panel__toggle {
@@ -134,13 +135,15 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .panel__links {
   display: flex;
   align-items: baseline;
-  gap: 36px;
+  gap: 24px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 300ms ease, visibility 300ms ease;
+  transform: translateY(-6px); /* rises slightly into place as it fades in */
+  transition: opacity 400ms ease, visibility 400ms ease, transform 400ms ease;
 }
 .panel__links a {
-  font-size: 24px;
+  font-size: 16px;
+  letter-spacing: 0.02em;
   color: var(--panel-text-dim);
   text-decoration: none;
   text-underline-offset: 10px;
@@ -186,7 +189,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--studio { min-width: 660px; }
 
   .panel:hover .panel__links,
-  .panel:focus-within .panel__links { opacity: 1; visibility: visible; }
+  .panel:focus-within .panel__links { opacity: 1; visibility: visible; transform: none; }
 }
 
 /* ---------- Phones: panels stack, tap to open ---------- */
@@ -213,12 +216,12 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .panel.is-open .chevron { transform: rotate(180deg); }
 
   .panel__links { display: none; flex-direction: column; gap: 0; }
-  .panel.is-open .panel__links { display: flex; opacity: 1; visibility: visible; }
+  .panel.is-open .panel__links { display: flex; opacity: 1; visibility: visible; transform: none; }
   .panel__links a {
     display: flex;
     align-items: center;
     min-height: 44px;
-    font-size: 21px;
+    font-size: 18px;
     color: var(--panel-text);
   }
 
