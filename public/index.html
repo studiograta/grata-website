@@ -20,12 +20,16 @@
 
     <!-- WORK PANEL -->
     <section class="panel panel--work" aria-label="Work">
-      <!-- Project photos (desktop only): they fade from one to the next.
-           Add or remove lines to change the set. main.js loads them. -->
+      <!-- Photos: they fade from one to the next. Add or remove lines to
+           change the set (main.js loads them). On phones each one moves
+           while shown; data-move picks how, to suit the photo: right or
+           left (wide photos: the view drifts that way, so end on the best
+           part), zoom-in or zoom-out (upright photos that already fill the
+           width). Without data-move it drifts right. -->
       <div class="photos" aria-hidden="true">
-        <img class="photo is-shown" data-src="/images/work/work-1.webp" alt="">
-        <img class="photo" data-src="/images/work/work-4.webp" alt="">
-        <img class="photo" data-src="/images/work/work-3.webp" alt="">
+        <img class="photo is-shown" data-src="/images/work/work-1.webp" data-move="right" alt="">
+        <img class="photo" data-src="/images/work/work-4.webp" data-move="right" alt="">
+        <img class="photo" data-src="/images/work/work-3.webp" data-move="left" alt="">
       </div>
       <div class="panel__inner">
         <button class="panel__toggle" type="button" aria-expanded="false">
@@ -44,12 +48,11 @@
 
     <!-- STUDIO PANEL -->
     <section class="panel panel--studio" aria-label="Studio">
-      <!-- Studio photos (desktop only): they fade from one to the next.
-           Add or remove lines to change the set. main.js loads them. -->
+      <!-- Photos: same as the Work panel above, including data-move -->
       <div class="photos" aria-hidden="true">
-        <img class="photo is-shown" data-src="/images/studio/carpenter.jpg" alt="">
-        <img class="photo" data-src="/images/studio/fabric-rolls.jpg" alt="">
-        <img class="photo" data-src="/images/studio/boards.jpg" alt="">
+        <img class="photo is-shown" data-src="/images/studio/carpenter.jpg" data-move="zoom-in" alt="">
+        <img class="photo" data-src="/images/studio/fabric-rolls.jpg" data-move="right" alt="">
+        <img class="photo" data-src="/images/studio/boards.jpg" data-move="zoom-out" alt="">
       </div>
       <div class="panel__inner">
         <button class="panel__toggle" type="button" aria-expanded="false">
