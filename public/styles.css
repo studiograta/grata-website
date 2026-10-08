@@ -155,9 +155,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
     transition: opacity 1200ms ease;
   }
   .photo.is-shown { opacity: 1; }
+  /* Studio is on the right, so its photos pin to the right edge instead */
+  .panel--studio .photo { left: auto; right: 0; width: max(68vw, 660px); }
   /* A soft glow behind the words keeps them readable on busy photos */
   .panel:has(.photos) .panel__inner {
-    --panel-text-dim: var(--milk); /* links in full Milk over photos */
+    --panel-text: var(--milk); /* Milk words over photos, on either panel */
+    --panel-text-dim: var(--milk);
+    --focus: var(--milk);
     text-shadow: 0 1px 12px color-mix(in srgb, var(--dark-walnut) 85%, transparent);
   }
 }
