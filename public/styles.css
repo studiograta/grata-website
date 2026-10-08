@@ -226,6 +226,15 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .landing:has(.panel--studio:focus-within) .panel--studio { flex-grow: 68; }
   .landing:has(.panel--studio:hover) .panel--work,
   .landing:has(.panel--studio:focus-within) .panel--work { flex-grow: 32; }
+
+  /* The panel not being explored turns black and white. The grey fades in
+     only once the panels have stopped sliding (after --speed), and colour
+     comes back at once, because fading while sliding made it stutter. */
+  .landing:has(.panel--work:is(:hover, :focus-within)) .panel--studio .photos,
+  .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--work .photos {
+    filter: grayscale(1);
+    transition: filter 600ms ease var(--speed);
+  }
   /* ...but always wide enough to show all three Studio links */
   .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--studio { min-width: 660px; }
 
