@@ -123,6 +123,45 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .chevron { display: none; transition: transform 300ms ease; }
 
+/* Photos fill the panel behind the label (desktop only, see main.js).
+   Each photo keeps the panel's widest size, pinned to its outer edge, so
+   the panel sliding only reveals more or less of it and never resizes it. */
+.photos { display: none; }
+@media (min-width: 761px) {
+  .photos {
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  /* A soft Walnut shade on the left, where the label and links sit */
+  .photos::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+      color-mix(in srgb, var(--dark-walnut) 60%, transparent),
+      color-mix(in srgb, var(--dark-walnut) 15%, transparent) 55%,
+      transparent);
+  }
+  .photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 81vw; /* the Work panel's widest */
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1200ms ease;
+  }
+  .photo.is-shown { opacity: 1; }
+  /* A soft glow behind the words keeps them readable on busy photos */
+  .panel:has(.photos) .panel__inner {
+    --panel-text-dim: var(--milk); /* links in full Milk over photos */
+    text-shadow: 0 1px 12px color-mix(in srgb, var(--dark-walnut) 85%, transparent);
+  }
+}
+
 /* The wide space between the label and the links is padding on the links,
    so the pointer can travel from the label to a link without them closing.
    Extra padding above and below (cancelled out by the negative margin) makes

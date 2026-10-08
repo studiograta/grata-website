@@ -20,6 +20,13 @@
 
     <!-- WORK PANEL -->
     <section class="panel panel--work" aria-label="Work">
+      <!-- Project photos (desktop only): they fade from one to the next.
+           Add or remove lines to change the set. main.js loads them. -->
+      <div class="photos" aria-hidden="true">
+        <img class="photo is-shown" data-src="/images/work/work-1.webp" alt="">
+        <img class="photo" data-src="/images/work/work-2.webp" alt="">
+        <img class="photo" data-src="/images/work/work-3.webp" alt="">
+      </div>
       <div class="panel__inner">
         <button class="panel__toggle" type="button" aria-expanded="false">
           Work
