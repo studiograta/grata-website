@@ -7,6 +7,9 @@
   },
   // Lets Cloudflare build a preview of every branch other than main
   "previews": {},
+  // Gives each preview its own web address on workers.dev, so it can be
+  // opened in a browser before going live (search engines are told to skip it)
+  "preview_urls": true,
   "routes": [
     { "pattern": "studiograta.in", "custom_domain": true },
     { "pattern": "www.studiograta.in", "custom_domain": true }
