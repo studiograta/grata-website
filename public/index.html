@@ -21,7 +21,17 @@
     <!-- WORK PANEL -->
     <section class="panel panel--work" aria-label="Work">
       <div class="panel__inner">
-        <a class="panel__toggle" href="/work">Work</a>
+        <button class="panel__toggle" type="button" aria-expanded="false">
+          Work
+          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <!-- Sectors: each opens its part of the Work page -->
+        <nav class="panel__links" aria-label="Work">
+          <a href="/work#hospitality">hospitality</a>
+          <a href="/work#fnb">f&amp;b</a>
+          <a href="/work#wellness">wellness</a>
+          <a href="/work#retail">retail</a>
+        </nav>
       </div>
     </section>
 
