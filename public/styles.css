@@ -2,8 +2,19 @@
    BRAND SETTINGS
    Change colours and fonts here only.
    ========================================================= */
+
+/* Lemon Milk, the brand's heading font, served from /fonts */
+@font-face {
+  font-family: "Lemon Milk";
+  src: url("/fonts/lemon-milk.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --font: "Cabin", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Page titles and the Work and Studio labels. It only has one weight. */
+  --font-display: "Lemon Milk", var(--font);
 
   /* Studio Grata palette (final codes, September 2026) */
   --dark-walnut: #2d2011;
@@ -113,9 +124,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
   border: 0;
   text-decoration: none;
   color: var(--panel-text);
-  font-family: var(--font);
+  font-family: var(--font-display);
   font-size: 30px;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
 }
 .chevron { display: none; transition: transform 300ms ease; }
@@ -236,7 +247,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   background: var(--texture), var(--background);
 }
 .soon .wordmark { position: absolute; }
-.soon h1 { margin: 0; font-size: clamp(32px, 6vw, 56px); font-weight: 600; }
+.soon h1 { margin: 0; font-family: var(--font-display); font-size: clamp(32px, 6vw, 56px); font-weight: 400; }
 .soon p { margin: 0; font-size: 20px; color: var(--text-dim); max-width: 36ch; line-height: 1.5; }
 .soon p a { color: var(--text); }
 @media (max-width: 760px) { .soon { padding: 24px; } }
@@ -249,7 +260,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   padding: 140px 48px 96px;
   background: var(--texture), var(--background);
 }
-.page h1 { margin: 0 0 16px; font-size: clamp(36px, 6vw, 56px); font-weight: 600; }
+.page h1 { margin: 0 0 16px; font-family: var(--font-display); font-size: clamp(36px, 6vw, 56px); font-weight: 400; }
 
 /* The brand touch: a short Olive Chartreuse line above each page title */
 .page h1::before,
