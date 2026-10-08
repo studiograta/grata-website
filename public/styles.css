@@ -3,18 +3,11 @@
    Change colours and fonts here only.
    ========================================================= */
 
-/* Lemon Milk, the brand's heading font, served from /fonts */
-@font-face {
-  font-family: "Lemon Milk";
-  src: url("/fonts/lemon-milk.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-
 :root {
   --font: "Cabin", system-ui, -apple-system, "Segoe UI", sans-serif;
-  /* Page titles and the Work and Studio labels. It only has one weight. */
-  --font-display: "Lemon Milk", var(--font);
+  /* Page titles and the landing labels and links (loaded from Google Fonts
+     in each page's head, next to Cabin) */
+  --font-display: "Josefin Sans", var(--font);
 
   /* Studio Grata palette (final codes, September 2026) */
   --dark-walnut: #2d2011;
@@ -103,16 +96,14 @@ html:has(.landing) { overscroll-behavior-y: none; }
   --focus: var(--dark-walnut);
 }
 
-/* Label and links sit low in the bottom left corner of each panel, so they
-   stay clear of the middle of a photo. The links wait hidden below the label. */
+/* Label and links, vertically centred on the left of each panel */
 .panel__inner {
   position: absolute;
   left: 48px;
-  bottom: 48px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
+  align-items: baseline;
   white-space: nowrap;
 }
 .panel__toggle {
@@ -127,23 +118,25 @@ html:has(.landing) { overscroll-behavior-y: none; }
   color: var(--panel-text);
   font-family: var(--font-display);
   font-size: 30px;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
 }
 .chevron { display: none; transition: transform 300ms ease; }
 
+/* The wide space between the label and the links is padding on the links,
+   so the pointer can travel from the label to a link without them closing */
 .panel__links {
   display: flex;
   align-items: baseline;
-  gap: 24px;
+  gap: 36px;
+  padding-left: clamp(56px, 12vw, 240px);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-6px); /* rises slightly into place as it fades in */
-  transition: opacity 400ms ease, visibility 400ms ease, transform 400ms ease;
+  transition: opacity 300ms ease, visibility 300ms ease;
 }
 .panel__links a {
-  font-size: 16px;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display);
+  font-size: 24px;
   color: var(--panel-text-dim);
   text-decoration: none;
   text-underline-offset: 10px;
@@ -188,8 +181,11 @@ html:has(.landing) { overscroll-behavior-y: none; }
   /* ...but always wide enough to show all three Studio links */
   .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--studio { min-width: 660px; }
 
-  .panel:hover .panel__links,
-  .panel:focus-within .panel__links { opacity: 1; visibility: visible; transform: none; }
+  /* Links show only while the pointer is on the label or on the links
+     themselves (or while using the keyboard), not anywhere on the panel */
+  .panel__toggle:hover + .panel__links,
+  .panel__links:hover,
+  .panel:has(:focus-visible) .panel__links { opacity: 1; visibility: visible; }
 }
 
 /* ---------- Phones: panels stack, tap to open ---------- */
@@ -215,8 +211,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .chevron { display: inline-block; }
   .panel.is-open .chevron { transform: rotate(180deg); }
 
-  .panel__links { display: none; flex-direction: column; gap: 0; }
-  .panel.is-open .panel__links { display: flex; opacity: 1; visibility: visible; transform: none; }
+  .panel__links { display: none; flex-direction: column; gap: 0; padding-left: 0; }
+  .panel.is-open .panel__links { display: flex; opacity: 1; visibility: visible; }
   .panel__links a {
     display: flex;
     align-items: center;
@@ -250,7 +246,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   background: var(--texture), var(--background);
 }
 .soon .wordmark { position: absolute; }
-.soon h1 { margin: 0; font-family: var(--font-display); font-size: clamp(32px, 6vw, 56px); font-weight: 400; }
+.soon h1 { margin: 0; font-family: var(--font-display); font-size: clamp(32px, 6vw, 56px); font-weight: 600; }
 .soon p { margin: 0; font-size: 20px; color: var(--text-dim); max-width: 36ch; line-height: 1.5; }
 .soon p a { color: var(--text); }
 @media (max-width: 760px) { .soon { padding: 24px; } }
@@ -263,7 +259,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   padding: 140px 48px 96px;
   background: var(--texture), var(--background);
 }
-.page h1 { margin: 0 0 16px; font-family: var(--font-display); font-size: clamp(36px, 6vw, 56px); font-weight: 400; }
+.page h1 { margin: 0 0 16px; font-family: var(--font-display); font-size: clamp(36px, 6vw, 56px); font-weight: 600; }
 
 /* The brand touch: a short Olive Chartreuse line above each page title */
 .page h1::before,
