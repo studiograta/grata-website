@@ -44,3 +44,32 @@ landing.addEventListener("touchend", function (event) {
   touchStartY = null;
   if (Math.abs(distance) >= 40) setOpen(distance < 0 ? studio : null);
 }, { passive: true });
+
+// Desktop: the photos behind a panel fade to the next one every 6 seconds.
+// Phones skip the photos entirely, so they are never downloaded there.
+// Each photo is only downloaded just before it is needed.
+var onDesktop = window.matchMedia("(min-width: 761px)").matches;
+var stillMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function load(photo) {
+  if (photo.dataset.src) {
+    photo.src = photo.dataset.src;
+    photo.removeAttribute("data-src");
+  }
+}
+
+if (onDesktop) {
+  document.querySelectorAll(".photos").forEach(function (photos) {
+    var list = photos.querySelectorAll(".photo");
+    var current = 0;
+    load(list[0]);
+    if (list.length < 2 || stillMotion) return;
+    load(list[1]);
+    setInterval(function () {
+      list[current].classList.remove("is-shown");
+      current = (current + 1) % list.length;
+      list[current].classList.add("is-shown");
+      load(list[(current + 1) % list.length]);
+    }, 6000);
+  });
+}
