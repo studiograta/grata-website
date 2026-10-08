@@ -716,6 +716,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .pb--animate .pb__ready li.is-in { opacity: 1; transform: none; }
 .pb--animate .pb__band li > * { transition-delay: calc(var(--d, 0s) + 0.35s); }
 .pb--animate .pb__ready li { transition-delay: var(--d, 0s); }
+/* Used for a moment while the script hides everything, so that hiding is instant */
+.pb--still *, .pb--still *::before { transition: none !important; }
 
 @media (max-width: 760px) {
   .pb__steps { grid-template-columns: 1fr 1fr; }

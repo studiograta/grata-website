@@ -5,7 +5,13 @@ var page = document.querySelector(".pb");
 var stillMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (page && !stillMotion && "IntersectionObserver" in window) {
-  page.classList.add("pb--animate");
+  // Hide everything instantly first (pb--still turns animation off for a
+  // moment). On big screens the page is often already drawn by now, and
+  // without this the hiding itself would animate, so the steps never
+  // visibly hid and nothing seemed to play.
+  page.classList.add("pb--animate", "pb--still");
+  page.getBoundingClientRect(); // makes the browser apply the hidden look now
+  page.classList.remove("pb--still");
   // Items that arrive together play one after another: steps wait for the
   // Olive line to cross the step before (0.5s), the rest follow quickly.
   var watcher = new IntersectionObserver(function (entries) {
