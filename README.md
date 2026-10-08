@@ -11,6 +11,7 @@ Only the `public` folder is published. Everything outside it stays private.
 - `public/main.js`: makes the panels open on tap on phones
 - `public/404.html`: shown for any page that does not exist yet ("This page is on its way")
 - `wrangler.jsonc`: tells Cloudflare to publish only the `public` folder
+- `photo-library/`: photos kept for later. Not published; see its README for what each one is
 
 ## Common edits
 
