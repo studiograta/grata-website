@@ -15,6 +15,12 @@ function setOpen(openPanel) {
 
 panels.forEach(function (panel) {
   panel.querySelector("button.panel__toggle").addEventListener("click", function () {
+    // Desktop: clicking "Work" opens the Work page with all projects
+    // (on phones the tap opens the list, which starts with "all")
+    if (!onPhone.matches && panel.classList.contains("panel--work")) {
+      location.href = "/work";
+      return;
+    }
     setOpen(panel.classList.contains("is-open") ? null : panel);
   });
 });

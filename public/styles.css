@@ -222,6 +222,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
   text-decoration: underline;
 }
 
+/* Links only phones need (the Work list starts with "all" there,
+   because on desktop clicking Work itself opens all projects) */
+@media (min-width: 761px) { .panel__links .phone-only { display: none; } }
+
 /* The logo image is used as a stencil, so it can take any colour */
 .wordmark {
   position: absolute;

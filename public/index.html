@@ -33,14 +33,17 @@
         <img class="photo" data-src="/images/work/work-6.webp?v=2" data-move="right" alt="">
         <img class="photo" data-src="/images/work/work-7.webp" data-move="right" alt="">
         <img class="photo" data-src="/images/work/work-8.webp" data-move="left" alt="">
+        <img class="photo" data-src="/images/work/sohum-reception.webp" data-move="left" alt="">
       </div>
       <div class="panel__inner">
         <button class="panel__toggle" type="button" aria-expanded="false">
           Work
           <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <!-- Sectors: each opens its part of the Work page -->
+        <!-- Sectors: each opens the Work page with that filter on.
+             "all" is for phones, where tapping Work opens this list. -->
         <nav class="panel__links" aria-label="Work">
+          <a class="phone-only" href="/work">all</a>
           <a href="/work#hospitality">hospitality</a>
           <a href="/work#fnb">f&amp;b</a>
           <a href="/work#wellness">wellness</a>
