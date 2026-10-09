@@ -839,39 +839,77 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @keyframes tl-land { from { color: var(--accent); } }
 
 /* ---------- Work page (work.html) ----------
-   Project tiles, 4 across (2 across on phones): an empty box with a big
-   outlined number, then the project name. */
-.wk__intro { display: flex; justify-content: flex-end; max-width: 1144px; }
+   After Case Design: a filter, then the photos one after another down the
+   page at different sizes, each with a small "Project : Place" caption.
+   work.js gives each shown photo its size (wk__lg, wk__pair-a ...). */
 .page.wk { padding-top: 40px; }
+.wk__intro { display: flex; justify-content: flex-end; max-width: 1144px; }
 .wk__intro h1 { margin-bottom: 0; text-align: right; font-size: clamp(30px, 3.2vw, 44px); }
 .wk__intro h1::before { margin-left: auto; margin-bottom: 14px; }
 
-.wk__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(32px, 5vh, 48px) 20px;
-  max-width: 1144px;
-  margin: clamp(36px, 6vh, 56px) 0 0;
-  padding: 0;
-  list-style: none;
-}
-.wk__tile span {
+.wk__filter {
   display: flex;
-  align-items: flex-end;
-  aspect-ratio: 4 / 5;
-  margin-bottom: 14px;
-  box-sizing: border-box;
-  padding: 16px;
-  border: 1px dashed var(--line);
-  font-size: clamp(48px, 5vw, 72px);
-  font-weight: 600;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--line);
+  flex-wrap: wrap;
+  gap: 4px 28px;
+  max-width: 1144px;
+  margin: clamp(40px, 7vh, 72px) 0 clamp(36px, 6vh, 56px);
+  font-family: var(--font-display);
+  font-size: 17px;
 }
-.wk__tile h2 { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
+.page .wk__filter a {
+  padding: 8px 0;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.page .wk__filter a:hover,
+.page .wk__filter a[aria-current] {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+}
 
+/* Twelve columns: each size says where its photo starts and how wide it
+   is. A photo that starts left of the one before goes onto a new row,
+   so only the pair ever shares a row. */
+.wk__list {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(64px, 11vh, 112px) 24px;
+  align-items: start;
+  max-width: 1144px;
+}
+.wk__list figure { margin: 0; animation: wk-in 600ms ease both; }
+.wk__list img { display: block; width: 100%; height: auto; background: color-mix(in srgb, var(--mothwing-taupe) 25%, transparent); }
+.wk__list figcaption { margin-top: 12px; font-size: 13px; letter-spacing: 0.02em; color: var(--text-dim); }
+.wk__lg     { grid-column: 1 / span 8; }
+.wk__pair-a { grid-column: 1 / span 5; }
+.wk__pair-b { grid-column: 7 / span 5; margin-top: clamp(40px, 10vh, 120px) !important; }
+.wk__md     { grid-column: 1 / span 6; }
+.wk__xl     { grid-column: 1 / span 10; }
+.wk__sm     { grid-column: 6 / span 5; }
+@keyframes wk-in { from { opacity: 0; transform: translateY(12px); } }
+
+.wk__empty { color: var(--text-dim); }
+.page .wk__top {
+  display: inline-block;
+  margin-top: clamp(72px, 12vh, 120px);
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.page .wk__top:hover { color: var(--text); }
+
+/* Phones: one column. Big photos run edge to edge of the text column,
+   the rest are a little narrower, alternating left and right. */
 @media (max-width: 760px) {
-  .wk__grid { grid-template-columns: 1fr 1fr; gap: 28px 12px; }
-  .wk__tile h2 { font-size: 16px; }
+  .page.wk { padding: 40px 24px 64px; }
+  .wk__filter { gap: 0 22px; font-size: 16px; }
+  .wk__list { grid-template-columns: 1fr; row-gap: 56px; }
+  .wk__list figure { grid-column: 1; }
+  .wk__pair-a, .wk__md { width: 82%; }
+  .wk__pair-b, .wk__sm { width: 82%; justify-self: end; margin-top: 0 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wk__list figure { animation: none; }
 }

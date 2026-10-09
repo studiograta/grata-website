@@ -12,22 +12,40 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <main class="page wk">
+  <main class="page wk" id="top">
     <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
 
     <header class="wk__intro">
       <h1 data-titles>work</h1>
     </header>
 
-    <!-- Project grid: 4 across (2 on phones). Each tile is an empty numbered
-         box for now, with the project name below it. -->
-    <ul class="wk__grid">
-      <li class="wk__tile"><span>01</span><h2>Go Native</h2></li>
-      <li class="wk__tile"><span>02</span><h2>Lotus Palace</h2></li>
-      <li class="wk__tile"><span>03</span><h2>Beruru</h2></li>
-      <li class="wk__tile"><span>04</span><h2>Vadhyar House</h2></li>
-    </ul>
+    <!-- Filter: the same four names as the Work links on the home page.
+         /work#fnb (and so on) opens the page with that filter on. -->
+    <nav class="wk__filter" aria-label="Filter projects">
+      <a href="#" data-filter="all" aria-current="true">all</a>
+      <a href="#hospitality" data-filter="hospitality">hospitality</a>
+      <a href="#fnb" data-filter="fnb">f&amp;b</a>
+      <a href="#wellness" data-filter="wellness">wellness</a>
+      <a href="#retail" data-filter="retail">retail</a>
+    </nav>
+
+    <!-- Photos, one after another down the page. To add one, copy a line:
+         data-type is hospitality, fnb, wellness or retail, and the caption
+         is "Project : Place". Sizes and pairs are set by work.js, in order,
+         so the rhythm stays even whichever filter is on. -->
+    <div class="wk__list">
+      <figure data-type="fnb"><img src="/images/work/work-1.webp" width="1448" height="1086" alt="Yellow dining room with a bamboo ceiling"><figcaption>Go Native : Koramangala</figcaption></figure>
+      <figure data-type="hospitality"><img src="/images/work/work-7.webp" width="2000" height="1992" loading="lazy" alt="Pool court under a slatted wooden pergola"><figcaption>Lotus Palace</figcaption></figure>
+      <figure data-type="hospitality"><img src="/images/work/work-8.webp" width="2000" height="1176" loading="lazy" alt="Red lounge with carved wooden pillars"><figcaption>Lotus Palace</figcaption></figure>
+      <figure data-type="fnb"><img src="/images/work/work-3.webp" width="1448" height="1086" loading="lazy" alt="Banquette seating below a jaali wall"><figcaption>Go Native : Koramangala</figcaption></figure>
+      <figure data-type="fnb"><img src="/images/work/work-5.webp" width="1491" height="1055" loading="lazy" alt="Courtyard with a terracotta water bowl beside a heritage mansion"><figcaption>Vadhyar Palace</figcaption></figure>
+      <figure data-type="fnb"><img src="/images/work/work-6.webp?v=2" width="2000" height="1500" loading="lazy" alt="Alfresco dining under a steel pergola"><figcaption>Alfresco Dining : Siliguri</figcaption></figure>
+    </div>
+    <p class="wk__empty" hidden>Projects coming soon.</p>
+
+    <a class="wk__top" href="#top">Back to top</a>
   </main>
   <script src="/titles.js"></script>
+  <script src="/work.js"></script>
 </body>
 </html>
