@@ -266,8 +266,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
     filter: grayscale(1);
     transition: filter 600ms ease var(--speed);
   }
-  /* The panel being explored dims a little, so its words read clearly */
-  .panel:is(:hover, :focus-within) .photos { filter: brightness(0.7); }
+  /* The photos dim a little only while the pointer is on the label or its
+     links (the same moments the links show), so the words read clearly */
+  .panel:has(.panel__toggle:hover, .panel__links:hover, :focus-visible) .photos { filter: brightness(0.7); }
 
   /* ...but always wide enough to show all three Studio links */
   .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--studio { min-width: 660px; }
