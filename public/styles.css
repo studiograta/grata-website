@@ -130,6 +130,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   position: absolute;
   inset: 0;
   pointer-events: none;
+  transition: filter 450ms ease; /* the dim below fades in and out */
 }
 /* A soft Walnut shade where the label and links sit */
 .photos::after {
@@ -265,6 +266,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
     filter: grayscale(1);
     transition: filter 600ms ease var(--speed);
   }
+  /* The panel being explored dims a little, so its words read clearly */
+  .panel:is(:hover, :focus-within) .photos { filter: brightness(0.7); }
+
   /* ...but always wide enough to show all three Studio links */
   .landing:has(.panel--studio:is(:hover, :focus-within)) .panel--studio { min-width: 660px; }
 
@@ -300,6 +304,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
     gap: 6px;
   }
   .chevron { display: inline-block; }
+  /* No hover on a phone, so an opened panel dims its photo instead */
+  .panel.is-open .photos { filter: brightness(0.65); }
   .panel.is-open .chevron { transform: rotate(180deg); }
 
   .panel__links { display: none; flex-direction: column; gap: 0; padding: 0; margin: 0; }
