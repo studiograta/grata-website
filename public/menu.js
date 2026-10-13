@@ -1,8 +1,13 @@
-// The menu on every page except home: a round button at the top right
-// opens a full-screen Walnut panel with a link to each page. The page you
-// are on is marked. Esc, the button again, or any link closes it.
-// The look is in styles.css under "Menu".
+// The menu on every page except home. The Olive line above the page title
+// is the way in: hovering splits it into three lines and shows "menu", it
+// does the same once by itself after the title lands, and on phones "menu"
+// is always shown beside it. Clicking opens a full-screen Walnut panel with
+// a link to each page; the page you are on is marked. The ✕, Esc or any
+// link closes it. The look is in styles.css under "Menu".
 (function () {
+  var title = document.querySelector("main h1");
+  if (!title) return;
+
   var pages = [
     ["/", "home"],
     ["/work", "work"],
@@ -13,19 +18,26 @@
   ];
   var here = location.pathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
 
-  var button = document.createElement("button");
-  button.className = "menu-btn";
-  button.type = "button";
-  button.setAttribute("aria-label", "Menu");
-  button.setAttribute("aria-expanded", "false");
-  button.setAttribute("aria-controls", "site-menu");
-  button.innerHTML = "<span></span><span></span><span></span>";
+  // The line: a button in place of the title's drawn line, keeping its spacing
+  var gap = getComputedStyle(title, "::before").marginBottom;
+  var line = document.createElement("button");
+  line.className = "menu-line";
+  line.type = "button";
+  line.setAttribute("aria-label", "Menu");
+  line.setAttribute("aria-expanded", "false");
+  line.setAttribute("aria-controls", "site-menu");
+  line.style.marginBottom = gap;
+  line.innerHTML = '<span class="menu-line__word" aria-hidden="true">menu</span><i></i><i></i><i></i>';
+  if (getComputedStyle(title).textAlign === "right") line.classList.add("menu-line--right");
+  title.classList.add("has-menu-line");
+  title.insertBefore(line, title.firstChild);
 
   var panel = document.createElement("div");
   panel.className = "menu";
   panel.id = "site-menu";
   panel.hidden = true;
   panel.innerHTML =
+    '<button class="menu__close" type="button" aria-label="Close menu"><i></i><i></i></button>' +
     '<nav class="menu__links" aria-label="Pages">' +
     pages.map(function (p, i) {
       var current = p[0] === here ? ' aria-current="page"' : "";
@@ -33,32 +45,38 @@
     }).join("") +
     "</nav>" +
     '<p class="menu__foot"><a href="mailto:reach@studiograta.in">reach@studiograta.in</a>' +
-    '<span>Indiranagar, Bengaluru</span></p>';
-
+    "<span>Indiranagar, Bengaluru</span></p>";
   document.body.appendChild(panel);
-  document.body.appendChild(button);
+  var close = panel.querySelector(".menu__close");
 
   function setOpen(open) {
-    button.setAttribute("aria-expanded", String(open));
-    button.setAttribute("aria-label", open ? "Close menu" : "Menu");
+    line.setAttribute("aria-expanded", String(open));
     document.documentElement.classList.toggle("menu-open", open);
     if (open) {
       panel.hidden = false;
       requestAnimationFrame(function () { panel.classList.add("is-open"); });
-      panel.querySelector("a").focus({ preventScroll: true });
+      panel.querySelector(".menu__links a").focus({ preventScroll: true });
     } else {
       panel.classList.remove("is-open");
       panel.hidden = true;
+      line.focus({ preventScroll: true });
     }
   }
 
-  button.addEventListener("click", function () {
-    setOpen(button.getAttribute("aria-expanded") !== "true");
-  });
+  line.addEventListener("click", function () { setOpen(true); });
+  close.addEventListener("click", function () { setOpen(false); });
   panel.addEventListener("click", function (e) {
-    if (e.target.closest("a")) setOpen(false);
+    if (e.target.closest(".menu__links a, .menu__foot a")) setOpen(false);
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !panel.hidden) { setOpen(false); button.focus(); }
+    if (e.key === "Escape" && !panel.hidden) setOpen(false);
   });
+
+  // A one-time hint once the title has landed: the line splits and closes
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    setTimeout(function () {
+      line.classList.add("is-hinting");
+      setTimeout(function () { line.classList.remove("is-hinting"); }, 1600);
+    }, 3000);
+  }
 })();
