@@ -643,7 +643,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
    (MIT licence, phosphoricons.com) in the Walnut band for the sectors, and a
    short checklist. Icons take their colour from the text colour. */
 .pb { box-sizing: border-box; }
-.pb__intro, .pb__steps, .pb__ready, .pb__band > * { max-width: 1440px; }
+.pb__intro, .pb__steps, .pb__band > * { max-width: 1440px; }
 /* Page title on the right, across from the logo */
 .pb__intro { display: flex; justify-content: flex-end; }
 .pb__intro h1 { margin-bottom: 0; text-align: right; }
@@ -681,7 +681,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
   -webkit-text-stroke: 1px var(--text);
 }
 .pb__steps h3 { margin: 12px 0 6px; font-size: 20px; font-weight: 600; }
-.pb__steps p { margin: 0; font-size: 15px; color: var(--text-dim); }
 /* Phase label: small Olive tag on the first step of each pair */
 .pb__phase {
   position: absolute;
@@ -714,11 +713,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .pb__band li {
   position: relative;
   isolation: isolate; /* keeps the colour stripe behind the words */
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 24px;
-  padding: clamp(20px, 3.2vh, 32px) 32px;
+  padding: clamp(16px, 2.6vh, 26px) 32px;
   color: var(--dark-walnut);
 }
 .pb__band li::before {
@@ -734,31 +729,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .pb__band li:nth-child(3) { --stripe: var(--silver-mist); }
 .pb__band li:nth-child(4) { --stripe: var(--milk); }
 .pb__band b { font-size: clamp(26px, 2.8vw, 40px); font-weight: 600; line-height: 1.1; }
-.pb__band span { font-size: 16px; color: color-mix(in srgb, var(--dark-walnut) 80%, transparent); }
 
-/* Good to have ready: three outlined tiles, then "Begin a project" as a
-   fourth, solid tile to finish the row */
-.pb__ready {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  margin-top: clamp(48px, 8vh, 80px);
-}
-.pb__ready h2 { grid-column: 1 / -1; }
-.pb__ready ul { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; list-style: none; }
-.pb__ready li {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
-  min-height: 150px;
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-right: 0;
-  font-size: 19px;
-  line-height: 1.3;
-}
-.pb__ready .button { align-items: flex-end; padding: 24px; font-size: 19px; }
+/* Begin a project, on its own at the end */
+.pb__begin { margin: clamp(48px, 8vh, 80px) 0 0; }
 
 /* Scroll animation (working-with-us.js adds .pb--animate, so without the
    script everything simply shows). As each step comes into view an Olive
@@ -783,25 +756,19 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .pb--animate .pb__num { transition-delay: calc(var(--d, 0s) + 0.35s); }
 .pb--animate .pb__phase,
 .pb--animate .pb__steps h3,
-.pb--animate .pb__steps p,
-.pb--animate .pb__band li > *,
-.pb--animate .pb__ready li {
+.pb--animate .pb__band li > * {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.6s ease, transform 0.6s ease;
   transition-delay: calc(var(--d, 0s) + 0.3s);
 }
 .pb--animate .pb__steps h3 { transition-delay: calc(var(--d, 0s) + 0.45s); }
-.pb--animate .pb__steps p { transition-delay: calc(var(--d, 0s) + 0.55s); }
 .pb--animate .pb__steps li.is-in::before,
 .pb--animate .pb__band li.is-in::before { transform: scaleX(1); }
 .pb--animate .is-in .pb__phase,
 .pb--animate .is-in h3,
-.pb--animate .is-in p,
-.pb--animate .pb__band li.is-in > *,
-.pb--animate .pb__ready li.is-in { opacity: 1; transform: none; }
+.pb--animate .pb__band li.is-in > * { opacity: 1; transform: none; }
 .pb--animate .pb__band li > * { transition-delay: calc(var(--d, 0s) + 0.35s); }
-.pb--animate .pb__ready li { transition-delay: var(--d, 0s); }
 /* Used for a moment while the script hides everything, so that hiding is instant */
 .pb--still *, .pb--still *::before { transition: none !important; }
 
@@ -813,13 +780,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .pb__steps li:nth-child(3) .pb__phase, .pb__steps li:nth-child(5) .pb__phase { left: 0; }
   .pb__steps h3 { font-size: 17px; }
   .pb__band { margin: 56px -24px 0; padding: 40px 24px; }
-  .pb__band li { grid-template-columns: 1fr; gap: 4px; padding: 22px 20px; }
+  .pb__band li { padding: 18px 20px; }
   .pb__band b { font-size: 26px; }
-  .pb__band span { font-size: 15px; }
-  .pb__ready { grid-template-columns: 1fr; }
-  .pb__ready ul { grid-template-columns: 1fr; }
-  .pb__ready li { flex-direction: row; align-items: center; justify-content: flex-start; gap: 16px; min-height: 0; padding: 18px 0; border: 0; border-top: 1px solid var(--line); font-size: 17px; }
-  .pb__ready .button { align-items: center; justify-content: center; margin-top: 24px; min-height: 64px; }
 }
 
 @media (max-width: 760px) {
