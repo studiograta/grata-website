@@ -8,11 +8,11 @@
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&family=Josefin+Sans:wght@400;600&family=Kalam:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <main class="page wk pn" id="top">
+  <main class="page wk" id="top">
     <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
 
     <header class="wk__intro">
@@ -27,39 +27,71 @@
       <a href="#retail" data-filter="retail">retail</a>
     </nav>
 
-    <!-- One print per project, its hero photo. data-project is
-         "Project : Place"; clicking a print opens every photo below with
-         the same name, in the order listed. -->
-    <div class="pn__board">
-      <button class="pn__item" data-type="fnb" data-project="Go Native : Koramangala"><img src="/images/work/work-1.webp" width="1448" height="1086" alt="Yellow dining room with a bamboo ceiling"><span>Go Native : Koramangala</span></button>
-      <button class="pn__item" data-type="hospitality" data-project="Lotus Palace : Chettinad"><img src="/images/work/work-8.webp" width="2000" height="1176" alt="Red lounge with carved wooden pillars"><span>Lotus Palace : Chettinad</span></button>
-      <button class="pn__item" data-type="wellness" data-project="Sohum Spa"><img src="/images/work/sohum-reception.webp" width="2000" height="1327" alt="Spa reception with an apothecary shelf and lantern lamps"><span>Sohum Spa</span></button>
-      <button class="pn__item" data-type="fnb" data-project="Vadhyar Palace"><img src="/images/work/work-5.webp" width="1491" height="1055" alt="Courtyard with a terracotta water bowl beside a heritage mansion"><span>Vadhyar Palace</span></button>
-      <button class="pn__item" data-type="fnb" data-project="Alfresco Dining : Siliguri"><img src="/images/work/work-6.webp?v=2" width="2000" height="1500" alt="Alfresco dining under a steel pergola"><span>Alfresco Dining : Siliguri</span></button>
+    <!-- Featured project -->
+    <section class="fp" data-type="fnb" data-project="Go Native">
+      <button class="fp__photo" type="button" data-open aria-label="Open Go Native">
+        <img src="/images/work/work-1.webp" width="1448" height="1086" alt="Yellow dining room with a bamboo ceiling">
+      </button>
+      <div class="fp__text">
+        <p class="fp__kicker">Featured project</p>
+        <h2>Go Native</h2>
+        <p class="fp__place">Koramangala, Bengaluru</p>
+        <p class="fp__desc">The renovation of an iconic Charles Correa building in Koramangala, which Go Native shares with Fabindia. True to the brand's "back to the roots" spirit, we kept as much of the existing furniture and lighting as we could, finished the walls in lime plaster and brought the garden indoors with built-in planters and creepers on a grid, all in a calm, earthy palette.</p>
+        <dl class="fp__facts">
+          <div><dt>Type</dt><dd>F&amp;B</dd></div>
+          <div><dt>Scope</dt><dd>Renovation</dd></div>
+          <div><dt>Seats</dt><dd>70</dd></div>
+        </dl>
+        <button class="arrow-link" type="button" data-open>view project <span class="ar" aria-hidden="true">&rarr;</span></button>
+      </div>
+    </section>
+
+    <!-- Other projects. The small line is the place; where we do not have
+         one yet it shows the type. -->
+    <div class="cards">
+      <button class="card" type="button" data-type="hospitality" data-project="Lotus Palace" data-open>
+        <span class="card__photo"><img src="/images/work/work-8.webp" width="2000" height="1176" loading="lazy" alt="Red lounge with carved wooden pillars"></span>
+        <span class="card__name">Lotus Palace</span>
+        <span class="card__meta"><span>Chettinad, Tamil Nadu</span><span class="ar" aria-hidden="true">&rarr;</span></span>
+      </button>
+      <button class="card" type="button" data-type="wellness" data-project="Sohum Spa" data-open>
+        <span class="card__photo"><img src="/images/work/sohum-reception.webp" width="2000" height="1327" loading="lazy" alt="Spa reception with an apothecary shelf and lantern lamps"></span>
+        <span class="card__name">Sohum Spa</span>
+        <span class="card__meta"><span>Wellness</span><span class="ar" aria-hidden="true">&rarr;</span></span>
+      </button>
+      <button class="card" type="button" data-type="fnb" data-project="Vadhyar Palace" data-open>
+        <span class="card__photo"><img src="/images/work/work-5.webp" width="1491" height="1055" loading="lazy" alt="Courtyard with a terracotta water bowl beside a heritage mansion"></span>
+        <span class="card__name">Vadhyar Palace</span>
+        <span class="card__meta"><span>F&amp;B</span><span class="ar" aria-hidden="true">&rarr;</span></span>
+      </button>
+      <button class="card" type="button" data-type="fnb" data-project="Alfresco Dining" data-open>
+        <span class="card__photo"><img src="/images/work/work-6.webp?v=2" width="2000" height="1500" loading="lazy" alt="Alfresco dining under a steel pergola"></span>
+        <span class="card__name">Alfresco Dining</span>
+        <span class="card__meta"><span>Siliguri, West Bengal</span><span class="ar" aria-hidden="true">&rarr;</span></span>
+      </button>
     </div>
-    <div class="pn__photos" hidden>
-      <img data-project="Go Native : Koramangala" loading="lazy" src="/images/work/work-1.webp" width="1448" height="1086" alt="Yellow dining room with a bamboo ceiling">
-      <img data-project="Go Native : Koramangala" loading="lazy" src="/images/work/work-3.webp" width="1448" height="1086" alt="Banquette seating below a jaali wall">
-      <img data-project="Lotus Palace : Chettinad" loading="lazy" src="/images/work/work-8.webp" width="2000" height="1176" alt="Red lounge with carved wooden pillars">
-      <img data-project="Lotus Palace : Chettinad" loading="lazy" src="/images/work/work-7.webp" width="2000" height="1992" alt="Pool court under a slatted wooden pergola">
+    <p class="wk__empty" hidden>Projects coming soon.</p>
+
+    <!-- Every photo, by project; opened in the project view -->
+    <div class="photos" hidden>
+      <img data-project="Go Native" loading="lazy" src="/images/work/work-1.webp" width="1448" height="1086" alt="Yellow dining room with a bamboo ceiling">
+      <img data-project="Go Native" loading="lazy" src="/images/work/work-3.webp" width="1448" height="1086" alt="Banquette seating below a jaali wall">
+      <img data-project="Lotus Palace" loading="lazy" src="/images/work/work-8.webp" width="2000" height="1176" alt="Red lounge with carved wooden pillars">
+      <img data-project="Lotus Palace" loading="lazy" src="/images/work/work-7.webp" width="2000" height="1992" alt="Pool court under a slatted wooden pergola">
       <img data-project="Sohum Spa" loading="lazy" src="/images/work/sohum-reception.webp" width="2000" height="1327" alt="Spa reception with an apothecary shelf and lantern lamps">
       <img data-project="Sohum Spa" loading="lazy" src="/images/work/sohum-lounge.webp" width="1317" height="2000" alt="Relaxation lounge under painted ceiling panels">
       <img data-project="Sohum Spa" loading="lazy" src="/images/work/sohum-corridor.webp" width="2000" height="1383" alt="Corridor of wooden lattice screens and curtains">
       <img data-project="Sohum Spa" loading="lazy" src="/images/work/sohum-treatment.webp" width="2000" height="1300" alt="Treatment room with wooden shutters and a painted frieze">
       <img data-project="Vadhyar Palace" loading="lazy" src="/images/work/work-5.webp" width="1491" height="1055" alt="Courtyard with a terracotta water bowl beside a heritage mansion">
-      <img data-project="Alfresco Dining : Siliguri" loading="lazy" src="/images/work/work-6.webp?v=2" width="2000" height="1500" alt="Alfresco dining under a steel pergola">
+      <img data-project="Alfresco Dining" loading="lazy" src="/images/work/work-6.webp?v=2" width="2000" height="1500" alt="Alfresco dining under a steel pergola">
     </div>
-    <p class="pn__hint">move the prints about · click one to open the project</p>
 
-    <dialog class="pn__dialog" aria-labelledby="pn-title">
-      <div class="pn__dialog-top">
-        <div>
-          <p class="pn__kicker"></p>
-          <h2 id="pn-title"></h2>
-        </div>
-        <button class="pn__close" type="button">close</button>
+    <dialog class="pv" aria-labelledby="pv-title">
+      <div class="pv__top">
+        <div><p class="pv__kicker"></p><h2 id="pv-title"></h2></div>
+        <button class="pv__close" type="button">close</button>
       </div>
-      <div class="pn__row"></div>
+      <div class="pv__row"></div>
     </dialog>
   </main>
   <script src="/titles.js"></script>
