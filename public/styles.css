@@ -1076,20 +1076,19 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .fp__facts dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
 .fp__facts dd { margin: 4px 0 0; }
 
-/* "view project" and each card's arrow */
-.arrow-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+/* "view project", underlined like other links on the site */
+.fp__link {
   padding: 0;
   border: 0;
   background: none;
   font: 400 15px var(--font);
   color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
   cursor: pointer;
 }
-.arrow-link .ar { transition: transform 250ms ease; }
-.arrow-link:hover .ar, .card:hover .ar { transform: translateX(5px); }
 
 /* ---- The other projects: cards in rows of three ---- */
 .cards {
@@ -1113,7 +1112,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
   text-transform: uppercase;
   color: var(--text-dim);
 }
-.card__meta .ar { font-size: 15px; letter-spacing: 0; color: var(--text); transition: transform 250ms ease; }
 .card:focus-visible, .fp__photo:focus-visible { outline: 2px solid var(--focus); outline-offset: 6px; }
 .wk [hidden] { display: none !important; }
 
@@ -1146,5 +1144,5 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .pv__row img { width: 100%; height: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fp__photo img, .card__photo img, .ar { transition: none; }
+  .fp__photo img, .card__photo img { transition: none; }
 }
