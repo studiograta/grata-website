@@ -1053,6 +1053,12 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .fp__photo { grid-column: 1 / span 8; display: block; padding: 0; border: 0; background: none; overflow: hidden; cursor: pointer; }
 .fp__photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 900ms ease; }
+/* Side by side (laptops and up): the photo is never taller than about 60%
+   of the screen, so the whole featured block shows on first load and the
+   cards start just below */
+@media (min-width: 1001px) {
+  .fp__photo img { aspect-ratio: auto; height: clamp(360px, 60vh, 660px); }
+}
 .fp__photo:hover img { transform: scale(1.02); }
 .fp__text { grid-column: 9 / span 4; padding-bottom: 4px; }
 .fp__kicker {
