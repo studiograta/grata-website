@@ -832,13 +832,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .connect__cols section:nth-child(2) { justify-self: end; min-width: 110px; }
 }
 
-/* Opening titles (titles.js): letters wait hidden, then each
-   one appears in Olive and settles to the text colour */
-.tl__word { white-space: nowrap; }
-.tl { visibility: hidden; }
-.tl--in { visibility: visible; animation: tl-land 1.4s ease-out; }
-@keyframes tl-land { from { color: var(--accent); } }
-
 /* ---------- Culture page (culture.html) ----------
    Also the careers page. A headline with a tall photo, the three values,
    a wide photo, a Walnut band on how people grow, who we look for, and a
@@ -1118,122 +1111,91 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 
 /* ---------- Menu (menu.js, on every page except home) ----------
-   The Olive line above each page title opens it. At rest it is the usual
-   line; pointing at it (or the one-time hint after the title lands) splits
-   it into three short lines with "menu" beside it. Phones always show
-   "menu". It opens a full-screen Dark Walnut panel of big lowercase links;
-   the page you are on is dimmed with an Olive line under it. */
-.page h1.has-menu-line::before,
-.soon h1.has-menu-line::before { display: none; }
-.menu-line {
-  position: relative;
-  display: block;
-  width: 44px;
-  height: 3px;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-.menu-line--right { margin-left: auto; }
-.menu-line::after { content: ""; position: absolute; inset: -16px -10px; } /* a bigger area to click */
-.menu-line i {
+   An Olive burger at the top right, level with the logo, where the page
+   titles used to be. Pointing at it (a tap on phones) drops down the list
+   of pages; the one you are on is darker with an Olive line under it, like
+   the Work filters. */
+.site-menu {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 44px;
-  height: 3px;
-  background: var(--accent);
-  transition: transform 300ms ease, width 300ms ease;
-}
-.menu-line--right i { left: auto; right: 0; }
-.menu-line__word {
-  position: absolute;
-  top: 50%;
-  left: calc(100% + 14px);
-  font: 400 15px/1 var(--font-display);
-  letter-spacing: 0.04em;
-  color: var(--text);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(-50%);
-  transition: opacity 300ms ease;
-}
-.menu-line--right .menu-line__word { left: auto; right: calc(100% + 14px); }
-.menu-line:is(:hover, :focus-visible, .is-hinting) i { width: 28px; }
-.menu-line:is(:hover, :focus-visible, .is-hinting) i:nth-of-type(1) { transform: translateY(-7px); }
-.menu-line:is(:hover, :focus-visible, .is-hinting) i:nth-of-type(3) { transform: translateY(7px); }
-.menu-line:is(:hover, :focus-visible, .is-hinting) .menu-line__word { opacity: 1; }
-.menu-line:focus-visible { outline: none; }
-.menu-line:focus-visible::after { outline: 2px solid var(--focus); }
-@media (hover: none) { .menu-line__word { opacity: 1; } }
-
-.menu-open, .menu-open body { overflow: hidden; }
-.menu {
-  position: fixed;
-  z-index: 100;
-  inset: 0;
+  z-index: 20;
+  top: 36px;
+  right: 48px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(100px, 18vh, 160px) 48px 40px;
-  background: var(--texture), var(--dark-walnut);
-  color: var(--milk);
-  opacity: 0;
-  transition: opacity 300ms ease;
+  align-items: flex-end;
 }
-.menu.is-open { opacity: 1; }
-.menu[hidden] { display: none; } /* without this the closed panel still covers the page */
-
-/* Close: the Olive line again, crossed */
-.menu__close {
-  position: absolute;
-  top: 36px;
-  right: 40px;
-  width: 52px;
-  height: 52px;
+.site-menu__burger {
+  position: relative;
+  display: grid;
+  place-content: center;
+  gap: 5px;
+  width: 46px;
+  height: 46px;
+  margin-right: -9px; /* the lines line up with the right edge of the page */
   padding: 0;
   border: 0;
   background: none;
   cursor: pointer;
 }
-.menu__close i { position: absolute; top: 50%; left: 4px; width: 44px; height: 3px; margin-top: -1.5px; background: var(--olive-chartreuse); transition: transform 300ms ease; }
-.menu__close i:nth-child(1) { transform: rotate(45deg); }
-.menu__close i:nth-child(2) { transform: rotate(-45deg); }
-.menu__close:hover i:nth-child(1) { transform: rotate(45deg) scaleX(0.8); }
-.menu__close:hover i:nth-child(2) { transform: rotate(-45deg) scaleX(0.8); }
-.menu__close:focus-visible { outline: 2px solid var(--milk); outline-offset: 2px; }
-
-.menu__links { display: flex; flex-direction: column; align-items: flex-start; gap: clamp(4px, 1vh, 12px); }
-.menu__links a {
-  font-family: var(--font-display);
-  font-size: clamp(34px, 6.5vh, 60px);
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--milk);
-  text-decoration: none;
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 400ms ease, transform 400ms ease, color 200ms ease;
-  transition-delay: calc(var(--i) * 45ms + 80ms);
+.site-menu__burger i {
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin-left: auto;
+  background: var(--olive-chartreuse);
+  transition: width 300ms ease;
 }
-.menu.is-open .menu__links a { opacity: 1; transform: none; }
-.menu__links a:hover { color: var(--olive-chartreuse); }
-.menu__links a[aria-current] {
-  color: color-mix(in srgb, var(--milk) 55%, var(--dark-walnut));
+.site-menu__burger i:nth-child(2) { width: 20px; }
+.site-menu.is-open .site-menu__burger i:nth-child(2) { width: 28px; }
+.site-menu__burger:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* The list drops down under the burger, on the page's own background */
+.site-menu__list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  margin-top: 6px;
+  padding: 14px 20px 16px;
+  background: var(--texture), var(--background);
+  box-shadow: 0 10px 30px rgba(45, 32, 17, 0.14);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 220ms ease, transform 220ms ease, visibility 0s 220ms;
+}
+.site-menu.is-open .site-menu__list {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 220ms ease, transform 220ms ease, visibility 0s;
+}
+.site-menu__list a {
+  padding: 5px 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.site-menu__list a:hover { color: var(--text); }
+.site-menu__list a[aria-current] {
+  color: var(--text);
   text-decoration: underline;
   text-decoration-color: var(--olive-chartreuse);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 10px;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
-.menu__links a:focus-visible { outline: 2px solid var(--milk); outline-offset: 4px; }
-.menu__foot { display: flex; flex-wrap: wrap; gap: 8px 32px; margin: 0; font-size: 14px; color: color-mix(in srgb, var(--milk) 70%, var(--dark-walnut)); }
-.menu__foot a { color: var(--milk); text-decoration-color: var(--olive-chartreuse); text-underline-offset: 5px; }
+.site-menu__list a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+/* The page titles are kept for screen readers and search engines, and keep
+   their space so the pages do not shift, but are no longer shown */
+.page h1[data-titles] { color: transparent; user-select: none; }
+.page h1[data-titles]::before { visibility: hidden; }
 
 @media (max-width: 760px) {
-  .menu { padding: calc(110px + env(safe-area-inset-top, 0px)) 24px calc(32px + env(safe-area-inset-bottom, 0px)); }
-  .menu__close { top: calc(20px + env(safe-area-inset-top, 0px)); right: 14px; }
+  .site-menu { top: calc(20px + env(safe-area-inset-top, 0px)); right: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .menu, .menu__links a, .menu-line i, .menu-line__word, .menu__close i { transition: none; }
+  .site-menu__list, .site-menu__burger i { transition: none; }
 }
