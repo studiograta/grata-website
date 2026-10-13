@@ -437,30 +437,41 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .contact__form .contact__trap { display: none; }
 
 /* ---------- Connect page (contact.html) ----------
-   A calm Taupe page: heading, then three short columns (Reach, Visit,
-   Follow). "Begin" opens the enquiry form. */
+   A calm Taupe page with one row, centred on the screen: Reach, Follow and
+   Based in on the left, "Begin a project" on the right, which opens the
+   enquiry form in its place. Phones: one column, Begin first. */
 .connect {
   --background: color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk));
   --text-dim: color-mix(in srgb, var(--dark-walnut) 82%, var(--mothwing-taupe));
   --line: color-mix(in srgb, var(--dark-walnut) 35%, transparent);
   position: relative;
-  padding-top: clamp(100px, 16vh, 140px);
-  padding-bottom: 48px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: clamp(124px, 20vh, 160px);
+  padding-bottom: clamp(48px, 10vh, 96px);
 }
 .connect-body { background: var(--texture), color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk)); }
 
 .page.connect a { text-decoration: none; }
 .connect a:hover { opacity: 0.65; }
 
-.connect__inner { max-width: 760px; padding-top: clamp(40px, 10vh, 96px); } /* room under the logo, now there is no headline */
-/* Spacing shrinks on shorter screens so "Begin" stays in view */
+.connect__inner { max-width: 1440px; }
+.connect__body {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 40px clamp(40px, 6vw, 96px);
+  align-items: start;
+}
 .connect h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } /* kept for screen readers only */
 
 
 .connect__cols {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 24px 32px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -472,8 +483,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   text-transform: uppercase;
 }
 .connect__cols p,
-.connect__cols address { margin: 0 0 10px; font-style: normal; }
-.connect__cols b { display: block; font-weight: 600; }
+.connect__cols address { margin: 0 0 8px; font-style: normal; }
 .connect__cols a[href^="tel"] { white-space: nowrap; }
 .connect__cols ul { margin: 0; padding: 0; list-style: none; }
 /* Follow: the logos in a row */
@@ -482,15 +492,18 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect__social svg { display: block; width: 28px; height: 28px; fill: currentColor; }
 
 /* "Begin": a button that opens the enquiry form below it */
-.connect__begin { margin-top: clamp(24px, 5vh, 56px); }
+.connect__begin { justify-self: end; padding-top: 22px; } /* level with the first line of each column */
+.connect__begin[open] { justify-self: stretch; padding-top: 0; }
 .connect__begin summary { list-style: none; }
 .connect__begin summary::-webkit-details-marker { display: none; }
 .connect__begin[open] summary { display: none; }
-.connect__note { margin: 12px 0 0; font-size: 15px; color: var(--text-dim); }
-.connect__begin[open] + .connect__note { display: none; }
 .connect__begin .contact__form { max-width: 520px; }
 .connect__hint { margin: 0; font-size: 18px; color: var(--text); }
 .connect .contact__form ::placeholder { color: color-mix(in srgb, var(--dark-walnut) 50%, var(--mothwing-taupe)); }
+@media (max-width: 1000px) {
+  .connect__body { grid-template-columns: 1fr; }
+  .connect__begin { justify-self: start; padding-top: 0; }
+}
 
 /* ---------- Partners page (partners.html) ----------
    Top: headline, three steps and a phone-framed video of the directory.
@@ -821,16 +834,11 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 760px) {
   .page { padding: 110px 24px 64px; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
-  .connect__inner { padding-top: 0; }
-  .connect__body { display: flex; flex-direction: column; }
-  /* Phones: "Begin a project" comes straight after the opening line,
-     before Reach, Visit and Follow */
-  .connect__begin { order: 1; margin-top: 0; }
-  .connect__note { order: 2; }
-  .connect__cols { order: 3; margin-top: 48px; }
-  /* Phones: Reach on the left, Follow pushed to the right edge, Based in below */
-  .connect__cols { grid-template-columns: 1fr auto; gap: 40px 24px; align-items: start; }
-  .connect__cols section:nth-child(2) { justify-self: end; min-width: 110px; }
+  /* Phones: one column from the top: Begin a project, Reach, Follow, Based in */
+  .connect { justify-content: flex-start; min-height: 0; }
+  .connect__body { display: flex; flex-direction: column; gap: 48px; }
+  .connect__begin { order: 1; justify-self: auto; padding-top: 0; }
+  .connect__cols { order: 2; grid-template-columns: 1fr; gap: 36px; }
 }
 
 /* ---------- Culture page (culture.html) ----------
