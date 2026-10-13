@@ -856,7 +856,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
    a wide photo, a Walnut band on how people grow, who we look for, and a
    Taupe box with the careers email. Labels in lowercase, as on Approach. */
 .page.cu { padding-top: 40px; }
-.cu__intro, .cu__hero, .cu__values, .cu__wide, .cu__band > *, .cu__look, .cu__join { max-width: 1440px; }
+.cu__intro, .cu__hero, .cu__values, .cu__wide, .cu__look, .cu__join { max-width: 1440px; }
 .cu__intro { display: flex; justify-content: flex-end; }
 .cu__intro h1 { margin-bottom: 0; text-align: right; font-size: clamp(30px, 3.2vw, 44px); }
 .cu__intro h1::before { margin-left: auto; margin-bottom: 14px; }
@@ -883,19 +883,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .cu__values p { margin: 14px 0 0; font-size: 16px; line-height: 1.5; color: var(--text-dim); }
 
 .cu__wide { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; margin-top: clamp(72px, 12vh, 128px); }
-
-/* How you grow: a Walnut band, full width of the screen */
-.cu__band {
-  margin: clamp(72px, 12vh, 128px) -48px 0;
-  padding: clamp(56px, 9vh, 96px) 48px;
-  background: var(--dark-walnut);
-  color: var(--milk);
-}
-.cu__band ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 clamp(40px, 6vw, 96px); margin: 0; padding: 0; list-style: none; }
-.cu__band li { display: grid; grid-template-columns: 56px 1fr; align-content: start; padding: 28px 0 32px; border-top: 1px solid color-mix(in srgb, var(--milk) 25%, transparent); }
-.cu__band span { grid-row: span 2; padding-top: 6px; font-size: 15px; font-weight: 600; color: var(--accent); }
-.cu__band b { font-size: clamp(19px, 1.7vw, 24px); font-weight: 600; line-height: 1.2; }
-.cu__band p { margin: 6px 0 0; font-size: 16px; line-height: 1.5; color: color-mix(in srgb, var(--milk) 75%, var(--dark-walnut)); text-wrap: balance; }
 
 /* Who we look for: a word cloud of qualities, centred, in sizes from
    xl to sm. Bigger words are darker; none use Olive, which is too faint
@@ -985,15 +972,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
    everything simply shows) */
 .cu--animate .cu__values li::before { transform: scaleX(0); transition: transform 0.7s cubic-bezier(0.7, 0, 0.2, 1) var(--d, 0s); }
 .cu--animate .cu__values li.is-in::before { transform: scaleX(1); }
-.cu--animate .cu__values li > *,
-.cu--animate .cu__band li {
+.cu--animate .cu__values li > * {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.6s ease, transform 0.6s ease;
   transition-delay: calc(var(--d, 0s) + 0.2s);
 }
-.cu--animate .cu__values li.is-in > *,
-.cu--animate .cu__band li.is-in { opacity: 1; transform: none; }
+.cu--animate .cu__values li.is-in > * { opacity: 1; transform: none; }
 
 @media (max-width: 760px) {
   .page.cu { padding: 40px 24px 64px; }
@@ -1002,9 +987,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .cu__values ul { grid-template-columns: 1fr; border-top: 0; }
   .cu__values li, .cu__values li + li { padding: 28px 0; border-left: 0; border-top: 1px solid var(--line); }
   .cu__wide { aspect-ratio: 4 / 3; }
-  .cu__band { margin: 72px -24px 0; padding: 48px 24px; }
-  .cu__band ol { grid-template-columns: 1fr; }
-  .cu__band li { grid-template-columns: 40px 1fr; }
   .cu__cloud { gap: 4px 18px; }
   .cu__cloud--3d { height: 440px; }
   .cu__join { margin: 72px -24px 0; padding: 40px 24px; }

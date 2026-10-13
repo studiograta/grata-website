@@ -1,4 +1,4 @@
-// Culture page: values and growth steps rise into place as they scroll into
+// Culture page: values rise into place as they scroll into
 // view (the look is in styles.css under .cu--animate), and the "who we look
 // for" words turn slowly on a 3D sphere. Both are skipped for people who
 // turn off motion, who see the finished page and a flat word cloud.
@@ -17,7 +17,7 @@ if (page && !stillMotion && "IntersectionObserver" in window) {
         watcher.unobserve(entry.target);
       });
   }, { rootMargin: "0px 0px -10% 0px" });
-  page.querySelectorAll(".cu__values li, .cu__band li").forEach(function (item) {
+  page.querySelectorAll(".cu__values li").forEach(function (item) {
     watcher.observe(item);
   });
 
