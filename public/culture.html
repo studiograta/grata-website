@@ -70,9 +70,49 @@
     <section class="cu__join" id="join">
       <h2>Join the studio</h2>
       <p class="cu__joinhead">We do not always have a role open, but we are always glad to meet good people.</p>
-      <p>Whatever stage you are at, send us your portfolio and a few lines about yourself.</p>
-      <a class="button" href="mailto:shifaz@studiograta.in?subject=Careers%20at%20Studio%20Grata">Send your portfolio &rarr;</a>
-      <p class="cu__mail"><a href="mailto:shifaz@studiograta.in?subject=Careers%20at%20Studio%20Grata">shifaz@studiograta.in</a></p>
+      <p>Whatever stage you are at, send us your resume and portfolio.</p>
+
+      <!-- "Send your portfolio" opens the application form. culture.js sends it
+           to the "Grata Partner Intake" Google script (the same one as the
+           Partners page), which saves the files to a private Drive folder and
+           emails them to shifaz@studiograta.in.
+           data-turnstile: Cloudflare Turnstile site key ("verify you are human"). -->
+      <details class="cu__apply">
+        <summary class="button">Send your portfolio &rarr;</summary>
+        <form class="contact__form cu__form" novalidate
+              data-endpoint="https://script.google.com/macros/s/AKfycbxNwaiaqrAxKWYUqGJX78m2LL4WSgIPLvJxsfB40aNw2yMg7oCZY195XTWfIx-U9KFYLA/exec"
+              data-turnstile="0x4AAAAAAFENbxcVGOnGmn8P">
+          <!-- Spam trap: hidden from people, bots fill it and get ignored -->
+          <input type="text" name="company_site" class="contact__trap" tabindex="-1" autocomplete="off">
+          <label>Name
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <div class="cu__pair">
+            <label>Email
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <label>Phone
+              <input type="tel" name="phone" autocomplete="tel" required>
+            </label>
+          </div>
+          <label class="cu__file">Resume <span>(PDF or Word, up to 5 MB)</span>
+            <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+          </label>
+          <label class="cu__file">Portfolio <span>(PDF, up to 20 MB)</span>
+            <input type="file" name="portfolio" accept=".pdf">
+          </label>
+          <label>Or a link to your portfolio <span>(Behance, Google Drive, your website)</span>
+            <input type="text" name="link" inputmode="url" autocomplete="url">
+          </label>
+          <label>A few lines about you <span>(optional)</span>
+            <textarea name="note" rows="3"></textarea>
+          </label>
+          <div class="partners__turnstile"></div>
+          <button class="button" type="submit">Send application</button>
+          <p class="contact__status" role="status"></p>
+        </form>
+      </details>
+      <p class="cu__mail">Or write to <a href="mailto:shifaz@studiograta.in?subject=Careers%20at%20Studio%20Grata">shifaz@studiograta.in</a></p>
     </section>
   </main>
   <script src="/titles.js"></script>

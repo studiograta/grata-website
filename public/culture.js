@@ -132,3 +132,120 @@ function spinCloud(cloud) {
   cloud.addEventListener("pointerup", release);
   cloud.addEventListener("pointercancel", release);
 }
+
+// Application form: "Send your portfolio" opens it. The files are read in
+// the browser and sent with the details to the "Grata Partner Intake" Google
+// script, which saves them to Drive and emails them to the studio.
+var applyForm = document.querySelector(".cu__form");
+if (applyForm) setUpApplication(applyForm);
+
+function setUpApplication(form) {
+  var statusLine = form.querySelector(".contact__status");
+  var button = form.querySelector("button[type=submit]");
+  var siteKey = form.dataset.turnstile;
+  var token = "";
+  var MB = 1024 * 1024;
+  var TYPES = { pdf: "application/pdf", doc: "application/msword",
+    docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" };
+
+  var details = form.closest("details");
+
+  // "Join the studio" at the top (and the Careers link on Connect, which
+  // arrives with #join) scroll down and open the form in one go
+  document.querySelectorAll('a[href="#join"]').forEach(function (link) {
+    link.addEventListener("click", function () { details.open = true; });
+  });
+  if (location.hash === "#join") details.open = true;
+
+  // Load the "verify you are human" check the first time the form opens
+  details.addEventListener("toggle", function () {
+    if (!details.open || !siteKey || window.onTurnstileLoad) return;
+    window.onTurnstileLoad = function () {
+      turnstile.render(form.querySelector(".partners__turnstile"), {
+        sitekey: siteKey,
+        theme: "light",
+        callback: function (t) { token = t; },
+        "expired-callback": function () { token = ""; }
+      });
+    };
+    var script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad";
+    script.async = true;
+    document.head.appendChild(script);
+  });
+
+  // Reads a chosen file as { name, type, data } (data without the prefix).
+  // The type comes from the file name, because some computers leave it blank.
+  function readFile(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var ext = file.name.split(".").pop().toLowerCase();
+        resolve({ name: file.name, type: TYPES[ext] || file.type, data: reader.result.split(",")[1] });
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function problem(data, resume, portfolio) {
+    if (!data.get("name").trim()) return "Please enter your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.get("email").trim())) return "Please check your email address.";
+    if (data.get("phone").replace(/\D/g, "").length < 8) return "Please check your phone number.";
+    if (!resume) return "Please attach your resume.";
+    if (!/\.(pdf|docx?)$/i.test(resume.name)) return "Please send your resume as a PDF or Word file.";
+    if (resume.size > 5 * MB) return "Your resume is over 5 MB. Please send a smaller file.";
+    if (portfolio && !/\.pdf$/i.test(portfolio.name)) return "Please send your portfolio as a PDF, or add a link instead.";
+    if (portfolio && portfolio.size > 20 * MB) return "Your portfolio is over 20 MB. Please add a link to it instead.";
+    if (!portfolio && !data.get("link").trim()) return "Please attach your portfolio or add a link to it.";
+    if (siteKey && !token) return "Please complete the check above the button.";
+    return "";
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var data = new FormData(form);
+    var resume = form.resume.files[0];
+    var portfolio = form.portfolio.files[0];
+    var issue = problem(data, resume, portfolio);
+    if (issue) { statusLine.textContent = issue; return; }
+
+    button.disabled = true;
+    statusLine.textContent = portfolio && portfolio.size > 5 * MB
+      ? "Sending... a large portfolio can take a minute."
+      : "Sending...";
+
+    Promise.all([readFile(resume), portfolio ? readFile(portfolio) : null])
+      .then(function (files) {
+        var application = {
+          kind: "career",
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          link: data.get("link"),
+          note: data.get("note"),
+          resume: files[0],
+          portfolio: files[1],
+          company_site: data.get("company_site"),
+          turnstileToken: token
+        };
+        // Sent as plain text so the browser does not need to ask Google for
+        // permission first, which Google scripts cannot answer
+        return fetch(form.dataset.endpoint, { method: "POST", body: JSON.stringify(application), headers: { "Content-Type": "text/plain;charset=utf-8" } });
+      })
+      .then(function (response) { return response.json(); })
+      .then(function (result) {
+        if (!result.ok) { statusLine.textContent = result.message; return; }
+        form.hidden = true;
+        details.insertAdjacentHTML("beforeend",
+          '<p class="cu__sent">Thank you. We have your application and will be in touch if there is a good fit.</p>');
+      })
+      .catch(function () {
+        statusLine.textContent = "Sorry, that did not go through. Please email shifaz@studiograta.in instead.";
+      })
+      .finally(function () {
+        button.disabled = false;
+        if (siteKey && window.turnstile) { turnstile.reset(); token = ""; }
+      });
+  });
+}
