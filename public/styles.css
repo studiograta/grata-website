@@ -452,12 +452,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .page.connect a { text-decoration: none; }
 .connect a:hover { opacity: 0.65; }
 
-.connect__inner { max-width: 760px; }
+.connect__inner { max-width: 760px; padding-top: clamp(40px, 10vh, 96px); } /* room under the logo, now there is no headline */
 /* Spacing shrinks on shorter screens so "Begin" stays in view */
-.connect h1 { font-size: clamp(36px, 7vh, 56px); margin-bottom: 12px; }
-.connect h1::before { margin-bottom: clamp(12px, 2.5vh, 24px); }
+.connect h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } /* kept for screen readers only */
 
-.connect__lede { margin: 0 0 clamp(24px, 5vh, 56px); font-size: 20px; color: var(--text-dim); }
 
 .connect__cols {
   display: grid;
@@ -478,6 +476,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect__cols b { display: block; font-weight: 600; }
 .connect__cols a[href^="tel"] { white-space: nowrap; }
 .connect__cols ul { margin: 0; padding: 0; list-style: none; }
+/* Follow: the logos in a row */
+.connect__social { display: flex; gap: 16px; margin-top: 2px !important; }
+.connect__social a { display: block; padding: 2px; }
+.connect__social svg { display: block; width: 28px; height: 28px; fill: currentColor; }
 
 /* "Begin": a button that opens the enquiry form below it */
 .connect__begin { margin-top: clamp(24px, 5vh, 56px); }
@@ -819,14 +821,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 760px) {
   .page { padding: 110px 24px 64px; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
+  .connect__inner { padding-top: 0; }
   .connect__body { display: flex; flex-direction: column; }
   /* Phones: "Begin a project" comes straight after the opening line,
      before Reach, Visit and Follow */
-  .connect__lede { margin-bottom: 24px; }
   .connect__begin { order: 1; margin-top: 0; }
   .connect__note { order: 2; }
   .connect__cols { order: 3; margin-top: 48px; }
-  .connect__lede { margin-bottom: 40px; }
   /* Phones: Reach on the left, Follow pushed to the right edge, Based in below */
   .connect__cols { grid-template-columns: 1fr auto; gap: 40px 24px; align-items: start; }
   .connect__cols section:nth-child(2) { justify-self: end; min-width: 110px; }
@@ -1113,8 +1114,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 /* ---------- Menu (menu.js, on every page except home) ----------
    An Olive burger at the top right, level with the logo, where the page
    titles used to be. Pointing at it (a tap on phones) drops down the list
-   of pages; the one you are on is darker with an Olive line under it, like
-   the Work filters. */
+   of pages; the one you are on is in Walnut and the others are greyed. */
 .site-menu {
   position: absolute;
   z-index: 20;
@@ -1137,16 +1137,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   background: none;
   cursor: pointer;
 }
-.site-menu__burger i {
-  display: block;
-  width: 28px;
-  height: 3px;
-  margin-left: auto;
-  background: var(--olive-chartreuse);
-  transition: width 300ms ease;
-}
-.site-menu__burger i:nth-child(2) { width: 20px; }
-.site-menu.is-open .site-menu__burger i:nth-child(2) { width: 28px; }
+.site-menu__burger i { display: block; width: 28px; height: 3px; background: var(--olive-chartreuse); }
 .site-menu__burger:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
 /* The list drops down under the burger, on the page's own background */
@@ -1159,33 +1150,19 @@ html:has(.landing) { overscroll-behavior-y: none; }
   padding: 14px 20px 16px;
   background: var(--texture), var(--background);
   box-shadow: 0 10px 30px rgba(45, 32, 17, 0.14);
-  opacity: 0;
   visibility: hidden;
-  transform: translateY(-6px);
-  transition: opacity 220ms ease, transform 220ms ease, visibility 0s 220ms;
 }
-.site-menu.is-open .site-menu__list {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  transition: opacity 220ms ease, transform 220ms ease, visibility 0s;
-}
+.site-menu.is-open .site-menu__list { visibility: visible; }
 .site-menu__list a {
   padding: 5px 0;
   font-family: var(--font-display);
   font-size: 18px;
   line-height: 1.2;
-  color: var(--text-dim);
+  color: color-mix(in srgb, var(--text) 42%, var(--background)); /* the other pages, greyed */
   text-decoration: none;
 }
-.site-menu__list a:hover { color: var(--text); }
-.site-menu__list a[aria-current] {
-  color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--olive-chartreuse);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
-}
+.site-menu__list a:hover,
+.site-menu__list a[aria-current] { color: var(--text); }
 .site-menu__list a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 
 /* The page titles are kept for screen readers and search engines, and keep
@@ -1195,7 +1172,4 @@ html:has(.landing) { overscroll-behavior-y: none; }
 
 @media (max-width: 760px) {
   .site-menu { top: calc(20px + env(safe-area-inset-top, 0px)); right: 24px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .site-menu__list, .site-menu__burger i { transition: none; }
 }
