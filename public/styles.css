@@ -350,7 +350,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .soon p a { color: var(--text); }
 @media (max-width: 760px) { .soon { padding: 24px; } }
 
-/* ---------- Inner pages (contact.html, working-with-us.html) ---------- */
+/* ---------- Inner pages (contact.html, working-with-us.html) ----------
+   Page content runs up to 1440px wide, so laptops from 1280px to 1536px
+   wide (14 and 15.6 inch screens) fill out to the title on the right. */
 .page {
   min-height: 100vh;
   min-height: 100dvh;
@@ -504,7 +506,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
    Below: the registration form. Labels in lowercase, as on Approach. */
 .pp { box-sizing: border-box; }
 .page.pp { padding-top: 40px; }
-.pp__intro { display: flex; justify-content: flex-end; max-width: 1144px; }
+.pp__intro { display: flex; justify-content: flex-end; max-width: 1440px; }
 .pp__intro h1 { margin-bottom: 0; font-size: clamp(30px, 3.2vw, 44px); text-align: right; }
 .pp__intro h1::before { margin-left: auto; margin-bottom: 14px; }
 .pp svg { width: 28px; height: 28px; color: var(--text); flex: none; }
@@ -514,7 +516,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   grid-template-columns: 1fr auto;
   gap: clamp(40px, 7vw, 120px);
   align-items: center;
-  max-width: 1144px;
+  max-width: 1440px;
   margin-top: clamp(24px, 4vh, 48px);
 }
 .pp__headline { margin: 0; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.1; font-weight: 600; }
@@ -646,7 +648,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
    (MIT licence, phosphoricons.com) in the Walnut band for the sectors, and a
    short checklist. Icons take their colour from the text colour. */
 .pb { box-sizing: border-box; }
-.pb__intro, .pb__steps, .pb__ready, .pb__band > * { max-width: 1144px; }
+.pb__intro, .pb__steps, .pb__ready, .pb__band > * { max-width: 1440px; }
 /* Page title on the right, across from the logo */
 .pb__intro { display: flex; justify-content: flex-end; }
 .pb__intro h1 { margin-bottom: 0; text-align: right; }
@@ -854,7 +856,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
    a wide photo, a Walnut band on how people grow, who we look for, and a
    Taupe box with the careers email. Labels in lowercase, as on Approach. */
 .page.cu { padding-top: 40px; }
-.cu__intro, .cu__hero, .cu__values, .cu__wide, .cu__band > *, .cu__look, .cu__join { max-width: 1144px; }
+.cu__intro, .cu__hero, .cu__values, .cu__wide, .cu__band > *, .cu__look, .cu__join { max-width: 1440px; }
 .cu__intro { display: flex; justify-content: flex-end; }
 .cu__intro h1 { margin-bottom: 0; text-align: right; font-size: clamp(30px, 3.2vw, 44px); }
 .cu__intro h1::before { margin-left: auto; margin-bottom: 14px; }
@@ -993,7 +995,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
    page at different sizes, each with a small "Project : Place" caption.
    work.js gives each shown photo its size (wk__lg, wk__pair-a ...). */
 .page.wk { padding-top: 40px; }
-.wk__intro { display: flex; justify-content: flex-end; max-width: 1144px; }
+.wk__intro { display: flex; justify-content: flex-end; max-width: 1440px; }
 .wk__intro h1 { margin-bottom: 0; text-align: right; font-size: clamp(30px, 3.2vw, 44px); }
 .wk__intro h1::before { margin-left: auto; margin-bottom: 14px; }
 
@@ -1001,7 +1003,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   display: flex;
   flex-wrap: wrap;
   gap: 4px 28px;
-  max-width: 1144px;
+  max-width: 1440px;
   margin: clamp(40px, 7vh, 72px) 0 clamp(36px, 6vh, 56px);
   font-family: var(--font-display);
   font-size: 17px;
@@ -1026,7 +1028,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   grid-template-columns: repeat(12, 1fr);
   gap: clamp(64px, 11vh, 112px) 24px;
   align-items: start;
-  max-width: 1144px;
+  max-width: 1440px;
 }
 .wk__list figure { margin: 0; animation: wk-in 600ms ease both; }
 .wk__list img { display: block; width: 100%; height: auto; background: color-mix(in srgb, var(--mothwing-taupe) 25%, transparent); }
