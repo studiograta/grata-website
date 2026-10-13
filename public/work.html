@@ -8,19 +8,17 @@
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&family=Josefin+Sans:wght@400;600&family=Kalam:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <main class="page wk" id="top">
+  <main class="page wk pn" id="top">
     <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
 
     <header class="wk__intro">
       <h1 data-titles>work</h1>
     </header>
 
-    <!-- Filter: the same four names as the Work links on the home page.
-         /work#fnb (and so on) opens the page with that filter on. -->
     <nav class="wk__filter" aria-label="Filter projects">
       <a href="#" data-filter="all" aria-current="true">all</a>
       <a href="#hospitality" data-filter="hospitality">hospitality</a>
@@ -29,25 +27,40 @@
       <a href="#retail" data-filter="retail">retail</a>
     </nav>
 
-    <!-- Photos, one after another down the page. To add one, copy a line:
-         data-type is hospitality, fnb, wellness or retail, and the caption
-         is "Project : Place". Sizes and pairs are set by work.js, in order,
-         so the rhythm stays even whichever filter is on. -->
-    <div class="wk__list">
-      <figure data-type="fnb"><img src="/images/work/work-1.webp" width="1448" height="1086" alt="Yellow dining room with a bamboo ceiling"><figcaption>Go Native : Koramangala</figcaption></figure>
-      <figure data-type="hospitality"><img src="/images/work/work-7.webp" width="2000" height="1992" loading="lazy" alt="Pool court under a slatted wooden pergola"><figcaption>Lotus Palace : Chettinad</figcaption></figure>
-      <figure data-type="hospitality"><img src="/images/work/work-8.webp" width="2000" height="1176" loading="lazy" alt="Red lounge with carved wooden pillars"><figcaption>Lotus Palace : Chettinad</figcaption></figure>
-      <figure data-type="fnb"><img src="/images/work/work-3.webp" width="1448" height="1086" loading="lazy" alt="Banquette seating below a jaali wall"><figcaption>Go Native : Koramangala</figcaption></figure>
-      <figure data-type="fnb"><img src="/images/work/work-5.webp" width="1491" height="1055" loading="lazy" alt="Courtyard with a terracotta water bowl beside a heritage mansion"><figcaption>Vadhyar Palace</figcaption></figure>
-      <figure data-type="fnb"><img src="/images/work/work-6.webp?v=2" width="2000" height="1500" loading="lazy" alt="Alfresco dining under a steel pergola"><figcaption>Alfresco Dining : Siliguri</figcaption></figure>
-      <figure data-type="wellness"><img src="/images/work/sohum-reception.webp" width="2000" height="1327" loading="lazy" alt="Spa reception with an apothecary shelf and lantern lamps"><figcaption>Sohum Spa</figcaption></figure>
-      <figure data-type="wellness"><img src="/images/work/sohum-lounge.webp" width="1317" height="2000" loading="lazy" alt="Relaxation lounge under painted ceiling panels"><figcaption>Sohum Spa</figcaption></figure>
-      <figure data-type="wellness"><img src="/images/work/sohum-corridor.webp" width="2000" height="1383" loading="lazy" alt="Corridor of wooden lattice screens and curtains"><figcaption>Sohum Spa</figcaption></figure>
-      <figure data-type="wellness"><img src="/images/work/sohum-treatment.webp" width="2000" height="1300" loading="lazy" alt="Treatment room with wooden shutters and a painted frieze"><figcaption>Sohum Spa</figcaption></figure>
+    <!-- One print per project, its hero photo. data-project is
+         "Project : Place"; clicking a print opens every photo below with
+         the same name, in the order listed. -->
+    <div class="pn__board">
+      <button class="pn__item" data-type="fnb" data-project="Go Native : Koramangala"><img src="/images/work/work-1.webp" width="1448" height="1086" alt="Yellow dining room with a bamboo ceiling"><span>Go Native : Koramangala</span></button>
+      <button class="pn__item" data-type="hospitality" data-project="Lotus Palace : Chettinad"><img src="/images/work/work-8.webp" width="2000" height="1176" alt="Red lounge with carved wooden pillars"><span>Lotus Palace : Chettinad</span></button>
+      <button class="pn__item" data-type="wellness" data-project="Sohum Spa"><img src="/images/work/sohum-reception.webp" width="2000" height="1327" alt="Spa reception with an apothecary shelf and lantern lamps"><span>Sohum Spa</span></button>
+      <button class="pn__item" data-type="fnb" data-project="Vadhyar Palace"><img src="/images/work/work-5.webp" width="1491" height="1055" alt="Courtyard with a terracotta water bowl beside a heritage mansion"><span>Vadhyar Palace</span></button>
+      <button class="pn__item" data-type="fnb" data-project="Alfresco Dining : Siliguri"><img src="/images/work/work-6.webp?v=2" width="2000" height="1500" alt="Alfresco dining under a steel pergola"><span>Alfresco Dining : Siliguri</span></button>
     </div>
-    <p class="wk__empty" hidden>Projects coming soon.</p>
+    <div class="pn__photos" hidden>
+      <img data-project="Go Native : Koramangala" loading="lazy" src="/images/work/work-1.webp" width="1448" height="1086" alt="Yellow dining room with a bamboo ceiling">
+      <img data-project="Go Native : Koramangala" loading="lazy" src="/images/work/work-3.webp" width="1448" height="1086" alt="Banquette seating below a jaali wall">
+      <img data-project="Lotus Palace : Chettinad" loading="lazy" src="/images/work/work-8.webp" width="2000" height="1176" alt="Red lounge with carved wooden pillars">
+      <img data-project="Lotus Palace : Chettinad" loading="lazy" src="/images/work/work-7.webp" width="2000" height="1992" alt="Pool court under a slatted wooden pergola">
+      <img data-project="Sohum Spa" loading="lazy" src="/images/work/sohum-reception.webp" width="2000" height="1327" alt="Spa reception with an apothecary shelf and lantern lamps">
+      <img data-project="Sohum Spa" loading="lazy" src="/images/work/sohum-lounge.webp" width="1317" height="2000" alt="Relaxation lounge under painted ceiling panels">
+      <img data-project="Sohum Spa" loading="lazy" src="/images/work/sohum-corridor.webp" width="2000" height="1383" alt="Corridor of wooden lattice screens and curtains">
+      <img data-project="Sohum Spa" loading="lazy" src="/images/work/sohum-treatment.webp" width="2000" height="1300" alt="Treatment room with wooden shutters and a painted frieze">
+      <img data-project="Vadhyar Palace" loading="lazy" src="/images/work/work-5.webp" width="1491" height="1055" alt="Courtyard with a terracotta water bowl beside a heritage mansion">
+      <img data-project="Alfresco Dining : Siliguri" loading="lazy" src="/images/work/work-6.webp?v=2" width="2000" height="1500" alt="Alfresco dining under a steel pergola">
+    </div>
+    <p class="pn__hint">move the prints about · click one to open the project</p>
 
-    <a class="wk__top" href="#top">Back to top</a>
+    <dialog class="pn__dialog" aria-labelledby="pn-title">
+      <div class="pn__dialog-top">
+        <div>
+          <p class="pn__kicker"></p>
+          <h2 id="pn-title"></h2>
+        </div>
+        <button class="pn__close" type="button">close</button>
+      </div>
+      <div class="pn__row"></div>
+    </dialog>
   </main>
   <script src="/titles.js"></script>
   <script src="/work.js"></script>

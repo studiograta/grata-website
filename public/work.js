@@ -1,50 +1,83 @@
-// Work page: the filter shows one type of project, and the photos that are
-// left get their sizes in a set rhythm (big, a pair side by side, medium,
-// extra wide, small and set in), so the page looks composed under any filter.
-// The filter follows the address: /work#fnb opens with f&b on, which is how
-// the links on the home page work.
-var photos = Array.prototype.slice.call(document.querySelectorAll(".wk__list figure"));
-var filterLinks = document.querySelectorAll(".wk__filter a");
-var emptyNote = document.querySelector(".wk__empty");
-var rhythm = ["lg", "pair-a", "pair-b", "md", "xl", "sm"];
+// Work page pinboard. With a mouse the prints can be dragged about the
+// board; a click without dragging opens the project. On phones a tap
+// just opens it, so the page still scrolls normally.
+(function () {
+  var items = Array.prototype.slice.call(document.querySelectorAll(".pn__item"));
+  var filterLinks = document.querySelectorAll(".wk__filter a");
+  var typeNames = { hospitality: "hospitality", fnb: "f&b", wellness: "wellness", retail: "retail" };
+  var top = 10;
 
-function show(type) {
-  var known = Array.prototype.some.call(filterLinks, function (link) { return link.dataset.filter === type; });
-  if (!known) type = "all";
+  items.forEach(function (el) {
+    var startX, startY, baseX, baseY, moved = 0, held = false;
+    el.addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      held = true; moved = 0;
+      startX = e.clientX; startY = e.clientY;
+      baseX = parseFloat(el.style.getPropertyValue("--dx")) || 0;
+      baseY = parseFloat(el.style.getPropertyValue("--dy")) || 0;
+      el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener("pointermove", function (e) {
+      if (!held) return;
+      var dx = e.clientX - startX, dy = e.clientY - startY;
+      moved = Math.abs(dx) + Math.abs(dy);
+      if (moved < 5) return;
+      el.classList.add("is-moving");
+      el.style.setProperty("--dx", baseX + dx + "px");
+      el.style.setProperty("--dy", baseY + dy + "px");
+    });
+    el.addEventListener("pointerup", function () {
+      held = false;
+      if (el.classList.contains("is-moving")) {
+        el.classList.remove("is-moving");
+        el.style.zIndex = ++top;   // the one just moved sits on top
+      }
+    });
+    el.addEventListener("click", function (e) {
+      if (moved >= 5) { moved = 0; e.preventDefault(); return; }  // that was a drag
+      openProject(el.dataset.project, el.dataset.type);
+    });
+  });
 
+  // The project view: every photo with the same project name
+  var dialog = document.querySelector(".pn__dialog");
+  var row = dialog.querySelector(".pn__row");
+  function openProject(project, type) {
+    dialog.querySelector("h2").textContent = project;
+    dialog.querySelector(".pn__kicker").textContent = typeNames[type];
+    row.innerHTML = "";
+    document.querySelectorAll(".pn__photos img").forEach(function (img) {
+      if (img.dataset.project !== project) return;
+      var copy = img.cloneNode();
+      copy.removeAttribute("loading");
+      row.appendChild(copy);
+    });
+    row.scrollLeft = 0;
+    dialog.showModal();
+  }
+  dialog.querySelector(".pn__close").addEventListener("click", function () { dialog.close(); });
+
+  // Filter: other projects fade back and cannot be clicked.
+  // /work#fnb opens with f&b on, as on the current page.
+  function show(type) {
+    if (!typeNames[type]) type = "all";
+    filterLinks.forEach(function (link) {
+      if (link.dataset.filter === type) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+    items.forEach(function (el) {
+      var dim = type !== "all" && el.dataset.type !== type;
+      el.classList.toggle("is-dim", dim);
+      el.tabIndex = dim ? -1 : 0;
+    });
+  }
   filterLinks.forEach(function (link) {
-    if (link.dataset.filter === type) link.setAttribute("aria-current", "true");
-    else link.removeAttribute("aria-current");
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var type = link.dataset.filter;
+      history.replaceState(null, "", type === "all" ? location.pathname : "#" + type);
+      show(type);
+    });
   });
-
-  var count = 0;
-  photos.forEach(function (photo) {
-    var match = type === "all" || photo.dataset.type === type;
-    photo.hidden = !match;
-    photo.className = match ? "wk__" + rhythm[count++ % rhythm.length] : "";
-  });
-  emptyNote.hidden = count > 0;
-}
-
-function showFromAddress() {
   show(location.hash.slice(1) || "all");
-}
-
-filterLinks.forEach(function (link) {
-  link.addEventListener("click", function (event) {
-    event.preventDefault();
-    var type = link.dataset.filter;
-    // Change the address without jumping or adding a step to the back button
-    history.replaceState(null, "", type === "all" ? location.pathname : "#" + type);
-    show(type);
-  });
-});
-
-// "Back to top" glides up without touching the address (and so the filter)
-document.querySelector(".wk__top").addEventListener("click", function (event) {
-  event.preventDefault();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-window.addEventListener("hashchange", showFromAddress);
-showFromAddress();
+})();
