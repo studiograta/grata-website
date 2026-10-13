@@ -437,9 +437,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .contact__form .contact__trap { display: none; }
 
 /* ---------- Connect page (contact.html) ----------
-   A calm Taupe page with one row, centred on the screen: Reach, Follow and
-   Based in on the left, "Begin a project" on the right, which opens the
-   enquiry form in its place. Phones: one column, Begin first. */
+   A calm Taupe page with one row of four, centred on the screen: Reach,
+   Follow, Based in and "Begin a project", which opens the enquiry form
+   below the row. Phones: one column, Begin first. */
 .connect {
   --background: color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk));
   --text-dim: color-mix(in srgb, var(--dark-walnut) 82%, var(--mothwing-taupe));
@@ -461,20 +461,14 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect__inner { max-width: 1440px; }
 .connect__body {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 40px clamp(40px, 6vw, 96px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 32px;
   align-items: start;
 }
+/* The three sections sit straight in the row of four, with Begin as the fourth */
+.connect__cols { display: contents; font-size: 16px; line-height: 1.5; }
 .connect h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } /* kept for screen readers only */
 
-
-.connect__cols {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px;
-  font-size: 16px;
-  line-height: 1.5;
-}
 .connect__cols h2 {
   margin: 0 0 12px;
   font-size: 13px;
@@ -492,8 +486,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect__social svg { display: block; width: 28px; height: 28px; fill: currentColor; }
 
 /* "Begin": a button that opens the enquiry form below it */
-.connect__begin { justify-self: end; padding-top: 22px; } /* level with the first line of each column */
-.connect__begin[open] { justify-self: stretch; padding-top: 0; }
+.connect__begin { padding-top: 30px; } /* level with the first line of each column */
+.connect__begin[open] { grid-column: 1 / -1; padding-top: 0; } /* the form opens below the row */
 .connect__begin summary { list-style: none; }
 .connect__begin summary::-webkit-details-marker { display: none; }
 .connect__begin[open] summary { display: none; }
@@ -501,8 +495,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect__hint { margin: 0; font-size: 18px; color: var(--text); }
 .connect .contact__form ::placeholder { color: color-mix(in srgb, var(--dark-walnut) 50%, var(--mothwing-taupe)); }
 @media (max-width: 1000px) {
-  .connect__body { grid-template-columns: 1fr; }
-  .connect__begin { justify-self: start; padding-top: 0; }
+  .connect__body { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------- Partners page (partners.html) ----------
@@ -838,7 +831,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .connect { justify-content: flex-start; min-height: 0; }
   .connect__body { display: flex; flex-direction: column; gap: 48px; }
   .connect__begin { order: 1; justify-self: auto; padding-top: 0; }
-  .connect__cols { order: 2; grid-template-columns: 1fr; gap: 36px; }
+  .connect__cols { order: 2; display: grid; grid-template-columns: 1fr; gap: 36px; font-size: 16px; line-height: 1.5; }
 }
 
 /* ---------- Culture page (culture.html) ----------
