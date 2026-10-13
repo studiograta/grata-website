@@ -1041,17 +1041,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .fp__facts dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
 .fp__facts dd { margin: 4px 0 0; }
 
-/* "view project", underlined like other links on the site */
+/* "view project", a plain text link */
 .fp__link {
   padding: 0;
   border: 0;
   background: none;
   font: 400 15px var(--font);
   color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
   cursor: pointer;
 }
 
@@ -1066,14 +1062,21 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .card__photo { display: block; overflow: hidden; }
 .card__photo img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; transition: transform 900ms ease; }
 .card:hover .card__photo img { transform: scale(1.03); }
-.card__name { display: block; margin-top: 16px; font-size: 20px; line-height: 1.25; }
-.card__meta {
+/* Under each photo, one small line: the name, then the place in small capitals */
+.card__caption {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 6px;
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.card__name { font-size: 13px; line-height: 1.3; }
+.card__meta {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-dim);
 }
@@ -1115,7 +1118,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 /* ---------- Menu (menu.js, on every page except home) ----------
    An Olive burger at the top right, level with the logo, where the page
    titles used to be. Pointing at it (a tap on phones) drops down the list
-   of pages; the one you are on is in Walnut and the others are greyed. */
+   of pages, all greyed; the one you point at turns Walnut. */
 .site-menu {
   position: absolute;
   z-index: 20;
@@ -1162,8 +1165,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   color: color-mix(in srgb, var(--text) 42%, var(--background)); /* the other pages, greyed */
   text-decoration: none;
 }
-.site-menu__list a:hover,
-.site-menu__list a[aria-current] { color: var(--text); }
+.site-menu__list a:hover { color: var(--text); }
 .site-menu__list a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 
 /* The page titles are kept for screen readers and search engines, and keep
