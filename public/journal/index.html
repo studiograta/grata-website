@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Journal | Studio Grata</title>
+  <meta name="description" content="Notes from Studio Grata on materials, process and the revenue-led spaces we design.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="page jl">
+    <a class="wordmark" href="/" aria-label="Studio Grata home"></a>
+
+    <header class="jl__intro">
+      <h1 data-titles>journal</h1>
+    </header>
+
+    <!-- The topics. Each post below has data-topic set to one of these. -->
+    <nav class="jl__filter" aria-label="Filter posts">
+      <a href="#" data-filter="all" aria-current="true">all</a>
+      <a href="#materials" data-filter="materials">materials</a>
+      <a href="#process" data-filter="process">process</a>
+      <a href="#projects" data-filter="projects">projects</a>
+      <a href="#studio" data-filter="studio">studio</a>
+    </nav>
+
+    <!-- The newest post goes here, big, with its photo. When a new post
+         is added, move this one down into the list. -->
+    <a class="jl__latest" href="/journal/psychology-of-space" data-topic="process">
+      <img src="/images/journal/psychology-of-space/hero.jpg" alt="">
+      <span class="jl__latest-text">
+        <span class="jl__kicker">latest · process</span>
+        <span class="jl__latest-title">How a room changes what people do</span>
+        <span class="jl__latest-stand">Guests read the room before they read the menu. What the research says, and how we design with it.</span>
+        <span class="jl__meta"><time datetime="2026-10-20">20 Oct 2026</time> · 6 min</span>
+      </span>
+    </a>
+
+    <!-- Every other post, newest first: one row each. data-img is the photo
+         that appears beside the pointer on laptops. -->
+    <ol class="jl__list">
+      <li data-topic="process"><a href="/journal/four-numbers" data-img="/images/journal/four-numbers/hero.jpg">
+        <time datetime="2026-10-15">15 Oct 2026</time>
+        <b>The Four Numbers</b>
+        <span class="jl__topic">process</span>
+        <span class="jl__read">5 min</span>
+      </a></li>
+    </ol>
+    <p class="jl__empty" hidden>Posts coming soon.</p>
+
+    <!-- The photo that follows the pointer over the list (journal.js) -->
+    <img class="jl__peek" alt="" aria-hidden="true">
+  </main>
+  <script src="/journal.js"></script>
+  <script src="/menu.js"></script>
+</body>
+</html>

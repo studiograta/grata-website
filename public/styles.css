@@ -1089,3 +1089,241 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 760px) {
   .site-menu { top: calc(20px + env(safe-area-inset-top, 0px)); right: 24px; }
 }
+
+/* ---------- Journal post (journal/*.html) ----------
+   Inspired by print magazines: a big title, a wide photo, then one calm
+   reading column with the date and share in a rail beside it. Pull quotes,
+   photo pairs and margin notes break the rhythm. journal.js runs the
+   Olive reading line along the top and "copy link". */
+.jp-progress {
+  position: fixed;
+  z-index: 30;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.page.jp { padding-top: clamp(120px, 18vh, 170px); }
+.jp article { max-width: 1440px; }
+
+/* The head: kicker, title, one standfirst line */
+.jp__head { max-width: 1000px; }
+.jp__kicker { margin: 0 0 28px; font-family: var(--font-display); font-size: 15px; color: var(--text-dim); }
+.page .jp__kicker a { text-decoration: none; }
+.page .jp__kicker a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+.jp h1 { max-width: 16ch; font-size: clamp(40px, 6vw, 84px); line-height: 1.02; text-wrap: balance; }
+.jp__stand { max-width: 34ch; margin: 24px 0 0; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.45; color: var(--text-dim); text-wrap: pretty; }
+
+/* The wide photo, with a small caption on the right */
+.jp figure { margin: 0; }
+.jp figcaption { margin-top: 12px; font-size: 13px; color: var(--text-dim); }
+.jp__hero { margin-top: clamp(48px, 8vh, 88px); }
+.jp__hero img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.jp__hero figcaption { text-align: right; }
+
+/* The reading column (about 66 letters a line) in a 12 column grid:
+   rail in columns 1 to 3, text in 4 to 9, margin notes in 10 to 12 */
+.jp__body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  margin-top: clamp(56px, 9vh, 104px);
+}
+.jp__meta { grid-column: 1 / span 2; align-self: start; position: sticky; top: 40px; padding-top: 18px; border-top: 1px solid var(--line); }
+.jp__meta dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; font-size: 14px; }
+.jp__meta dt { font-family: var(--font-display); color: var(--text-dim); }
+.jp__meta dd { margin: 0; }
+.jp__share {
+  margin-top: 22px;
+  padding: 0 0 4px;
+  border: 0;
+  border-bottom: 2px solid var(--accent);
+  background: none;
+  font: 15px var(--font-display);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.jp__text { grid-column: 4 / span 6; position: relative; font-size: 19px; line-height: 1.75; }
+.jp__text > p { margin: 0 0 1.4em; text-wrap: pretty; }
+.jp__text h2 { margin: 2.2em 0 0.6em; font-family: var(--font-display); font-size: 27px; font-weight: 600; line-height: 1.2; }
+
+/* The first letter, large and set in Josefin */
+.jp__first::first-letter {
+  float: left;
+  margin: 0.08em 0.1em 0 0;
+  font-family: var(--font-display);
+  font-size: 4.2em;
+  font-weight: 600;
+  line-height: 0.8;
+}
+
+/* Pull quote: wider than the text, an Olive line above */
+.jp__quote { margin: 2.4em -12% 2.4em 0; padding: 0; }
+.jp__quote::before { content: ""; display: block; width: 44px; height: 3px; margin-bottom: 22px; background: var(--accent); }
+.jp__quote p { margin: 0; font-family: var(--font-display); font-size: clamp(28px, 2.8vw, 40px); line-height: 1.2; text-wrap: balance; }
+
+/* Two photos side by side, reaching past the text on both sides */
+.jp .jp__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 2.6em -25%; }
+.jp__pair img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.jp__pair figcaption { grid-column: 1 / -1; margin-top: 0; }
+
+/* Margin note: out in the right margin on laptops */
+.jp__note {
+  position: absolute;
+  left: calc(100% + 48px);
+  width: min(240px, 40%);
+  margin-top: -6em;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+.jp__note b { display: block; margin-bottom: 4px; font-family: var(--font-display); font-weight: 600; color: var(--text); }
+
+/* Lists, a single wide photo, the closing links and the sources list in a post */
+.jp__text ul, .jp__text ol { margin: 0 0 1.4em; padding-left: 1.2em; }
+.jp__text li { margin-bottom: 0.4em; }
+.jp .jp__single { margin: 2.6em 0; }
+.jp__single img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.jp__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 2.4em; font-family: var(--font-display); }
+.jp__sources { margin-top: 3.2em; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.6; color: var(--text-dim); }
+.jp__sources h2 { margin-top: 0; font-size: 17px; }
+.ap__more { margin: 28px 0 0; font-family: var(--font-display); font-size: 16px; }
+
+/* The end: topics, the next post, and back to the journal */
+.jp__end {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  margin-top: clamp(72px, 12vh, 128px);
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.jp__tags { grid-column: 1 / span 3; display: flex; flex-wrap: wrap; gap: 8px; align-content: start; margin: 0; padding: 0; list-style: none; }
+.jp__tags li { padding: 6px 14px; border: 1px solid var(--line); border-radius: 99px; font: 14px var(--font-display); color: var(--text-dim); }
+.page .jp__next { grid-column: 4 / span 6; display: grid; grid-template-columns: 180px 1fr; grid-template-rows: auto 1fr; gap: 6px 24px; text-decoration: none; }
+.jp__next img { grid-row: 1 / span 2; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; transition: opacity 400ms ease; }
+.jp__next:hover img { opacity: 0.85; }
+.jp__next-label { align-self: end; font: 14px var(--font-display); color: var(--text-dim); }
+.jp__next-title { font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 34px); font-weight: 600; line-height: 1.1; }
+.jp__next:hover .jp__next-title { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.jp__all { grid-column: 10 / span 3; justify-self: end; align-self: end; margin: 0; font: 16px var(--font-display); }
+
+/* Tablets: the rail moves above the text, the margin note sits in the text */
+@media (max-width: 1100px) {
+  .jp__body, .jp__end { display: block; }
+  .jp__meta { position: static; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; max-width: 680px; margin: 0 auto 40px; }
+  .jp__meta dl { display: flex; gap: 6px 18px; flex-wrap: wrap; }
+  .jp__meta dt { display: none; }
+  .jp__share { margin-top: 0; }
+  .jp__text { max-width: 680px; margin: 0 auto; }
+  .jp__quote { margin-right: 0; }
+  .jp .jp__pair { margin: 2.4em 0; }
+  .jp__note { position: static; width: auto; margin: 0 0 1.6em; padding: 16px 20px; border-top: 3px solid var(--accent); background: color-mix(in srgb, var(--mothwing-taupe) 18%, var(--milk)); }
+  .jp__end { max-width: 680px; margin-left: auto; margin-right: auto; }
+  .jp__tags { margin-bottom: 32px; }
+  .page .jp__next { grid-template-columns: 140px 1fr; }
+  .jp__all { margin-top: 32px; }
+}
+
+@media (max-width: 760px) {
+  .page.jp { padding: 110px 24px 72px; }
+  .jp__hero { margin-left: -24px; margin-right: -24px; }
+  .jp__hero img { aspect-ratio: 4 / 5; }
+  .jp__hero figcaption { padding: 0 24px; }
+  .jp__text { font-size: 18px; }
+  .jp__pair { gap: 8px; }
+  .page .jp__next { grid-template-columns: 110px 1fr; gap: 4px 16px; }
+}
+
+/* ---------- Journal page (journal/index.html) ----------
+   The topics, the newest post big with its photo, then every other post
+   as one quiet row: date, title, topic, reading time. On laptops a photo
+   of the post follows the pointer over the list (journal.js). */
+.page.jl { padding-top: 40px; }
+.jl [hidden] { display: none !important; }
+.jl__intro { max-width: 1440px; }
+.jl__intro h1 { margin-bottom: 0; }
+
+.jl__filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+  max-width: 1440px;
+  margin: clamp(20px, 4vh, 48px) 0 clamp(24px, 4.5vh, 56px);
+  font-family: var(--font-display);
+  font-size: 17px;
+}
+.page .jl__filter a { padding: 8px 0; color: var(--text-dim); text-decoration: none; }
+.page .jl__filter a:hover,
+.page .jl__filter a[aria-current] { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); }
+
+/* The newest post: photo in 7 columns, its words in 5, sitting at the bottom */
+.page .jl__latest {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: end;
+  max-width: 1440px;
+  text-decoration: none;
+}
+.jl__latest img { grid-column: 1 / span 7; display: block; width: 100%; height: clamp(300px, calc(100vh - 300px), 620px); object-fit: cover; transition: opacity 400ms ease; }
+.jl__latest:hover img { opacity: 0.88; }
+.jl__latest-text { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 14px; }
+.jl__kicker, .jl__meta { font: 15px var(--font-display); color: var(--text-dim); }
+.jl__latest-title { font-family: var(--font-display); font-size: clamp(34px, 4vw, 60px); font-weight: 600; line-height: 1.02; text-wrap: balance; }
+.jl__latest-title::before { content: ""; display: block; width: 44px; height: 3px; margin-bottom: 22px; background: var(--accent); }
+.jl__latest:hover .jl__latest-title { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 8px; }
+.jl__latest-stand { font-size: 18px; line-height: 1.5; color: var(--text-dim); }
+
+/* Every other post: one row each, with a Taupe line between */
+.jl__list { max-width: 1440px; margin: clamp(72px, 12vh, 128px) 0 0; padding: 0; list-style: none; border-bottom: 1px solid var(--line); }
+.jl__list li { border-top: 1px solid var(--line); }
+.page .jl__list a {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: baseline;
+  padding: 26px 0;
+  text-decoration: none;
+}
+.jl__list time { grid-column: 1 / span 2; font: 15px var(--font-display); color: var(--text-dim); }
+.jl__list b { grid-column: 3 / span 6; justify-self: start; font-family: var(--font-display); font-size: clamp(24px, 2.3vw, 34px); font-weight: 600; line-height: 1.15; transition: transform 400ms var(--ease); }
+.jl__topic { grid-column: 10 / span 2; font: 15px var(--font-display); color: var(--text-dim); }
+.jl__read { grid-column: 12; justify-self: end; font: 15px var(--font-display); color: var(--text-dim); }
+.jl__list a:hover b { transform: translateX(12px); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.jl__empty { margin: 48px 0 0; font-family: var(--font-display); font-size: 20px; color: var(--text-dim); }
+
+/* The photo beside the pointer */
+.jl__peek {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 220px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+.jl__peek.is-shown { opacity: 1; }
+
+@media (max-width: 1000px) {
+  .page .jl__latest { display: block; }
+  .jl__latest img { height: auto; aspect-ratio: 3 / 2; }
+  .jl__latest-text { margin-top: 24px; }
+}
+@media (max-width: 760px) {
+  .page.jl { padding: 40px 24px 72px; }
+  .jl__latest img { margin: 0 -24px; width: calc(100% + 48px); aspect-ratio: 4 / 5; }
+  /* Rows: date and topic in one small line above the title */
+  .page .jl__list a { grid-template-columns: auto 1fr auto; gap: 6px 14px; padding: 20px 0; }
+  .jl__list time { grid-column: 1; grid-row: 1; }
+  .jl__topic { grid-column: 2; grid-row: 1; }
+  .jl__read { grid-column: 3; grid-row: 1; }
+  .jl__list b { grid-column: 1 / -1; grid-row: 2; font-size: 24px; }
+}

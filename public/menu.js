@@ -9,6 +9,7 @@
     ["/work", "work"],
     ["/working-with-us", "approach"],
     ["/culture", "culture"],
+    ["/journal/", "journal"],
     ["/partners", "partners"],
     ["/contact", "connect"],
   ];
