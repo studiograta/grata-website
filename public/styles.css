@@ -7,7 +7,7 @@
   --font: "Cabin", system-ui, -apple-system, "Segoe UI", sans-serif;
   /* Page titles and the landing labels and links (loaded from Google Fonts
      in each page's head, next to Cabin) */
-  --font-display: "Josefin Sans", var(--font);
+  --font-display: "Jost", var(--font);
 
   /* Studio Grata palette (final codes, September 2026) */
   --dark-walnut: #2d2011;
@@ -1149,7 +1149,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .jp__text > p { margin: 0 0 1.4em; text-wrap: pretty; }
 .jp__text h2 { margin: 2.2em 0 0.6em; font-family: var(--font-display); font-size: 27px; font-weight: 600; line-height: 1.2; }
 
-/* The first letter, large and set in Josefin */
+/* The first letter, large and set in Jost */
 .jp__first::first-letter {
   float: left;
   margin: 0.08em 0.1em 0 0;
