@@ -15,7 +15,9 @@
       var block = button.closest("[data-project]");
       var project = block.dataset.project;
       dialog.querySelector("h2").textContent = project;
-      dialog.querySelector(".pv__kicker").textContent = typeNames[block.dataset.type];
+      // Concepts (designed, not built) say so beside their type
+      dialog.querySelector(".pv__kicker").textContent = typeNames[block.dataset.type] +
+        (block.dataset.status ? " · " + block.dataset.status : "");
       row.innerHTML = "";
       document.querySelectorAll(".photos img").forEach(function (img) {
         if (img.dataset.project !== project) return;
