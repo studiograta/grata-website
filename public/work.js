@@ -4,7 +4,8 @@
 (function () {
   var blocks = Array.prototype.slice.call(document.querySelectorAll(".fp, .card"));
   var filterLinks = document.querySelectorAll(".wk__filter a");
-  var typeNames = { hospitality: "hospitality", fnb: "f&b", wellness: "wellness", retail: "retail" };
+  // Add retail: "retail" back here (and its link in work.html) with the first retail project
+  var typeNames = { hospitality: "hospitality", fnb: "f&b", wellness: "wellness" };
   var dialog = document.querySelector(".pv");
   var row = dialog.querySelector(".pv__row");
 
