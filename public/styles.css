@@ -1003,20 +1003,32 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .card:focus-visible, .fp__photo:focus-visible { outline: 2px solid var(--focus); outline-offset: 6px; }
 .wk [hidden] { display: none !important; }
 
-/* ---- The project, opened over the page (as on the live page) ---- */
+/* ---- The project, opened over the page ----
+   Back arrow and name at the top left, the page menu (moved in by work.js)
+   at the top right, then every photo in one centred column. Only scrolls
+   down, never sideways. */
 .pv {
+  position: fixed;
+  inset: 0;
+  box-sizing: border-box; /* the padding stays inside the screen width */
   width: 100%; max-width: none; height: 100%; max-height: none; margin: 0;
-  padding: clamp(28px, 5vh, 48px) clamp(24px, 4vw, 48px);
+  padding: 36px 48px 72px;
   border: 0; background: var(--texture), var(--milk); color: var(--text);
+  overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
 }
-.pv[open] { display: flex; flex-direction: column; animation: pv-in 350ms ease both; }
+.pv[open] { display: block; animation: pv-in 350ms ease both; }
 @keyframes pv-in { from { opacity: 0; } }
-.pv__top { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+.pv__top { display: flex; align-items: flex-start; gap: 20px; max-width: 1100px; margin: 0 auto; padding-right: 56px; }
+.pv__back { flex: none; display: grid; place-content: center; width: 46px; height: 46px; margin: -4px 0 0 -9px; padding: 0; border: 0; background: none; color: var(--text); cursor: pointer; }
+.pv__back:hover { color: var(--accent); }
+.pv__back:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .pv__kicker { margin: 0 0 6px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); }
 .pv h2 { margin: 0; font-weight: 400; font-size: clamp(26px, 3vw, 40px); }
-.pv__close { padding: 8px 0; border: 0; background: none; font: 400 15px var(--font); color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; cursor: pointer; }
-.pv__row { flex: 1; display: flex; gap: 24px; align-items: center; margin-top: clamp(24px, 4vh, 40px); overflow-x: auto; scroll-snap-type: x mandatory; }
-.pv__row img { height: min(62vh, 640px); width: auto; scroll-snap-align: start; }
+.pv h2:focus { outline: none; } /* focus starts on the name when a project opens */
+.pv__row { display: flex; flex-direction: column; gap: 24px; max-width: 1100px; margin: clamp(28px, 5vh, 48px) auto 0; }
+.pv__row img { display: block; width: 100%; height: auto; }
+/* Upright photos would be very tall at full width, so they sit narrower */
+.pv__row img[data-tall] { width: auto; max-width: 100%; max-height: 88vh; margin: 0 auto; }
 
 @media (max-width: 1000px) {
   .fp__photo { grid-column: 1 / -1; }
@@ -1028,8 +1040,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .wk__filter { gap: 0 22px; font-size: 16px; }
   .fp { gap: 20px; }
   .cards { grid-template-columns: 1fr; }
-  .pv__row { flex-direction: column; align-items: stretch; overflow: auto; scroll-snap-type: none; }
-  .pv__row img { width: 100%; height: auto; }
+  .pv { padding: calc(20px + env(safe-area-inset-top, 0px)) 24px 48px; }
+  .pv__row { gap: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fp__photo img, .card__photo img { transition: none; }

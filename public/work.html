@@ -66,6 +66,10 @@
         <span class="card__photo"><img src="/images/work/work-8.webp" width="1800" height="1058" loading="lazy" alt="Red lounge with carved wooden pillars"></span>
         <span class="card__caption"><span class="card__name">Lotus Palace</span><span class="card__meta">Chettinad, Tamil Nadu</span></span>
       </button>
+      <button class="card" type="button" data-type="hospitality" data-project="Sterling Resorts" data-open>
+        <span class="card__photo"><img src="/images/work/sterling-resorts-room-view.webp" width="1200" height="798" loading="lazy" alt="Hotel room window framing a snow-capped valley"></span>
+        <span class="card__caption"><span class="card__name">Sterling Resorts</span><span class="card__meta">Manali, Himachal Pradesh</span></span>
+      </button>
       <button class="card" type="button" data-type="fnb" data-project="Record Room" data-open>
         <span class="card__photo"><img src="/images/work/record-room-bar.webp" width="2000" height="1476" loading="lazy" alt="Bar counter under stepped timber ribs and a lit sign"></span>
         <span class="card__caption"><span class="card__name">Record Room</span><span class="card__meta">Bengaluru, Karnataka</span></span>
@@ -94,6 +98,10 @@
         <span class="card__photo"><img src="/images/work/uni-cafeteria-cafe.webp" width="1916" height="888" loading="lazy" alt="Cafeteria with a green wall, timber ceiling and red chairs"></span>
         <span class="card__caption"><span class="card__name">Uni Cafeteria</span><span class="card__meta">Bengaluru, Karnataka · concept</span></span>
       </button>
+      <button class="card" type="button" data-type="fnb" data-project="Pyeongtaek Cafe" data-status="concept" data-open>
+        <span class="card__photo"><img src="/images/work/cafe-pyeongtaek.webp" width="1568" height="1003" loading="lazy" alt="Cafe with terracotta walls, pale timber chairs and a city view"></span>
+        <span class="card__caption"><span class="card__name">Pyeongtaek Cafe</span><span class="card__meta">Pyeongtaek, South Korea · concept</span></span>
+      </button>
       <button class="card" type="button" data-type="hospitality" data-project="Voila Resort" data-status="concept" data-open>
         <span class="card__photo"><img src="/images/work/voila-resort-cottages.webp" width="2000" height="870" loading="lazy" alt="Tiled-roof cottages with private pools in a coffee plantation"></span>
         <span class="card__caption"><span class="card__name">Voila Resort</span><span class="card__meta">Hassan, Karnataka · concept</span></span>
@@ -111,6 +119,9 @@
       <img loading="lazy" data-project="Lotus Palace" src="/images/work/lotus-palace-lobby.webp" width="2000" height="1774" alt="Lobby with a timber roof, brass chandelier and green sofas">
       <img loading="lazy" data-project="Lotus Palace" src="/images/work/work-7.webp" width="1800" height="1792" alt="Pool court under a slatted wooden pergola">
       <img loading="lazy" data-project="Lotus Palace" src="/images/work/lotus-palace-courtyard.webp" width="1365" height="2048" alt="Courtyard floor with a painted kolam under a timber roof">
+      <img loading="lazy" data-project="Sterling Resorts" src="/images/work/sterling-resorts-room-view.webp" width="1200" height="798" alt="Hotel room window framing a snow-capped valley">
+      <img loading="lazy" data-project="Sterling Resorts" src="/images/work/sterling-resorts-room.webp" width="1200" height="802" alt="Guest room with a timber ceiling and a Himachali textile headboard">
+      <img loading="lazy" data-project="Sterling Resorts" src="/images/work/sterling-resorts-restaurant.webp" width="1800" height="1200" alt="Restaurant with timber ceilings and blue upholstered chairs">
       <img loading="lazy" data-project="Record Room" src="/images/work/record-room-bar.webp" width="2000" height="1476" alt="Bar counter under stepped timber ribs and a lit sign">
       <img loading="lazy" data-project="Record Room" src="/images/work/record-room-dining.webp" width="2000" height="1334" alt="Dining room of plywood tables and benches under a pitched roof">
       <img loading="lazy" data-project="Record Room" src="/images/work/record-room-records.webp" width="2000" height="1234" alt="A wall of vinyl records beside cafe tables">
@@ -129,15 +140,20 @@
       <img loading="lazy" data-project="Uni Cafeteria" src="/images/work/uni-cafeteria-cafe.webp" width="1916" height="888" alt="Cafeteria with a green wall, timber ceiling and red chairs">
       <img loading="lazy" data-project="Uni Cafeteria" src="/images/work/uni-cafeteria-counter.webp" width="1916" height="888" alt="Cafeteria counter below a mezzanine lounge">
       <img loading="lazy" data-project="Uni Cafeteria" src="/images/work/uni-cafeteria-facade.webp" width="2000" height="952" alt="Tall timber facade with screened panels">
+      <img loading="lazy" data-project="Pyeongtaek Cafe" src="/images/work/cafe-pyeongtaek.webp" width="1568" height="1003" alt="Cafe with terracotta walls, pale timber chairs and a city view">
       <img loading="lazy" data-project="Voila Resort" src="/images/work/voila-resort-cottages.webp" width="2000" height="870" alt="Tiled-roof cottages with private pools in a coffee plantation">
       <img loading="lazy" data-project="Voila Resort" src="/images/work/voila-resort-walkway.webp" width="2000" height="1122" alt="Timber walkway between stone walls and planting">
       <img loading="lazy" data-project="Voila Resort" src="/images/work/voila-resort-aerial.webp" width="2000" height="1126" alt="Aerial view of cottages along a hillside plantation">
     </div>
 
+    <!-- A project, opened over the page: back arrow, its name, the menu,
+         and every photo in one column that scrolls down -->
     <dialog class="pv" aria-labelledby="pv-title">
       <div class="pv__top">
-        <div><p class="pv__kicker"></p><h2 id="pv-title"></h2></div>
-        <button class="pv__close" type="button">close</button>
+        <button class="pv__back" type="button" aria-label="Back to work">
+          <svg width="28" height="28" viewBox="0 0 256 256" aria-hidden="true"><path d="M216 128H40M112 56l-72 72 72 72" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div><p class="pv__kicker"></p><h2 id="pv-title" tabindex="-1" autofocus></h2></div>
       </div>
       <div class="pv__row"></div>
     </dialog>

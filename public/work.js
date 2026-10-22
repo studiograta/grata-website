@@ -23,13 +23,28 @@
         if (img.dataset.project !== project) return;
         var copy = img.cloneNode();
         copy.removeAttribute("loading");
+        if (+copy.getAttribute("height") > +copy.getAttribute("width")) copy.dataset.tall = "";
         row.appendChild(copy);
       });
-      row.scrollLeft = 0;
+      // The page menu (menu.js) moves into the project while it is open,
+      // since an open project covers the page
+      var menu = document.querySelector(".site-menu");
+      if (menu) dialog.appendChild(menu);
       dialog.showModal();
+      dialog.scrollTop = 0;
+      // A step in the browser history, so the phone's back button closes it
+      history.pushState({ project: project }, "");
     });
   });
-  dialog.querySelector(".pv__close").addEventListener("click", function () { dialog.close(); });
+
+  // Back arrow, Esc and the browser's back button all close the project
+  dialog.querySelector(".pv__back").addEventListener("click", function () { dialog.close(); });
+  dialog.addEventListener("close", function () {
+    var menu = dialog.querySelector(".site-menu");
+    if (menu) document.body.appendChild(menu);
+    if (history.state && history.state.project) history.back();
+  });
+  addEventListener("popstate", function () { if (dialog.open) dialog.close(); });
 
   // Filter: only the chosen type shows (the featured project too)
   function show(type) {
