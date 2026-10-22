@@ -40,60 +40,69 @@
       <a href="#materials" data-filter="materials">materials</a>
     </nav>
 
-    <!-- One featured post per topic, big, with its photo. "all" shows both,
-         a topic shows its own. Featured posts are left out of the list below. -->
-    <a class="jl__latest" href="/journal/four-numbers" data-topic="process">
-      <img src="/images/journal/four-numbers/hero.jpg" alt="">
-      <span class="jl__latest-text">
-        <span class="jl__kicker">featured · process</span>
-        <span class="jl__latest-title">The Four Numbers</span>
-        <span class="jl__latest-stand">Founders budget a fit-out per square foot. The room pays it back per seat, per hour.</span>
-        <span class="jl__meta"><time datetime="2026-10-15">15 Oct 2026</time> · 6 min</span>
-      </span>
-    </a>
-
-    <a class="jl__latest jl__latest--flip" href="/journal/local-materials" data-topic="materials">
+    <!-- Every post, newest first, big with its photo. The photo side
+         alternates (journal.js), also when a topic is chosen. -->
+    <a class="jl__latest" href="/journal/local-materials" data-topic="materials">
       <img src="/images/journal/local-materials/hero.jpg" alt="">
       <span class="jl__latest-text">
-        <span class="jl__kicker">featured · materials</span>
+        <span class="jl__kicker">materials</span>
         <span class="jl__latest-title">Local is a supply chain, not a mood</span>
         <span class="jl__latest-stand">Regional materials can give a resort its sense of place. They can also delay its opening.</span>
-        <span class="jl__meta"><time datetime="2026-10-22">22 Oct 2026</time> · 5 min</span>
+        <span class="jl__meta"><time datetime="2026-10-21">21 Oct 2026</time> · 5 min</span>
       </span>
     </a>
 
-    <!-- Every other post, newest first: one row each. data-img is the photo
-         that appears beside the pointer on laptops. -->
-    <ol class="jl__list">
-      <li data-topic="materials"><a href="/journal/attic-stock" data-img="/images/journal/attic-stock/hero.jpg">
-        <time datetime="2026-10-22">22 Oct 2026</time>
-        <b>Attic stock: the line item nobody budgets</b>
-        <span class="jl__topic">materials</span>
-        <span class="jl__read">5 min</span>
-      </a></li>
-      <li data-topic="process"><a href="/journal/view-on-the-rate-card" data-img="/images/journal/view-on-the-rate-card/hero.jpg">
-        <time datetime="2026-10-22">22 Oct 2026</time>
-        <b>The view is on the rate card</b>
-        <span class="jl__topic">process</span>
-        <span class="jl__read">6 min</span>
-      </a></li>
-      <li data-topic="process"><a href="/journal/trial-to-member" data-img="/images/journal/trial-to-member/hero.jpg">
-        <time datetime="2026-10-22">22 Oct 2026</time>
-        <b>The trial class is a site visit</b>
-        <span class="jl__topic">process</span>
-        <span class="jl__read">6 min</span>
-      </a></li>
-      <li data-topic="process"><a href="/journal/psychology-of-space" data-img="/images/journal/psychology-of-space/hero.jpg">
-        <time datetime="2026-10-20">20 Oct 2026</time>
-        <b>How a room changes what people do</b>
-        <span class="jl__topic">process</span>
-        <span class="jl__read">6 min</span>
-      </a></li>
-    </ol>
-    <p class="jl__empty" hidden>Posts coming soon.</p>
+    <a class="jl__latest" href="/journal/attic-stock" data-topic="materials">
+      <img src="/images/journal/attic-stock/hero.jpg" alt="" loading="lazy">
+      <span class="jl__latest-text">
+        <span class="jl__kicker">materials</span>
+        <span class="jl__latest-title">Attic stock: the line item nobody budgets</span>
+        <span class="jl__latest-stand">Why one of the cheapest protections in a hotel fit-out is a locked storeroom of your own materials.</span>
+        <span class="jl__meta"><time datetime="2026-10-17">17 Oct 2026</time> · 5 min</span>
+      </span>
+    </a>
 
-    <!-- The photo that follows the pointer over the list (journal.js) -->
-    <img class="jl__peek" alt="" aria-hidden="true">
+    <a class="jl__latest" href="/journal/view-on-the-rate-card" data-topic="process">
+      <img src="/images/journal/view-on-the-rate-card/hero.jpg" alt="" loading="lazy">
+      <span class="jl__latest-text">
+        <span class="jl__kicker">process</span>
+        <span class="jl__latest-title">The view is on the rate card</span>
+        <span class="jl__latest-stand">Guests pay for the setting. The room layout decides how much of it you get to sell.</span>
+        <span class="jl__meta"><time datetime="2026-10-13">13 Oct 2026</time> · 6 min</span>
+      </span>
+    </a>
+
+    <a class="jl__latest" href="/journal/trial-to-member" data-topic="process">
+      <img src="/images/journal/trial-to-member/hero.jpg" alt="" loading="lazy">
+      <span class="jl__latest-text">
+        <span class="jl__kicker">process</span>
+        <span class="jl__latest-title">The trial class is a site visit</span>
+        <span class="jl__latest-stand">Your first-timer is deciding whether to join long before anyone mentions a membership.</span>
+        <span class="jl__meta"><time datetime="2026-10-09">9 Oct 2026</time> · 6 min</span>
+      </span>
+    </a>
+
+    <a class="jl__latest" href="/journal/psychology-of-space" data-topic="process">
+      <img src="/images/journal/psychology-of-space/hero.jpg" alt="" loading="lazy">
+      <span class="jl__latest-text">
+        <span class="jl__kicker">process</span>
+        <span class="jl__latest-title">How a room changes what people do</span>
+        <span class="jl__latest-stand">Guests read the room before they read the menu. What the research says, and how we design with it.</span>
+        <span class="jl__meta"><time datetime="2026-10-06">6 Oct 2026</time> · 6 min</span>
+      </span>
+    </a>
+
+    <a class="jl__latest" href="/journal/four-numbers" data-topic="process">
+      <img src="/images/journal/four-numbers/hero.jpg" alt="" loading="lazy">
+      <span class="jl__latest-text">
+        <span class="jl__kicker">process</span>
+        <span class="jl__latest-title">The Four Numbers</span>
+        <span class="jl__latest-stand">Founders budget a fit-out per square foot. The room pays it back per seat, per hour.</span>
+        <span class="jl__meta"><time datetime="2026-10-02">2 Oct 2026</time> · 6 min</span>
+      </span>
+    </a>
+
+    <p class="jl__empty" hidden>Posts coming soon.</p>
   </main>
   <script src="/journal.js"></script>
   <script src="/menu.js"></script>

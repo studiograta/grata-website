@@ -36,7 +36,10 @@
       var shown = 0;
       posts.forEach(function (post) {
         post.hidden = topic !== "all" && post.dataset.topic !== topic;
-        if (!post.hidden) shown++;
+        if (post.hidden) return;
+        // Every second post shown has its photo on the right
+        post.classList.toggle("jl__latest--flip", shown % 2 === 1);
+        shown++;
       });
       empty.hidden = shown > 0;
       filterLinks.forEach(function (link) {
