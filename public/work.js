@@ -18,6 +18,10 @@
       // Concepts (designed, not built) say so beside their type
       dialog.querySelector(".pv__kicker").textContent = typeNames[block.dataset.type] +
         (block.dataset.status ? " · " + block.dataset.status : "");
+      // Who it was done with, for work from the principals' earlier roles
+      var credit = dialog.querySelector(".pv__credit");
+      credit.textContent = block.dataset.credit || "";
+      credit.hidden = !block.dataset.credit;
       row.innerHTML = "";
       document.querySelectorAll(".photos img").forEach(function (img) {
         if (img.dataset.project !== project) return;
