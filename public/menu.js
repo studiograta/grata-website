@@ -7,11 +7,11 @@
   var pages = [
     ["/", "home"],
     ["/work", "work"],
-    ["/working-with-us", "approach"],
-    ["/culture", "culture"],
+    ["/studio", "studio"],
     ["/journal/", "journal"],
     ["/partners", "partners"],
-    ["/contact", "connect"],
+    ["/culture", "culture"],
+    ["/connect", "connect"],
   ];
   var here = location.pathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
 

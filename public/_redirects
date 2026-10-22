@@ -1,0 +1,5 @@
+# Old addresses forward to the new ones (Cloudflare reads this file)
+/working-with-us /studio 301
+/working-with-us.html /studio 301
+/contact /connect 301
+/contact.html /connect 301

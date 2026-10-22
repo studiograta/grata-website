@@ -32,5 +32,5 @@ if (begin) {
   });
 }
 
-// Arriving from "Begin a project" on another page (/contact#begin) opens the form straight away
+// Arriving from "Begin a project" on another page (/connect#begin) opens the form straight away
 if (begin && location.hash === "#begin") begin.open = true;

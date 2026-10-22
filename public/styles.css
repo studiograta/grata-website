@@ -350,7 +350,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .soon p a { color: var(--text); }
 @media (max-width: 760px) { .soon { padding: 24px; } }
 
-/* ---------- Inner pages (contact.html, working-with-us.html) ----------
+/* ---------- Inner pages (connect.html, studio.html) ----------
    Page content runs up to 1440px wide, so laptops from 1280px to 1536px
    wide (14 and 15.6 inch screens) fill out to the title on the right. */
 .page {
@@ -436,7 +436,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .contact__status { margin: 0; min-height: 1.5em; font-size: 16px; color: var(--text-dim); }
 .contact__form .contact__trap { display: none; }
 
-/* ---------- Connect page (contact.html) ----------
+/* ---------- Connect page (connect.html) ----------
    A calm Taupe page with one row of four, centred on the screen: Reach,
    Follow, Based in and "Begin a project", which opens the enquiry form
    below the row. Phones: one column, Begin first. */
@@ -638,9 +638,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .partners__turnstile:empty { display: none; }
 
-/* ---------- Approach page (working-with-us.html) ----------
+/* ---------- Studio page (studio.html) ----------
    Very little text: the line, what we bring, the four numbers every space
-   answers to, four stages on a Walnut band, and the rooms we have done. */
+   answers to, four stages on a Walnut band, and the three principals. */
 .page.ap { padding-top: clamp(130px, 20vh, 180px); }
 .ap__intro { max-width: 1440px; }
 .ap > section { max-width: 1440px; }
@@ -722,10 +722,15 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .ap__rule { margin: clamp(36px, 6vh, 56px) 0 0; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.4; }
 
-/* Rooms: the names in one quiet run */
-.ap__rooms { margin-top: clamp(72px, 12vh, 128px); }
-.ap__rooms p.ap__names { max-width: 34ch; margin: 0; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.45; text-wrap: balance; }
-.ap__rooms p.ap__years { margin: 18px 0 0; font-size: 14px; color: var(--text-dim); }
+/* People: one line, then the three principals in a row */
+.ap__people { margin-top: clamp(72px, 12vh, 128px); }
+.ap__people-line { max-width: 22ch; margin: 0; font-family: var(--font-display); font-size: clamp(26px, 2.8vw, 40px); font-weight: 600; line-height: 1.15; text-wrap: balance; }
+.ap__people ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: clamp(32px, 5vh, 56px) 0 0; padding: 0; list-style: none; }
+.ap__people img { display: block; width: 100%; max-width: 320px; height: auto; aspect-ratio: 1; object-fit: cover; margin-bottom: 20px; }
+.ap__people b { display: block; font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 26px); font-weight: 600; }
+.ap__people span { display: block; margin-top: 4px; font-family: var(--font-display); font-size: 15px; color: var(--text-dim); }
+.ap__people li p { max-width: 34ch; margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: var(--text-dim); }
+.ap__people p.ap__years { margin: clamp(32px, 5vh, 48px) 0 0; font-size: 14px; color: var(--text-dim); }
 
 .ap__begin { margin: clamp(56px, 9vh, 96px) 0 0; }
 
@@ -738,6 +743,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .ap__stages { margin: 64px -24px 0; padding: 48px 24px; }
   .ap__stages ol { grid-template-columns: 1fr; gap: 28px; }
   .ap__stages li:nth-child(4) { margin-top: 24px; }
+  .ap__people ul { grid-template-columns: 1fr; gap: 40px; }
+  .ap__people img { max-width: 240px; }
 }
 
 @media (max-width: 760px) {
