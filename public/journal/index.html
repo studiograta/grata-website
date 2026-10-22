@@ -32,21 +32,30 @@
       <h1 data-titles>journal</h1>
     </header>
 
-    <!-- The topics. Each post below has data-topic set to one of these. -->
+    <!-- The topics. Each post below has data-topic set to one of these.
+         Add a topic back here once it has posts (e.g. projects, studio). -->
     <nav class="jl__filter" aria-label="Filter posts">
       <a href="#" data-filter="all" aria-current="true">all</a>
-      <a href="#materials" data-filter="materials">materials</a>
       <a href="#process" data-filter="process">process</a>
-      <a href="#projects" data-filter="projects">projects</a>
-      <a href="#studio" data-filter="studio">studio</a>
+      <a href="#materials" data-filter="materials">materials</a>
     </nav>
 
-    <!-- The newest post goes here, big, with its photo. When a new post
-         is added, move this one down into the list. -->
-    <a class="jl__latest" href="/journal/local-materials" data-topic="materials">
+    <!-- One featured post per topic, big, with its photo. "all" shows both,
+         a topic shows its own. Featured posts are left out of the list below. -->
+    <a class="jl__latest" href="/journal/four-numbers" data-topic="process">
+      <img src="/images/journal/four-numbers/hero.jpg" alt="">
+      <span class="jl__latest-text">
+        <span class="jl__kicker">featured · process</span>
+        <span class="jl__latest-title">The Four Numbers</span>
+        <span class="jl__latest-stand">Founders budget a fit-out per square foot. The room pays it back per seat, per hour.</span>
+        <span class="jl__meta"><time datetime="2026-10-15">15 Oct 2026</time> · 6 min</span>
+      </span>
+    </a>
+
+    <a class="jl__latest jl__latest--flip" href="/journal/local-materials" data-topic="materials">
       <img src="/images/journal/local-materials/hero.jpg" alt="">
       <span class="jl__latest-text">
-        <span class="jl__kicker">latest · materials</span>
+        <span class="jl__kicker">featured · materials</span>
         <span class="jl__latest-title">Local is a supply chain, not a mood</span>
         <span class="jl__latest-stand">Regional materials can give a resort its sense of place. They can also delay its opening.</span>
         <span class="jl__meta"><time datetime="2026-10-22">22 Oct 2026</time> · 5 min</span>
@@ -77,12 +86,6 @@
       <li data-topic="process"><a href="/journal/psychology-of-space" data-img="/images/journal/psychology-of-space/hero.jpg">
         <time datetime="2026-10-20">20 Oct 2026</time>
         <b>How a room changes what people do</b>
-        <span class="jl__topic">process</span>
-        <span class="jl__read">6 min</span>
-      </a></li>
-      <li data-topic="process"><a href="/journal/four-numbers" data-img="/images/journal/four-numbers/hero.jpg">
-        <time datetime="2026-10-15">15 Oct 2026</time>
-        <b>The Four Numbers</b>
         <span class="jl__topic">process</span>
         <span class="jl__read">6 min</span>
       </a></li>
