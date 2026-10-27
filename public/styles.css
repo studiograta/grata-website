@@ -826,6 +826,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .cu__values li + li { padding-left: 32px; border-left: 1px solid var(--line); }
 .cu__values li::before { content: ""; position: absolute; top: -1px; left: 0; width: 100%; height: 2px; background: var(--accent); transform-origin: left; }
 .cu__values b { display: block; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 400; line-height: 1.1; }
+.cu__values li p { max-width: 32ch; margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: var(--text-dim); }
 .cu__hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } /* for screen readers only */
 
 .cu__wide { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; margin-top: clamp(72px, 12vh, 128px); }
