@@ -641,8 +641,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .partners__turnstile:empty { display: none; }
 
 /* ---------- Studio page (studio.html) ----------
-   Very little text: the line, what we bring, the four numbers every space
-   answers to, four stages on a Walnut band, and the three principals. */
+   Very little text: the line with who it is for and what we do, a strip
+   of project photos, the four numbers every space answers to, four stages
+   on a Walnut band, the three principals, and a closing line. */
 .page.ap { padding-top: clamp(130px, 20vh, 180px); }
 .ap__intro { max-width: 1440px; }
 .ap > section { max-width: 1440px; }
@@ -659,11 +660,36 @@ html:has(.landing) { overscroll-behavior-y: none; }
   text-wrap: balance;
 }
 
-.ap__sectors { margin: 20px 0 0; font-family: var(--font-display); font-size: 17px; color: var(--text-dim); }
+/* Who it is for and what we do: a small Olive label, then the line */
+.ap__scope { display: grid; gap: 12px; margin: clamp(28px, 4vh, 40px) 0 0; font-family: var(--font-display); }
+.ap__scope div { display: grid; grid-template-columns: 72px 1fr; align-items: baseline; gap: 16px; }
+.ap__scope dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.ap__scope dd { margin: 0; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.4; }
 
-/* What we bring: the services in one line */
-.ap__services { margin-top: clamp(56px, 9vh, 96px); }
-.ap__services p { max-width: 40ch; margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2.2vw, 30px); line-height: 1.4; text-wrap: balance; }
+/* A strip of the work: tall slices of project photos side by side,
+   with a thin gap between them, as one link to the Work page */
+.ap__strips {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  max-width: 1440px;
+  height: clamp(300px, 52vh, 520px);
+  margin-top: clamp(56px, 9vh, 96px);
+}
+.ap__strips img { flex: 1 1 0; min-width: 0; height: 100%; object-fit: cover; transition: flex-grow 600ms var(--ease); }
+.ap__strips:hover img:hover { flex-grow: 1.8; } /* the slice you point at opens a little */
+.ap__strips-label {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  padding: 8px 14px;
+  background: var(--milk);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+.page a.ap__strips { text-decoration: none; }
+.ap__strips:focus-visible { outline: 2px solid var(--focus); outline-offset: 6px; }
 
 /* The four numbers: four columns under an Olive line */
 .ap__numbers { margin-top: clamp(64px, 11vh, 120px); }
@@ -710,6 +736,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .ap__stages li:nth-child(-n+3) { border-top-color: var(--olive-chartreuse); }
 .ap__stages b { display: block; font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 32px); font-weight: 600; }
 .ap__stages small { display: block; margin-top: 8px; font-size: 13px; letter-spacing: 0.04em; color: color-mix(in srgb, var(--milk) 65%, var(--dark-walnut)); }
+/* What the client gets at the end of each stage */
+.ap__stages li p { max-width: 30ch; margin: 14px 0 0; font-size: 15px; line-height: 1.5; color: color-mix(in srgb, var(--milk) 85%, var(--dark-walnut)); }
 /* "ordering starts" marks the line between Detail and Build */
 .ap__stages li:nth-child(4) { position: relative; }
 .ap__stages li:nth-child(4)::before {
@@ -726,15 +754,19 @@ html:has(.landing) { overscroll-behavior-y: none; }
 
 /* People: one line, then the three principals in a row */
 .ap__people { margin-top: clamp(72px, 12vh, 128px); }
-.ap__people-line { max-width: 22ch; margin: 0; font-family: var(--font-display); font-size: clamp(26px, 2.8vw, 40px); font-weight: 600; line-height: 1.15; text-wrap: balance; }
+.ap__people-line { max-width: 28ch; margin: 0; font-family: var(--font-display); font-size: clamp(26px, 2.8vw, 40px); font-weight: 600; line-height: 1.15; text-wrap: balance; }
 .ap__people ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: clamp(32px, 5vh, 56px) 0 0; padding: 0; list-style: none; }
 .ap__people img { display: block; width: 100%; max-width: 320px; height: auto; aspect-ratio: 1; object-fit: cover; margin-bottom: 20px; }
 .ap__people b { display: block; font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 26px); font-weight: 600; }
 .ap__people span { display: block; margin-top: 4px; font-family: var(--font-display); font-size: 15px; color: var(--text-dim); }
 .ap__people li p { max-width: 34ch; margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: var(--text-dim); }
-.ap__people p.ap__years { margin: clamp(32px, 5vh, 48px) 0 0; font-size: 14px; color: var(--text-dim); }
+/* 20+ years, right under the line, in an Olive rule */
+.ap__people p.ap__years { max-width: 60ch; margin: 20px 0 0; padding-left: 14px; border-left: 3px solid var(--accent); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.45; }
 
-.ap__begin { margin: clamp(56px, 9vh, 96px) 0 0; }
+/* The end: a closing line, then the button */
+.ap__end { margin-top: clamp(72px, 12vh, 128px); padding-top: clamp(40px, 6vh, 56px); border-top: 1px solid var(--line); }
+.ap__end-line { margin: 0; font-family: var(--font-display); font-size: clamp(26px, 2.8vw, 40px); font-weight: 600; line-height: 1.15; }
+.ap__begin { margin: 24px 0 0; }
 
 @media (max-width: 760px) {
   .ap__numbers ol { grid-template-columns: 1fr 1fr; }
@@ -747,6 +779,12 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .ap__stages li:nth-child(4) { margin-top: 24px; }
   .ap__people ul { grid-template-columns: 1fr; gap: 40px; }
   .ap__people img { max-width: 240px; }
+  .ap__scope div { grid-template-columns: 1fr; gap: 4px; }
+  .ap__strips { gap: 4px; height: 340px; margin-top: 48px; }
+  .ap__strips img:nth-child(n+5) { display: none; } /* four slices fit a phone */
+}
+@media (prefers-reduced-motion: reduce) {
+  .ap__strips img { transition: none; }
 }
 
 @media (max-width: 760px) {
@@ -1247,7 +1285,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .jp__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 2.4em; font-family: var(--font-display); }
 .jp__sources { margin-top: 3.2em; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.6; color: var(--text-dim); }
 .jp__sources h2 { margin-top: 0; font-size: 17px; }
-.ap__more { margin: 28px 0 0; font-family: var(--font-display); font-size: 16px; }
+/* Its own row under all four numbers, well clear of the first column */
+.ap__numbers p.ap__more { margin: 48px 0 0; padding-top: 20px; border-top: 1px solid var(--line); font-family: var(--font-display); font-size: 16px; }
 
 /* The end: topics, the next post, and back to the journal */
 .jp__end {

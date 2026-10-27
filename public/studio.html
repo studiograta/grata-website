@@ -30,13 +30,25 @@
 
     <header class="ap__intro">
       <h1 class="ap__line">Interior architecture for revenue&#8209;led spaces.</h1>
-      <p class="ap__sectors">hospitality · food and drink · retail · wellness</p>
+      <!-- Who it is for and what we do, as two short labelled lines -->
+      <dl class="ap__scope">
+        <div><dt>for</dt><dd>Hospitality&nbsp;· Food&nbsp;and&nbsp;drink&nbsp;· Retail&nbsp;· Wellness</dd></div>
+        <div><dt>we do</dt><dd>Space&nbsp;planning&nbsp;· Concept&nbsp;· Interior&nbsp;architecture&nbsp;· Furniture&nbsp;and&nbsp;styling&nbsp;· Site&nbsp;delivery</dd></div>
+      </dl>
     </header>
 
-    <section class="ap__services">
-      <h2>what we bring</h2>
-      <p>Space&nbsp;planning&nbsp;· Concept&nbsp;· Interior&nbsp;architecture&nbsp;· Furniture&nbsp;and&nbsp;styling&nbsp;· Site&nbsp;delivery</p>
-    </section>
+    <!-- 1: a strip of our work: tall slices of project photos side by side.
+         Swap a photo by changing its src; object-position picks which part
+         of the photo shows in its slice. Links to the Work page. -->
+    <a class="ap__strips" href="/work" aria-label="See our work">
+      <img src="/images/work/work-8.webp" style="object-position: 38% 50%" loading="lazy" alt="">
+      <img src="/images/work/sohum-lounge.webp" style="object-position: 50% 50%" loading="lazy" alt="">
+      <img src="/images/work/go-native-terrace.webp" style="object-position: 45% 50%" loading="lazy" alt="">
+      <img src="/images/work/lotus-palace-courtyard.webp" style="object-position: 50% 50%" loading="lazy" alt="">
+      <img src="/images/work/work-3.webp" style="object-position: 30% 50%" loading="lazy" alt="">
+      <img src="/images/work/sterling-resorts-room-view.webp" style="object-position: 40% 50%" loading="lazy" alt="">
+      <span class="ap__strips-label">see the work &rarr;</span>
+    </a>
 
     <section class="ap__numbers">
       <h2>every space answers to four numbers</h2>
@@ -52,17 +64,18 @@
     <section class="ap__stages">
       <h2>four stages</h2>
       <ol>
-        <li><b>Measure</b><small>Numbers agreed</small></li>
-        <li><b>Resolve</b><small>Design fixed</small></li>
-        <li><b>Detail</b><small>Drawings and materials fixed</small></li>
-        <li><b>Build</b><small>Snags closed</small></li>
+        <li><b>Measure</b><small>Numbers agreed</small><p>You get: site survey, brief, target numbers and a first space plan.</p></li>
+        <li><b>Resolve</b><small>Design fixed</small><p>You get: concept, layouts, 3D views and a cost estimate.</p></li>
+        <li><b>Detail</b><small>Drawings and materials fixed</small><p>You get: working drawings, material and furniture schedules, and a bill of quantities.</p></li>
+        <li><b>Build</b><small>Snags closed</small><p>You get: site visits, contractor checks, styling and a closed snag list at handover.</p></li>
       </ol>
       <p class="ap__rule">Nothing is ordered until the drawings and materials are fixed.</p>
     </section>
 
     <section class="ap__people">
       <h2>people</h2>
-      <p class="ap__people-line">Two design principals. One operating principal.</p>
+      <p class="ap__people-line">Designers who have built hotels, spas and restaurants. An operator who runs every project to its numbers.</p>
+      <p class="ap__years">20+ years of revenue-earning spaces, across our principals' earlier roles and as a studio.</p>
       <ul>
         <li>
           <img src="/images/studio/people/shirin-kc.jpg" width="720" height="720" loading="lazy" alt="Shirin KC">
@@ -83,10 +96,12 @@
           <p>A decade building and running commercial teams in enterprise software.</p>
         </li>
       </ul>
-      <p class="ap__years">20+ years of revenue-earning spaces, across our principals' earlier roles and as a studio.</p>
     </section>
 
-    <p class="ap__begin"><a class="button" href="/connect#begin">Begin a project &rarr;</a></p>
+    <section class="ap__end">
+      <p class="ap__end-line">Have a space that needs to earn?</p>
+      <p class="ap__begin"><a class="button" href="/connect#begin">Begin a project &rarr;</a></p>
+    </section>
   </main>
   <script src="/menu.js"></script>
 </body>
