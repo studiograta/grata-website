@@ -110,6 +110,12 @@
         <span class="card__photo"><img src="/images/work/voila-resort-cottages.webp" width="2000" height="870" loading="lazy" alt="Tiled-roof cottages with private pools in a coffee plantation"></span>
         <span class="card__caption"><span class="card__name">Voila Resort</span><span class="card__meta">Hassan, Karnataka · concept</span></span>
       </button>
+      <!-- Outside the four sectors, so it shows under "all" only: no filter
+           matches data-type="education" -->
+      <button class="card" type="button" data-type="education" data-project="Prayag Montessori" data-open>
+        <span class="card__photo"><img src="/images/work/prayag-montessori-play-yard.webp" width="1485" height="990" loading="lazy" alt="Play yard with a climbing frame, a slide and a sandpit"></span>
+        <span class="card__caption"><span class="card__name">Prayag Montessori</span><span class="card__meta">Montessori school</span></span>
+      </button>
     </div>
     <p class="wk__empty" hidden>Projects coming soon.</p>
 
@@ -152,10 +158,14 @@
       <img loading="lazy" data-project="Voila Resort" src="/images/work/voila-resort-cottages.webp" width="2000" height="870" alt="Tiled-roof cottages with private pools in a coffee plantation">
       <img loading="lazy" data-project="Voila Resort" src="/images/work/voila-resort-walkway.webp" width="2000" height="1122" alt="Timber walkway between stone walls and planting">
       <img loading="lazy" data-project="Voila Resort" src="/images/work/voila-resort-aerial.webp" width="2000" height="1126" alt="Aerial view of cottages along a hillside plantation">
+      <img loading="lazy" data-project="Prayag Montessori" src="/images/work/prayag-montessori-play-yard.webp" width="1485" height="990" alt="Play yard with a climbing frame, a slide and a sandpit">
+      <img loading="lazy" data-project="Prayag Montessori" src="/images/work/prayag-montessori-classroom.webp" width="1086" height="1448" alt="Classroom with a jungle mural, cloud-shaped ceiling panels and a chequered rug">
+      <img loading="lazy" data-project="Prayag Montessori" src="/images/work/prayag-montessori-corridor.webp" width="1086" height="1448" alt="Corridor under timber skylights, with hopscotch on the floor">
     </div>
 
     <!-- A project, opened over the page: back arrow, its name, the menu,
-         and every photo in one column that scrolls down -->
+         then its photos one at a time. Swipe, the arrows or the keyboard
+         arrows move between them (work.js). -->
     <dialog class="pv" aria-labelledby="pv-title">
       <div class="pv__top">
         <button class="pv__back" type="button" aria-label="Back to work">
@@ -163,7 +173,16 @@
         </button>
         <div><p class="pv__kicker"></p><h2 id="pv-title" tabindex="-1" autofocus></h2><p class="pv__credit" hidden></p></div>
       </div>
-      <div class="pv__row"></div>
+      <div class="pv__row" tabindex="-1"></div>
+      <div class="pv__nav">
+        <button class="pv__prev" type="button" aria-label="Previous photo">
+          <svg width="24" height="24" viewBox="0 0 256 256" aria-hidden="true"><path d="M216 128H40M112 56l-72 72 72 72" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="pv__count" aria-live="polite"></p>
+        <button class="pv__next" type="button" aria-label="Next photo">
+          <svg width="24" height="24" viewBox="0 0 256 256" aria-hidden="true"><path d="M40 128h176M144 56l72 72-72 72" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </dialog>
   </main>
   <script src="/work.js"></script>

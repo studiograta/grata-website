@@ -60,14 +60,15 @@
     <a class="button pp__sticky" href="#join" hidden>Join the directory &darr;</a>
 
     <section class="pp__join" id="join">
-      <!-- Visiting card instead of the form: the photo is shrunk on the phone, then sent
+      <!-- Visiting card instead of the form: just the button and one
+           reassuring line.
+           The photo is shrunk on the phone, then sent
            with a WhatsApp number to the same intake script (see partners.js) -->
       <div class="pp__card" id="card">
-        <h2>in a hurry?</h2>
-        <p>Send a photo of your visiting card. We'll fill in the rest.</p>
         <label class="button pp__snap"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,58H179.21L165,36.67A6,6,0,0,0,160,34H96a6,6,0,0,0-5,2.67L76.78,58H48A22,22,0,0,0,26,80V192a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V80A22,22,0,0,0,208,58Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V80A10,10,0,0,1,48,70H80a6,6,0,0,0,5-2.67L99.21,46h57.57L171,67.33A6,6,0,0,0,176,70h32a10,10,0,0,1,10,10ZM128,90a42,42,0,1,0,42,42A42,42,0,0,0,128,90Zm0,72a30,30,0,1,1,30-30A30,30,0,0,1,128,162Z"/></svg> Snap your visiting card
           <input type="file" accept="image/*" capture="environment" hidden>
         </label>
+        <p class="pp__cardnote">We'll fill in the rest.</p>
 
         <form class="contact__form pp__cardform" hidden>
           <div class="pp__preview"><img alt="Your visiting card"><button type="button" class="pp__retake">Retake</button></div>
