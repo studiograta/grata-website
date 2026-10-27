@@ -31,6 +31,7 @@
         if (img.dataset.project !== project) return;
         var copy = img.cloneNode();
         copy.removeAttribute("loading");
+        copy.draggable = false; // a drag scrolls the strip, not the picture
         // Wide photos pan slowly on phones, so the whole scene passes by
         if (+copy.getAttribute("width") > +copy.getAttribute("height")) copy.dataset.wide = "";
         row.appendChild(copy);
@@ -42,6 +43,7 @@
       if (menu) dialog.appendChild(menu);
       dialog.showModal();
       dialog.scrollTop = 0;
+      centreEnds();
       row.scrollLeft = 0;
       update();
       // A step in the browser history, so the phone's back button closes it
@@ -49,8 +51,30 @@
     });
   });
 
-  // Which photo is on screen: the counter says so, and only that one pans
-  function current() { return Math.round(row.scrollLeft / row.clientWidth) || 0; }
+  // Desktop shows the photos as a strip at one height, the current one in
+  // the middle. Space before the first photo and after the last lets those
+  // two reach the middle as well. (Phones show one photo across the screen,
+  // so they need no space.)
+  var onPhone = matchMedia("(max-width: 760px)");
+  function centreEnds() {
+    var first = row.firstElementChild, last = row.lastElementChild;
+    var room = function (img) { return onPhone.matches || !img ? 0 : Math.max(0, (row.clientWidth - img.offsetWidth) / 2) + "px"; };
+    row.style.paddingLeft = room(first);
+    row.style.paddingRight = room(last);
+  }
+  addEventListener("resize", function () { if (dialog.open) { centreEnds(); goTo(current(), "instant"); } });
+
+  // Which photo is on screen (the one nearest the middle): the counter says
+  // so, it is the one in full colour, and on phones only it pans
+  function middle() { var r = row.getBoundingClientRect(); return r.left + r.width / 2; }
+  function offset(img) { var r = img.getBoundingClientRect(); return r.left + r.width / 2 - middle(); }
+  function current() {
+    var best = 0;
+    Array.prototype.forEach.call(row.children, function (img, i) {
+      if (Math.abs(offset(img)) < Math.abs(offset(row.children[best]))) best = i;
+    });
+    return best;
+  }
   function update() {
     var shown = current();
     Array.prototype.forEach.call(row.children, function (img, i) { img.classList.toggle("is-current", i === shown); });
@@ -65,10 +89,19 @@
   var headed = null, settle;
   function go(step) {
     headed = Math.max(0, Math.min(row.children.length - 1, (headed === null ? current() : headed) + step));
-    row.scrollTo({ left: headed * row.clientWidth, behavior: "smooth" });
+    goTo(headed, "smooth");
     clearTimeout(settle);
     settle = setTimeout(function () { headed = null; }, 700);
   }
+  function goTo(i, behavior) {
+    var img = row.children[i];
+    if (img) row.scrollTo({ left: row.scrollLeft + offset(img), behavior: behavior });
+  }
+  // Desktop: clicking a faded photo at the side brings it to the middle
+  row.addEventListener("click", function (e) {
+    var i = Array.prototype.indexOf.call(row.children, e.target);
+    if (i > -1 && i !== current()) goTo(i, "smooth");
+  });
   prev.addEventListener("click", function () { go(-1); });
   next.addEventListener("click", function () { go(1); });
   dialog.addEventListener("keydown", function (e) {

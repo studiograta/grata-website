@@ -1083,7 +1083,18 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .pv__row::-webkit-scrollbar { display: none; }
 .pv__row:focus { outline: none; }
+.pv__row { -webkit-user-select: none; user-select: none; } /* no grey highlight when clicked or dragged */
 .pv__row img { flex: 0 0 100%; width: 100%; height: 100%; min-width: 0; object-fit: contain; scroll-snap-align: center; scroll-snap-stop: always; }
+/* Desktop: a strip of photos all at one height, each at its own width, so
+   the frame never jumps in size. The current photo sits in the middle in
+   full colour; its neighbours peek in, faded, at the sides (work.js keeps
+   the first and last able to reach the middle). The strip runs to the
+   screen edges. */
+@media (min-width: 761px) {
+  .pv__row { gap: 20px; max-width: none; width: auto; margin-left: -48px; margin-right: -48px; }
+  .pv__row img { flex: none; width: auto; max-width: calc(100vw - 160px); object-fit: cover; opacity: 0.25; cursor: pointer; transition: opacity 500ms ease; }
+  .pv__row img.is-current { opacity: 1; cursor: default; }
+}
 /* Below the photo: back arrow, "2 / 4", forward arrow */
 .pv__nav { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 16px; }
 .pv__nav[hidden] { display: none; }
@@ -1107,15 +1118,18 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .pv__top { padding: 0 72px 0 24px; }
   .pv__row { margin-top: 20px; }
   /* Phones: each photo fills the frame edge to edge. A wide one is far wider
-     than the screen, so it pans slowly from its left edge to its right and
-     back while it is on screen, like the photos on the home page. */
+     than the screen, so while it is on screen it starts on its centre (what
+     a quick glance sees), rests there, then drifts slowly to one side, across
+     to the other, and back to the centre. */
   .pv__row img { object-fit: cover; }
-  .pv__row img[data-wide].is-current { animation: pv-pan 14s ease-in-out 600ms infinite alternate both; }
+  .pv__row img[data-wide].is-current { animation: pv-pan 24s ease-in-out infinite; }
   .pv__nav { margin-top: 8px; }
 }
 @keyframes pv-pan {
-  from { object-position: 0% 50%; }
-  to   { object-position: 100% 50%; }
+  0%, 12% { object-position: 50% 50%; }
+  37%     { object-position: 100% 50%; }
+  75%     { object-position: 0% 50%; }
+  100%    { object-position: 50% 50%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fp__photo img, .card__photo img { transition: none; }
