@@ -769,8 +769,37 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .ap__end { margin-top: clamp(72px, 12vh, 128px); padding-top: clamp(40px, 6vh, 56px); border-top: 1px solid var(--line); }
 .ap__end-line { margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 400; line-height: 1.15; }
 .ap__begin { margin: 24px 0 0; }
-/* Workplaces page (workplaces.html): one paragraph under the line */
-.ap__body { max-width: 60ch; margin: clamp(28px, 4vh, 40px) 0 0; font-size: 18px; line-height: 1.5; }
+/* ---------- Sector pages (restaurants-bars, hotels-resorts, wellness,
+   workplaces.html) ----------
+   The Studio page layout, plus a short line under the headline, the work
+   as a quiet list, questions that open one at a time, and journal links.
+   Small Olive labels name each part. Links show their line only on hover. */
+.sp__sub { max-width: 46ch; margin: 18px 0 0; font-size: 18px; line-height: 1.5; color: var(--text-dim); text-wrap: balance; }
+.ap h2.sp__label {
+  position: static; width: auto; height: auto; overflow: visible; clip-path: none;
+  margin: 0 0 20px; font-size: 12px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+}
+.sp__work, .sp__faq, .sp__read { margin-top: clamp(64px, 10vh, 112px); }
+.sp__work ul, .sp__read ul { margin: 0; padding: 0; list-style: none; }
+.sp__work li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr); gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.sp__work li:last-child { border-bottom: 1px solid var(--line); }
+.sp__work b { font-family: var(--font-display); font-size: 20px; font-weight: 400; }
+.sp__work span, .sp__work small { font-size: 15px; color: var(--text-dim); }
+.sp__faq { max-width: 760px; }
+.sp__faq details { border-top: 1px solid var(--line); }
+.sp__faq details:last-of-type { border-bottom: 1px solid var(--line); }
+.sp__faq summary { display: flex; justify-content: space-between; gap: 24px; padding: 18px 0; font-family: var(--font-display); font-size: 19px; cursor: pointer; list-style: none; }
+.sp__faq summary::-webkit-details-marker { display: none; }
+.sp__faq summary::after { content: "+"; color: var(--accent); font-size: 22px; line-height: 1; transition: transform 300ms var(--ease); }
+.sp__faq details[open] summary::after { transform: rotate(45deg); }
+.sp__faq details p { max-width: 60ch; margin: 0 0 20px; font-size: 16px; line-height: 1.55; color: var(--text-dim); }
+.sp__read ul { display: flex; flex-wrap: wrap; gap: 12px 40px; font-family: var(--font-display); font-size: 18px; }
+/* No underline until you point at a link */
+.sp a:not(.button), .ap__scope a { text-decoration: none; }
+.sp a:not(.button):hover, .ap__scope a:hover { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; }
+@media (max-width: 760px) {
+  .sp__work li { grid-template-columns: 1fr; gap: 4px; }
+}
 
 @media (max-width: 760px) {
   .ap__numbers ol { grid-template-columns: 1fr 1fr; }
@@ -971,6 +1000,11 @@ html:has(.landing) { overscroll-behavior-y: none; }
   text-decoration: underline;
   text-decoration-color: var(--accent);
 }
+
+/* Under a chosen filter: the link to that sector's page */
+.wk__about { max-width: 1440px; margin: -12px 0 clamp(24px, 4vh, 40px); font-family: var(--font-display); font-size: 16px; }
+.page .wk__about a { color: var(--text-dim); text-decoration: none; }
+.page .wk__about a:hover { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; }
 
 /* ---- Featured project: a big photo with its story beside it ---- */
 .fp {
