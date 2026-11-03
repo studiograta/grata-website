@@ -1,5 +1,4 @@
 # Search engines and AI answer engines may read the whole site.
-# Pages also carry a "noindex" tag until the site is ready to be listed.
 User-agent: *
 Allow: /
 
