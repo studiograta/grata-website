@@ -10,6 +10,7 @@ Only the `public` folder is published. Everything outside it stays private.
 - `public/styles.css`: all colours, fonts and layout. The BRAND SETTINGS block at the top is the only part you normally need to touch.
 - `public/main.js`: makes the panels open on tap on phones
 - `public/404.html`: shown for any page that does not exist yet ("This page is on its way")
+- `public/robots.txt`, `public/sitemap.xml` and `public/llms.txt`: tell search engines and AI answer engines what is on the site. Add a line to the sitemap and llms.txt when you add a page or article.
 - `wrangler.jsonc`: tells Cloudflare to publish only the `public` folder
 - `photo-library/`: photos kept for later. Not published; see its README for what each one is
 
