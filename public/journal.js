@@ -26,8 +26,8 @@
     share.hidden = true;
   }
 
-  // The journal page: show one topic at a time (the address keeps it,
-  // e.g. /journal/#materials, so it can be shared)
+  // The journal page: show one sector at a time (the address keeps it,
+  // e.g. /journal/#wellness, so it can be shared)
   var filterLinks = document.querySelectorAll(".jl__filter a");
   if (filterLinks.length) {
     var posts = document.querySelectorAll(".jl [data-topic]");
@@ -35,7 +35,8 @@
     var show = function (topic) {
       var shown = 0;
       posts.forEach(function (post) {
-        post.hidden = topic !== "all" && post.dataset.topic !== topic;
+        // a post can be in several sectors, e.g. data-topic="fnb hospitality"
+        post.hidden = topic !== "all" && post.dataset.topic.split(" ").indexOf(topic) < 0;
         if (post.hidden) return;
         // Every second post shown has its photo on the right
         post.classList.toggle("jl__latest--flip", shown % 2 === 1);
