@@ -612,7 +612,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 /* ---------- Partners page (partners.html): builds on the contact form ---------- */
 .partners__form h2 { margin: 16px 0 0; font-size: 18px; font-weight: 600; color: var(--text); }
 .partners__form h2:first-of-type { margin-top: 0; }
-.partners__form select {
+/* Drop-down lists, in the enquiry form and here */
+.contact__form select {
   display: block;
   width: 100%;
   margin-top: 8px;
@@ -624,7 +625,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   color: var(--text);
   font: 18px var(--font);
 }
-.partners__form select:focus { outline: none; border-bottom-color: var(--text); }
+.contact__form select:focus { outline: none; border-bottom-color: var(--text); }
 .partners__caps { margin: 0; padding: 0; border: 0; display: flex; flex-wrap: wrap; gap: 12px 24px; }
 .partners__caps legend { margin-bottom: 12px; padding: 0; font-size: 15px; color: var(--text-dim); }
 .partners__caps legend span { opacity: 0.7; }
@@ -768,6 +769,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .ap__end { margin-top: clamp(72px, 12vh, 128px); padding-top: clamp(40px, 6vh, 56px); border-top: 1px solid var(--line); }
 .ap__end-line { margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 400; line-height: 1.15; }
 .ap__begin { margin: 24px 0 0; }
+/* Workplaces page (workplaces.html): one paragraph under the line */
+.ap__body { max-width: 60ch; margin: clamp(28px, 4vh, 40px) 0 0; font-size: 18px; line-height: 1.5; }
 
 @media (max-width: 760px) {
   .ap__numbers ol { grid-template-columns: 1fr 1fr; }
