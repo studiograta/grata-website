@@ -19,4 +19,4 @@ Only the `public` folder is published. Everything outside it stays private.
 - Change a colour: edit the matching line in BRAND SETTINGS in `public/styles.css`.
 - Change the font: replace the Google Fonts link in both HTML files, then update `--font` in `public/styles.css`.
 - Change a link: edit the `href` in `public/index.html`.
-- Go live for search engines: delete the `<meta name="robots" content="noindex">` line in `public/index.html`.
+- Hide a page from search engines: add `<meta name="robots" content="noindex">` to its head (the 404 page has it). Every other page is open to search, and listed in `sitemap.xml`.
