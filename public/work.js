@@ -131,6 +131,8 @@
       if (!b.hidden) count++;
     });
     document.querySelector(".wk__empty").hidden = count > 0;
+    // The line linking to that sector's own page
+    document.querySelectorAll(".wk__about").forEach(function (p) { p.hidden = p.dataset.for !== type; });
   }
   filterLinks.forEach(function (link) {
     link.addEventListener("click", function (e) {
