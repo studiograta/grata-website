@@ -142,6 +142,8 @@
       show(type);
     });
   });
-  window.addEventListener("hashchange", function () { show(location.hash.slice(1) || "all"); });
-  show(location.hash.slice(1) || "all");
+  // Filters are hidden for now, so every project shows whatever the address
+  // says (old links like /work#fnb still land here). To bring them back, uncomment:
+  // window.addEventListener("hashchange", function () { show(location.hash.slice(1) || "all"); });
+  // show(location.hash.slice(1) || "all");
 })();

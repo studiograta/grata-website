@@ -976,7 +976,8 @@ html:has(.landing) { overscroll-behavior-y: none; }
    then the other projects as cards in rows of three. Clicking any of them
    opens all the project's photos (work.js). */
 .page.wk { padding-top: 40px; }
-.wk__intro { display: flex; justify-content: flex-end; max-width: 1440px; }
+/* The bottom margin stands in for the filter bar while it is hidden; drop it when the filters return */
+.wk__intro { display: flex; justify-content: flex-end; max-width: 1440px; margin-bottom: clamp(28px, 6vh, 72px); }
 .wk__intro h1 { margin-bottom: 0; text-align: right; font-size: clamp(26px, 2.4vw, 32px); }
 .wk__intro h1::before { margin-left: auto; margin-bottom: 14px; }
 
