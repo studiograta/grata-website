@@ -154,6 +154,7 @@
   // show(location.hash.slice(1) || "all");
   // Featured projects take turns: the next one every 8 seconds, paused
   // while the mouse or keyboard is on them. The dots choose one.
+  // Phones (760px and under) show them one under the other instead.
   (function () {
     var box = document.querySelector(".fps");
     if (!box) return;
@@ -161,11 +162,12 @@
     var dots = box.querySelector(".fps__dots");
     if (slides.length < 2) { dots.hidden = true; return; }
     var current = 0, paused = false;
+    var phone = matchMedia("(max-width: 760px)");
     function go(i) {
       current = (i + slides.length) % slides.length;
       slides.forEach(function (s, n) {
         s.classList.toggle("is-current", n === current);
-        s.inert = n !== current;
+        s.inert = !phone.matches && n !== current;
       });
       dots.querySelectorAll("button").forEach(function (d, n) {
         if (n === current) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
@@ -179,12 +181,13 @@
       dots.appendChild(d);
     });
     go(0);
+    phone.addEventListener("change", function () { go(current); });
     box.addEventListener("mouseenter", function () { paused = true; });
     box.addEventListener("mouseleave", function () { paused = false; });
     box.addEventListener("focusin", function () { paused = true; });
     box.addEventListener("focusout", function () { paused = false; });
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setInterval(function () { if (!paused && !dialog.open) go(current + 1); }, 8000);
+      setInterval(function () { if (!paused && !dialog.open && !phone.matches) go(current + 1); }, 8000);
     }
   })();
 })();

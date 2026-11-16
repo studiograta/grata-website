@@ -1184,6 +1184,11 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 @media (max-width: 760px) {
   .page.wk { padding: 40px 24px 64px; }
+  /* Featured projects one under the other, Go Native first, no turns */
+  .fps > .fp { grid-area: auto; }
+  .fps > .fp:not(.is-current) { opacity: 1; visibility: visible; }
+  .fps > .fp + .fp { margin-top: 56px; }
+  .fps__dots { display: none; }
   .wk__filter { gap: 0 22px; font-size: 16px; }
   .fp { gap: 20px; }
   .cards { grid-template-columns: 1fr; }
