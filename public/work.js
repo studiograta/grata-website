@@ -146,4 +146,39 @@
   // says (old links like /work#fnb still land here). To bring them back, uncomment:
   // window.addEventListener("hashchange", function () { show(location.hash.slice(1) || "all"); });
   // show(location.hash.slice(1) || "all");
+  // Featured projects take turns: the next one every 8 seconds, paused
+  // while the mouse or keyboard is on them. The dots choose one.
+  (function () {
+    var box = document.querySelector(".fps");
+    if (!box) return;
+    var slides = Array.prototype.slice.call(box.querySelectorAll(".fp"));
+    var dots = box.querySelector(".fps__dots");
+    if (slides.length < 2) { dots.hidden = true; return; }
+    var current = 0, paused = false;
+    function go(i) {
+      current = (i + slides.length) % slides.length;
+      slides.forEach(function (s, n) {
+        s.classList.toggle("is-current", n === current);
+        s.inert = n !== current;
+      });
+      dots.querySelectorAll("button").forEach(function (d, n) {
+        if (n === current) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
+      });
+    }
+    slides.forEach(function (s, n) {
+      var d = document.createElement("button");
+      d.type = "button";
+      d.setAttribute("aria-label", s.dataset.project);
+      d.addEventListener("click", function () { go(n); });
+      dots.appendChild(d);
+    });
+    go(0);
+    box.addEventListener("mouseenter", function () { paused = true; });
+    box.addEventListener("mouseleave", function () { paused = false; });
+    box.addEventListener("focusin", function () { paused = true; });
+    box.addEventListener("focusout", function () { paused = false; });
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setInterval(function () { if (!paused && !dialog.open) go(current + 1); }, 8000);
+    }
+  })();
 })();

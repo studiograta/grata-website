@@ -1041,6 +1041,15 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .fp__facts dt { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
 .fp__facts dd { margin: 4px 0 0; }
 
+/* Two or more featured projects take turns in the same place */
+.fps { display: grid; max-width: 1440px; margin-bottom: clamp(72px, 12vh, 128px); }
+.fps > .fp { grid-area: 1 / 1; margin-bottom: 0; transition: opacity 800ms ease, visibility 800ms; }
+.fps > .fp:not(.is-current) { opacity: 0; visibility: hidden; }
+.fps__dots { grid-row: 2; display: flex; gap: 10px; margin-top: 20px; }
+.fps__dots button { width: 28px; height: 2px; padding: 8px 0; border: 0; background: linear-gradient(var(--line), var(--line)) center / 100% 2px no-repeat; cursor: pointer; }
+.fps__dots button[aria-current] { background-image: linear-gradient(var(--accent), var(--accent)); }
+.fps__dots button:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+
 /* "view project", a plain text link */
 .fp__link {
   padding: 0;
