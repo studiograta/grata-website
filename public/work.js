@@ -26,6 +26,12 @@
       var credit = dialog.querySelector(".pv__credit");
       credit.textContent = block.dataset.credit || "";
       credit.hidden = !block.dataset.credit;
+      // A line or two about the project: data-desc on a card, or the
+      // featured project's own description
+      var desc = dialog.querySelector(".pv__desc");
+      var featuredDesc = block.querySelector(".fp__desc");
+      desc.textContent = block.dataset.desc || (featuredDesc ? featuredDesc.textContent : "");
+      desc.hidden = !desc.textContent;
       row.innerHTML = "";
       document.querySelectorAll(".photos img").forEach(function (img) {
         if (img.dataset.project !== project) return;

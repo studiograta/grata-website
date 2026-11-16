@@ -9,7 +9,7 @@
     ["/work", "work"],
     ["/studio", "studio"],
     ["/journal/", "journal"],
-    ["/partners", "partners"],
+    ["/makers", "makers"],
     ["/culture", "culture"],
     ["/connect", "connect"],
   ];

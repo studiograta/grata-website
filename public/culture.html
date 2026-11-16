@@ -38,7 +38,47 @@
         <p class="cu__headline">Room to create, grow and lead.</p>
         <a class="button" href="#join">Join the studio &rarr;</a>
       </div>
-      <img class="cu__photo" src="/images/culture/drawing-table.jpg" alt="A pencil drawing on a studio table in afternoon light" style="object-position: 50% 40%">
+      <!-- Four people round a table, seen from above, drawn in plain lines.
+           They arrive one by one; then a plan draws itself on the sheet and
+           the colour fan opens and closes, slowly, on a loop. CSS: .cu-art -->
+      <svg class="cu__photo cu-art" viewBox="0 0 400 500" role="img" aria-label="Line drawing from above: four people round a table, working on a plan together">
+        <rect x="110" y="150" width="180" height="200" rx="4"/>
+        <g transform="rotate(-5 200 240)">
+          <rect class="cu-art__fill" x="148" y="198" width="104" height="84"/>
+          <path class="cu-art__plan" pathLength="1" d="M160 210 H240 V270 H160 Z M200 210 V236 M160 240 H186 M214 240 H240 M200 252 V270 M222 270 A18 18 0 0 1 240 252"/>
+        </g>
+        <g class="cu-art__fan" transform="translate(262 322)">
+          <rect class="cu-art__fill cu-art__b1" x="-5" y="-38" width="10" height="40" rx="3"/>
+          <rect class="cu-art__fill cu-art__b2" x="-5" y="-38" width="10" height="40" rx="3"/>
+          <rect class="cu-art__fill cu-art__b3" x="-5" y="-38" width="10" height="40" rx="3"/>
+          <circle cx="0" cy="0" r="2"/>
+        </g>
+        <circle cx="140" cy="312" r="9"/><path d="M149 309 a4 4 0 0 1 0 7"/>
+        <g class="cu-art__p cu-art__p1" transform="translate(62 248) rotate(90)"><g>
+          <path d="M-22 -9 C-22 -26 -16 -40 -10 -48 M22 -9 C22 -26 16 -40 10 -48"/>
+          <circle cx="-10" cy="-51" r="3.5"/><circle class="cu-art__hand" cx="10" cy="-51" r="3.5"/>
+          <ellipse class="cu-art__fill" cx="0" cy="0" rx="30" ry="12"/>
+          <circle class="cu-art__fill" cx="0" cy="-3" r="12"/>
+        </g></g>
+        <g class="cu-art__p cu-art__p2" transform="translate(338 232) rotate(-90)"><g>
+          <path d="M-22 -9 C-22 -26 -16 -40 -10 -48 M22 -9 C22 -26 16 -40 10 -48"/>
+          <circle cx="-10" cy="-51" r="3.5"/><circle class="cu-art__hand" cx="10" cy="-51" r="3.5"/>
+          <ellipse class="cu-art__fill" cx="0" cy="0" rx="30" ry="12"/>
+          <circle class="cu-art__fill" cx="0" cy="-3" r="12"/>
+        </g></g>
+        <g class="cu-art__p cu-art__p3" transform="translate(200 108) rotate(180)"><g>
+          <path d="M-22 -9 C-22 -26 -16 -40 -10 -48 M22 -9 C22 -26 16 -40 10 -48"/>
+          <circle cx="-10" cy="-51" r="3.5"/><circle class="cu-art__hand" cx="10" cy="-51" r="3.5"/>
+          <ellipse class="cu-art__fill" cx="0" cy="0" rx="30" ry="12"/>
+          <circle class="cu-art__fill" cx="0" cy="-3" r="12"/>
+        </g></g>
+        <g class="cu-art__p cu-art__p4" transform="translate(214 394) rotate(0)"><g>
+          <path d="M-22 -9 C-22 -26 -16 -40 -10 -48 M22 -9 C22 -26 16 -40 10 -48"/>
+          <circle cx="-10" cy="-51" r="3.5"/><circle class="cu-art__hand" cx="10" cy="-51" r="3.5"/>
+          <ellipse class="cu-art__fill" cx="0" cy="0" rx="30" ry="12"/>
+          <circle class="cu-art__fill" cx="0" cy="-3" r="12"/>
+        </g></g>
+      </svg>
     </section>
 
     <section class="cu__values">

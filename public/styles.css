@@ -499,6 +499,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 1000px) {
   .connect__body { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+/* Who we are: the principals below the contact row, after a rule */
+.connect__people { margin-top: clamp(64px, 10vh, 112px); padding-top: clamp(40px, 6vh, 56px); border-top: 1px solid var(--line); }
+.connect__people h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- Partners page (partners.html) ----------
    Top: headline, three steps and a phone-framed video of the directory.
@@ -850,6 +853,27 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 .cu__headline { margin: 0 0 32px; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.1; font-weight: 400; text-wrap: balance; }
 .cu__photo { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: color-mix(in srgb, var(--mothwing-taupe) 25%, transparent); }
+/* The drawing in place of the photo: walnut lines only, gentle movement */
+.cu-art { --paper: color-mix(in srgb, var(--mothwing-taupe) 25%, var(--background)); background: var(--paper); fill: none; stroke: var(--text); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.cu-art .cu-art__fill { fill: var(--paper); }
+.cu-art__p > g { animation: cu-arrive 1.4s ease-out both; }
+.cu-art__p2 > g { animation-delay: 0.5s; }
+.cu-art__p3 > g { animation-delay: 1s; }
+.cu-art__p4 > g { animation-delay: 1.5s; }
+@keyframes cu-arrive { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: none; } }
+.cu-art__plan { stroke-dasharray: 1; animation: cu-draw 10s ease-in-out 2.4s infinite both; }
+@keyframes cu-draw { 0% { stroke-dashoffset: 1; opacity: 1; } 45%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+.cu-art__p4 .cu-art__hand { animation: cu-hand 10s ease-in-out 2.4s infinite; }
+@keyframes cu-hand { 0%, 100% { transform: none; } 20% { transform: translate(-14px, -6px); } 45% { transform: translate(10px, -10px); } }
+.cu-art__fan rect { transform-box: view-box; transform-origin: 0 0; animation: cu-fan 10s ease-in-out 2.4s infinite; }
+.cu-art__fan .cu-art__b1 { --a: -28deg; }
+.cu-art__fan .cu-art__b3 { --a: 28deg; }
+.cu-art__fan .cu-art__b2 { --a: 0deg; }
+@keyframes cu-fan { 0%, 30%, 100% { transform: rotate(0); } 50%, 80% { transform: rotate(var(--a)); } }
+@media (prefers-reduced-motion: reduce) {
+  .cu-art *, .cu-art__p > g { animation: none !important; }
+  .cu-art__plan { stroke-dashoffset: 0; }
+}
 
 /* The three values: big words, each with an Olive line drawn above */
 .cu__values { margin-top: clamp(72px, 12vh, 128px); }
@@ -1116,6 +1140,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .pv h2 { margin: 0; font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); }
 .pv h2:focus { outline: none; } /* focus starts on the name when a project opens */
 .pv__credit { margin: 8px 0 0; font-size: 14px; color: var(--text-dim); }
+.pv__desc { max-width: 62ch; margin: 10px 0 0; font-size: 15px; line-height: 1.55; color: var(--text-dim); }
 /* The strip of photos: swipe or scroll sideways, and it always settles
    on one whole photo. Each photo is shown whole (contain), never cropped. */
 .pv__row {
