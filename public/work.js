@@ -153,7 +153,7 @@
   // window.addEventListener("hashchange", function () { show(location.hash.slice(1) || "all"); });
   // show(location.hash.slice(1) || "all");
   // Featured projects take turns: the next one every 8 seconds, paused
-  // while the mouse or keyboard is on them. The dots choose one.
+  // while the mouse or keyboard is on them.
   // Phones (760px and under) show them one under the other instead.
   (function () {
     var box = document.querySelector(".fps");
@@ -169,16 +169,37 @@
         s.classList.toggle("is-current", n === current);
         s.inert = !phone.matches && n !== current;
       });
-      dots.querySelectorAll("button").forEach(function (d, n) {
+      dots.querySelectorAll(".fps__tab").forEach(function (d, n) {
         if (n === current) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
       });
     }
+    // Under the photo: back and next arrows, then each project by name.
+    // Once someone picks one, the turns stop so it stays put.
+    var stopped = false;
+    function arrow(label, path, step) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "fps__arrow";
+      b.setAttribute("aria-label", label);
+      b.innerHTML = '<svg width="22" height="22" viewBox="0 0 256 256" aria-hidden="true"><path d="' + path + '" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      b.addEventListener("click", function () { stopped = true; go(current + step); });
+      return b;
+    }
+    dots.appendChild(arrow("Previous featured project", "M216 128H40M112 56l-72 72 72 72", -1));
+    dots.appendChild(arrow("Next featured project", "M40 128h176M144 56l72 72-72 72", 1));
     slides.forEach(function (s, n) {
       var d = document.createElement("button");
       d.type = "button";
-      d.setAttribute("aria-label", s.dataset.project);
-      d.addEventListener("click", function () { go(n); });
+      d.className = "fps__tab";
+      d.innerHTML = "<span>0" + (n + 1) + "</span>" + s.dataset.project;
+      d.addEventListener("click", function () { stopped = true; go(n); });
       dots.appendChild(d);
+    });
+    // Keyboard: left and right arrows while anything in the block has focus
+    box.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      stopped = true;
+      go(current + (e.key === "ArrowRight" ? 1 : -1));
     });
     go(0);
     phone.addEventListener("change", function () { go(current); });
@@ -187,7 +208,7 @@
     box.addEventListener("focusin", function () { paused = true; });
     box.addEventListener("focusout", function () { paused = false; });
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setInterval(function () { if (!paused && !dialog.open && !phone.matches) go(current + 1); }, 8000);
+      setInterval(function () { if (!paused && !stopped && !dialog.open && !phone.matches) go(current + 1); }, 8000);
     }
   })();
 })();
