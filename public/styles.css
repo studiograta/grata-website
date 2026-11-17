@@ -1381,6 +1381,21 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .jp__text li { margin-bottom: 0.4em; }
 .jp .jp__single { margin: 2.6em 0; }
 .jp__single img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+/* A drawn plan inside a post: thin walls, filled furniture, Olive routes */
+.jp__plan svg { display: block; box-sizing: border-box; width: 100%; height: auto; padding: 16px; background: color-mix(in srgb, var(--mothwing-taupe) 14%, var(--background)); overflow: visible; }
+.pl__wall path { fill: none; stroke: var(--text); stroke-width: 4; }
+.pl__glass { fill: none; stroke: var(--text-dim); stroke-width: 1.5; stroke-dasharray: 6 5; }
+.pl__fill { fill: color-mix(in srgb, var(--mothwing-taupe) 45%, var(--background)); }
+.pl__solid, .pl__solid rect { fill: var(--text); }
+.pl__route { fill: none; stroke: var(--accent); stroke-width: 3; stroke-dasharray: 2 7; stroke-linecap: round; }
+.pl__route--dim { opacity: 0.6; }
+.pl__dot { fill: var(--accent); }
+.pl__label text { font-family: var(--font); font-size: 16px; fill: var(--text-dim); }
+.pl__label .pl__on { fill: var(--background); }
+/* A simple two-column table inside a post */
+.jp__table { width: 100%; margin: 0 0 1.6em; border-collapse: collapse; font-size: 0.95em; }
+.jp__table th { padding: 0 12px 10px 0; text-align: left; font-family: var(--font-display); font-weight: 600; border-bottom: 2px solid var(--accent); }
+.jp__table td { padding: 12px 12px 12px 0; vertical-align: top; border-bottom: 1px solid var(--line); }
 .jp__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 2.4em; font-family: var(--font-display); }
 .jp__sources { margin-top: 3.2em; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.6; color: var(--text-dim); }
 .jp__sources h2 { margin-top: 0; font-size: 17px; }
