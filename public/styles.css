@@ -472,9 +472,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .ap__people.connect__people img { max-width: 160px; margin-bottom: 14px; }
 .ap__people.connect__people b { font-size: 17px; }
 .ap__people.connect__people span { font-size: 14px; }
-/* Their background, a step lighter than the titles so it reads last
-   (still 4.9:1 on Taupe, easy to read) */
-.ap__people.connect__people li p { margin-top: 8px; font-size: 14px; color: color-mix(in srgb, var(--dark-walnut) 65%, var(--mothwing-taupe)); }
+/* Their background, smaller and a step lighter than the titles so it
+   reads last (still 4.9:1 on Taupe) */
+.ap__people.connect__people li p { margin-top: 6px; font-size: 13px; line-height: 1.45; color: color-mix(in srgb, var(--dark-walnut) 65%, var(--mothwing-taupe)); }
 /* Right: Begin, then the details under a thin line: Reach on the left,
    Follow and Based in stacked beside it */
 .connect__side { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; padding-top: 6px; }
@@ -845,7 +845,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
   /* Phones: one column. Each principal is a row: a small photo, the words beside it */
   .ap__people.connect__people ul { grid-template-columns: 1fr; gap: 20px; }
-  .ap__people.connect__people li { display: grid; grid-template-columns: 88px minmax(0, 1fr); column-gap: 16px; align-items: start; }
+  .ap__people.connect__people li { display: grid; grid-template-columns: 88px minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: 16px; align-items: start; } /* the last row takes any spare height, so the words stay together */
   .ap__people.connect__people img { grid-row: span 3; max-width: 88px; margin: 0; }
   .ap__people.connect__people li p { margin-top: 6px; }
   .connect__cols { grid-template-columns: 1fr; }
