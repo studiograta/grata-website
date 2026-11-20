@@ -472,7 +472,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .ap__people.connect__people img { max-width: 160px; margin-bottom: 14px; }
 .ap__people.connect__people b { font-size: 17px; }
 .ap__people.connect__people span { font-size: 14px; }
-.ap__people.connect__people li p { margin-top: 8px; font-size: 14px; }
+/* Their background, a step lighter than the titles so it reads last
+   (still 4.9:1 on Taupe, easy to read) */
+.ap__people.connect__people li p { margin-top: 8px; font-size: 14px; color: color-mix(in srgb, var(--dark-walnut) 65%, var(--mothwing-taupe)); }
 /* Right: Begin, then the details under a thin line: Reach on the left,
    Follow and Based in stacked beside it */
 .connect__side { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; padding-top: 6px; }
