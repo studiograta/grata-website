@@ -439,9 +439,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .contact__form .contact__trap { display: none; }
 
 /* ---------- Connect page (connect.html) ----------
-   A calm Taupe page with one row of four, centred on the screen: Reach,
-   Follow, Based in and "Begin a project", which opens the enquiry form
-   below the row. Phones: one column, Begin first. */
+   A calm Taupe page, top to bottom: who we are, with "Begin a project"
+   level with that line (it opens the enquiry form below), the three
+   principals, then Reach, Follow and Based in close the page, lined up
+   with the portraits. Phones: the same order in one column. */
 .connect {
   --background: color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk));
   --text-dim: color-mix(in srgb, var(--dark-walnut) 82%, var(--mothwing-taupe));
@@ -450,8 +451,6 @@ html:has(.landing) { overscroll-behavior-y: none; }
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
   padding-top: clamp(124px, 20vh, 160px);
   padding-bottom: clamp(48px, 10vh, 96px);
 }
@@ -461,14 +460,17 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect a:hover { opacity: 0.65; }
 
 .connect__inner { max-width: 1440px; }
-.connect__body {
+/* The details: three columns in line with the three portraits above */
+.connect__cols {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 40px 32px;
-  align-items: start;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px 32px;
+  margin-top: clamp(64px, 10vh, 112px);
+  padding-top: clamp(40px, 6vh, 56px);
+  border-top: 1px solid var(--line);
+  font-size: 16px;
+  line-height: 1.5;
 }
-/* The three sections sit straight in the row of four, with Begin as the fourth */
-.connect__cols { display: contents; font-size: 16px; line-height: 1.5; }
 .connect h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } /* kept for screen readers only */
 
 .connect__cols h2 {
@@ -487,20 +489,17 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect__social a { display: block; padding: 2px; }
 .connect__social svg { display: block; width: 28px; height: 28px; fill: currentColor; }
 
-/* "Begin": a button that opens the enquiry form below it */
-.connect__begin { padding-top: 30px; } /* level with the first line of each column */
-.connect__begin[open] { grid-column: 1 / -1; padding-top: 0; } /* the form opens below the row */
+/* The people line on the left, "Begin" on the right: a button that opens
+   the enquiry form below them, full width */
+.connect__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: start; }
+.connect__begin[open] { grid-column: 1 / -1; }
 .connect__begin summary { list-style: none; }
 .connect__begin summary::-webkit-details-marker { display: none; }
 .connect__begin[open] summary { display: none; }
 .connect__begin .contact__form { max-width: 520px; }
 .connect__hint { margin: 0; font-size: 18px; color: var(--text); }
 .connect .contact__form ::placeholder { color: color-mix(in srgb, var(--dark-walnut) 50%, var(--mothwing-taupe)); }
-@media (max-width: 1000px) {
-  .connect__body { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-/* Who we are: the principals below the contact row, after a rule */
-.connect__people { margin-top: clamp(64px, 10vh, 112px); padding-top: clamp(40px, 6vh, 56px); border-top: 1px solid var(--line); }
+.ap__people.connect__people { margin-top: 0; } /* first on the page, so no gap above */
 .connect__people h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- Partners page (partners.html) ----------
@@ -826,11 +825,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 760px) {
   .page { padding: 110px 24px 64px; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
-  /* Phones: one column from the top: Begin a project, Reach, Follow, Based in */
-  .connect { justify-content: flex-start; min-height: 0; }
-  .connect__body { display: flex; flex-direction: column; gap: 48px; }
-  .connect__begin { order: 1; justify-self: auto; padding-top: 0; }
-  .connect__cols { order: 2; display: grid; grid-template-columns: 1fr; gap: 36px; font-size: 16px; line-height: 1.5; }
+  /* Phones: one column, in the same order: who we are, Begin a project,
+     the principals, then Reach, Follow and Based in */
+  .connect__head { grid-template-columns: 1fr; gap: 28px; }
+  .connect__cols { grid-template-columns: 1fr; }
 }
 
 /* ---------- Culture page (culture.html) ----------
