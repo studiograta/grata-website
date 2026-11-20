@@ -439,10 +439,10 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .contact__form .contact__trap { display: none; }
 
 /* ---------- Connect page (connect.html) ----------
-   A calm Taupe page, top to bottom: who we are, with "Begin a project"
-   level with that line (it opens the enquiry form below), the three
-   principals, then Reach, Follow and Based in close the page, lined up
-   with the portraits. Phones: the same order in one column. */
+   A calm Taupe page in two halves, so it all fits the first screen.
+   Left: who we are and the three principals, small. Right: "Begin a
+   project" (it opens the enquiry form there), then Reach, Follow and
+   Based in. Phones: one column, people first. */
 .connect {
   --background: color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk));
   --text-dim: color-mix(in srgb, var(--dark-walnut) 82%, var(--mothwing-taupe));
@@ -460,16 +460,35 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect a:hover { opacity: 0.65; }
 
 .connect__inner { max-width: 1440px; }
-/* The details: three columns in line with the three portraits above */
+.connect__split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px clamp(48px, 7vw, 120px);
+  align-items: start;
+}
+/* Left: the portraits, three in a row at a quarter of their old size */
+.ap__people.connect__people { margin-top: 0; }
+.ap__people.connect__people ul { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 32px; }
+.ap__people.connect__people img { max-width: 160px; margin-bottom: 14px; }
+.ap__people.connect__people b { font-size: 17px; }
+.ap__people.connect__people span { font-size: 14px; }
+.ap__people.connect__people li p { margin-top: 8px; font-size: 14px; }
+/* Right: Begin, then the details under a thin line: Reach on the left,
+   Follow and Based in stacked beside it */
+.connect__side { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; padding-top: 6px; }
 .connect__cols {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 36px 32px;
-  margin-top: clamp(64px, 10vh, 112px);
-  padding-top: clamp(40px, 6vh, 56px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  align-self: stretch;
+  padding-top: 36px;
   border-top: 1px solid var(--line);
   font-size: 16px;
   line-height: 1.5;
+}
+.connect__cols section:first-child { grid-row: span 2; }
+@media (max-width: 1000px) {
+  .connect__split { grid-template-columns: 1fr; }
 }
 .connect h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } /* kept for screen readers only */
 
@@ -489,17 +508,14 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .connect__social a { display: block; padding: 2px; }
 .connect__social svg { display: block; width: 28px; height: 28px; fill: currentColor; }
 
-/* The people line on the left, "Begin" on the right: a button that opens
-   the enquiry form below them, full width */
-.connect__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: start; }
-.connect__begin[open] { grid-column: 1 / -1; }
+/* "Begin": a button that opens the enquiry form in its place */
+.connect__begin[open] { align-self: stretch; }
 .connect__begin summary { list-style: none; }
 .connect__begin summary::-webkit-details-marker { display: none; }
 .connect__begin[open] summary { display: none; }
 .connect__begin .contact__form { max-width: 520px; }
 .connect__hint { margin: 0; font-size: 18px; color: var(--text); }
 .connect .contact__form ::placeholder { color: color-mix(in srgb, var(--dark-walnut) 50%, var(--mothwing-taupe)); }
-.ap__people.connect__people { margin-top: 0; } /* first on the page, so no gap above */
 .connect__people h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- Partners page (partners.html) ----------
@@ -825,10 +841,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 760px) {
   .page { padding: 110px 24px 64px; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
-  /* Phones: one column, in the same order: who we are, Begin a project,
-     the principals, then Reach, Follow and Based in */
-  .connect__head { grid-template-columns: 1fr; gap: 28px; }
+  /* Phones: one column. Each principal is a row: a small photo, the words beside it */
+  .ap__people.connect__people ul { grid-template-columns: 1fr; gap: 20px; }
+  .ap__people.connect__people li { display: grid; grid-template-columns: 88px minmax(0, 1fr); column-gap: 16px; align-items: start; }
+  .ap__people.connect__people img { grid-row: span 3; max-width: 88px; margin: 0; }
+  .ap__people.connect__people li p { margin-top: 6px; }
   .connect__cols { grid-template-columns: 1fr; }
+  .connect__cols section:first-child { grid-row: auto; }
 }
 
 /* ---------- Culture page (culture.html) ----------
