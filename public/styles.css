@@ -440,9 +440,9 @@ html:has(.landing) { overscroll-behavior-y: none; }
 
 /* ---------- Connect page (connect.html) ----------
    A calm Taupe page in two halves, so it all fits the first screen.
-   Left: who we are and the three principals, small. Right: "Begin a
-   project" (it opens the enquiry form there), then Reach, Follow and
-   Based in. Phones: one column, people first. */
+   Left: the three principals, small. Right: "Begin a project" (it opens
+   the enquiry form there), then Reach, Follow and Based in. Phones: one
+   column with Begin and the details first, so nothing needs a scroll. */
 .connect {
   --background: color-mix(in srgb, var(--mothwing-taupe) 55%, var(--milk));
   --text-dim: color-mix(in srgb, var(--dark-walnut) 82%, var(--mothwing-taupe));
@@ -468,8 +468,7 @@ html:has(.landing) { overscroll-behavior-y: none; }
 }
 /* Left: the portraits, three in a row at a quarter of their old size */
 .ap__people.connect__people { margin-top: 0; }
-.ap__people.connect__people .ap__people-line { max-width: none; } /* one sentence per line */
-.ap__people.connect__people ul { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 32px; }
+.ap__people.connect__people ul { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 0; }
 .ap__people.connect__people img { max-width: 160px; margin-bottom: 14px; }
 .ap__people.connect__people b { font-size: 17px; }
 .ap__people.connect__people span { font-size: 14px; }
@@ -775,16 +774,13 @@ html:has(.landing) { overscroll-behavior-y: none; }
   color: var(--olive-chartreuse);
 }
 
-/* People: one line, then the three principals in a row */
+/* People: the three principals in a row */
 .ap__people { margin-top: clamp(72px, 12vh, 128px); }
-.ap__people-line { max-width: 28ch; margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); font-weight: 400; line-height: 1.15; text-wrap: balance; }
 .ap__people ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: clamp(32px, 5vh, 56px) 0 0; padding: 0; list-style: none; }
 .ap__people img { display: block; width: 100%; max-width: 320px; height: auto; aspect-ratio: 1; object-fit: cover; margin-bottom: 20px; }
 .ap__people b { display: block; font-family: var(--font-display); font-size: clamp(18px, 1.4vw, 20px); font-weight: 400; }
 .ap__people span { display: block; margin-top: 4px; font-family: var(--font-display); font-size: 15px; color: var(--text-dim); }
 .ap__people li p { max-width: 34ch; margin: 12px 0 0; font-size: 15px; line-height: 1.5; color: var(--text-dim); }
-/* 20+ years, right under the line, in an Olive rule */
-.ap__people p.ap__years { max-width: 60ch; margin: 20px 0 0; padding-left: 14px; border-left: 3px solid var(--accent); font-size: 15px; line-height: 1.45; }
 
 /* The end: a closing line, then the button */
 .ap__end { margin-top: clamp(72px, 12vh, 128px); padding-top: clamp(40px, 6vh, 56px); border-top: 1px solid var(--line); }
@@ -844,13 +840,16 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 760px) {
   .page { padding: 110px 24px 64px; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
-  /* Phones: one column. Each principal is a row: a small photo, the words beside it */
+  /* Phones: Begin and the details first, then the principals, each a
+     row with a small photo and the words beside it */
+  .connect__side { order: -1; gap: 28px; padding-top: 0; }
+  .connect__cols { padding-top: 24px; gap: 20px 24px; font-size: 15px; }
   .ap__people.connect__people ul { grid-template-columns: 1fr; gap: 20px; }
   .ap__people.connect__people li { display: grid; grid-template-columns: 88px minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: 16px; align-items: start; } /* the last row takes any spare height, so the words stay together */
   .ap__people.connect__people img { grid-row: span 3; max-width: 88px; margin: 0; }
   .ap__people.connect__people li p { margin-top: 6px; }
-  .connect__cols { grid-template-columns: 1fr; }
-  .connect__cols section:first-child { grid-row: auto; }
+  .connect__cols p, .connect__cols address { margin-bottom: 4px; }
+  .connect__social { gap: 8px; } /* the four logos fit their half */
 }
 
 /* ---------- Culture page (culture.html) ----------
