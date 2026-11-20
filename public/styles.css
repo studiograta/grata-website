@@ -1273,6 +1273,53 @@ html:has(.landing) { overscroll-behavior-y: none; }
 .site-menu__list a:hover { color: var(--text); }
 .site-menu__list a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 
+/* Desktop: no burger. The main pages sit in a row of plain words, greyed;
+   the one you point at turns Walnut. Pointing at work or studio drops a
+   short list of its pages underneath, with no animation. It stays a
+   moment after the pointer leaves, so moving down to it is easy. */
+.site-nav { display: none; }
+@media (min-width: 1001px) and (hover: hover) {
+  .site-menu__burger, .site-menu__list { display: none; }
+  .site-nav { display: flex; gap: 36px; }
+  .site-nav__item { position: relative; }
+  .site-nav > .site-nav__item > a {
+    display: block;
+    padding: 12px 0; /* level with the logo, and an easy target */
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 22px;
+    color: color-mix(in srgb, var(--text) 42%, var(--background));
+    text-decoration: none;
+  }
+  .site-nav__drop {
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 20px 14px;
+    white-space: nowrap;
+    background: var(--texture), var(--background);
+    box-shadow: 0 10px 30px rgba(45, 32, 17, 0.14);
+    visibility: hidden;
+    transition: visibility 0s linear 200ms;
+  }
+  .site-nav__item:hover .site-nav__drop,
+  .site-nav__item:focus-within .site-nav__drop { visibility: visible; transition-delay: 0s; }
+  /* Moving to another word closes the last list at once */
+  .site-nav:hover .site-nav__item:not(:hover) .site-nav__drop { visibility: hidden; transition-delay: 0s; }
+  .site-nav__drop a {
+    padding: 4px 0;
+    font-size: 15px;
+    line-height: 1.35;
+    color: color-mix(in srgb, var(--text) 42%, var(--background));
+    text-decoration: none;
+  }
+  .site-nav a:hover, .site-nav__item:hover > a { color: var(--text); }
+  .site-nav a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+}
+
 /* The page titles are kept for screen readers and search engines, and keep
    their space so the pages do not shift, but are no longer shown */
 .page h1[data-titles] { color: transparent; user-select: none; }
