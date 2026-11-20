@@ -840,14 +840,17 @@ html:has(.landing) { overscroll-behavior-y: none; }
 @media (max-width: 760px) {
   .page { padding: 110px 24px 64px; }
   .contact__inner { grid-template-columns: 1fr; gap: 48px; }
-  /* Phones: Begin and the details first, then the principals, each a
-     row with a small photo and the words beside it */
-  .connect__side { order: -1; gap: 28px; padding-top: 0; }
+  /* Phones: the principals first, three small photos side by side with
+     just the name and title (no background line), so Begin and the top
+     of Reach and Follow still show on the first screen */
+  .connect__split { gap: 36px; }
+  .connect__side { gap: 28px; padding-top: 0; }
   .connect__cols { padding-top: 24px; gap: 20px 24px; font-size: 15px; }
-  .ap__people.connect__people ul { grid-template-columns: 1fr; gap: 20px; }
-  .ap__people.connect__people li { display: grid; grid-template-columns: 88px minmax(0, 1fr); grid-template-rows: auto auto 1fr; column-gap: 16px; align-items: start; } /* the last row takes any spare height, so the words stay together */
-  .ap__people.connect__people img { grid-row: span 3; max-width: 88px; margin: 0; }
-  .ap__people.connect__people li p { margin-top: 6px; }
+  .ap__people.connect__people ul { gap: 16px; }
+  .ap__people.connect__people img { max-width: 96px; margin-bottom: 8px; }
+  .ap__people.connect__people b { font-size: 15px; }
+  .ap__people.connect__people span { margin-top: 2px; font-size: 12px; line-height: 1.3; }
+  .ap__people.connect__people li p { display: none; }
   .connect__cols p, .connect__cols address { margin-bottom: 4px; }
   .connect__social { gap: 8px; } /* the four logos fit their half */
 }
